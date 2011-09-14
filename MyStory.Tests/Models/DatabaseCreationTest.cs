@@ -11,19 +11,15 @@ namespace MyStory.Tests.Models
     {
         private MyStoryContext context;
 
+        // This ctor will be executed whenever each test method executes
         public DatabaseCreationTest()
         {
             context = new MyStoryContext();
         }
 
+       
         [Fact]
-        public void test()
-        {
-            Assert.NotNull(context);
-        }
-
-        [Fact]
-        public void test1()
+        public void accounts_should_have_nothing()
         {
             Assert.NotNull(context);
 

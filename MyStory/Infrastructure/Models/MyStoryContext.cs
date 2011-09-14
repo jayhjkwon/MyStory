@@ -17,7 +17,7 @@ namespace MyStory.Infrastructure.Models
         }
 
         public MyStoryContext()
-            : base("name=MyStorySQLEXPRESSDB")
+            : base("name=MyStorySQLCEDB")
         {}
 
         public IDbSet<Account> Accounts { get; set; }

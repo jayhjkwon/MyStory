@@ -83,7 +83,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\EntityFramework.SqlServerCompact.cs" />
-    <Compile Include="Class1.cs" />
     <Compile Include="Models\DatabaseCreationTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
