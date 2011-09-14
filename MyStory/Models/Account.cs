@@ -5,8 +5,12 @@ using System.Web;
 
 namespace MyStory.Models
 {
+    /// <summary>
+    /// domain class for user account
+    /// </summary>
     public class Account
     {
+        
         public string Email { get; set; }
         public string FullName { get; set; }
         public string Password { get; set; }
