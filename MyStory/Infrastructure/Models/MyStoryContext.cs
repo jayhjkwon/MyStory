@@ -13,11 +13,11 @@ namespace MyStory.Infrastructure.Models
     {
         static MyStoryContext()
         {
-            Database.SetInitializer<MyStoryContext>(null);
+            Database.SetInitializer<MyStoryContext>(new DropCreateDatabaseAlways<MyStoryContext>());
         }
 
         public MyStoryContext()
-            //: base("name=MyStorySQLEXPRESSDB")
+            : base("name=MyStorySQLEXPRESSDB")
         {}
 
         public IDbSet<Account> Accounts { get; set; }
