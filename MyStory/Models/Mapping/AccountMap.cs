@@ -24,10 +24,8 @@ namespace MyStory.Models.Mapping
 
             // Relationships
             this.HasOptional(t => t.Blog)
-                .WithMany()
-                .HasForeignKey(t=>t.BlogId);
-
-
+                .WithRequired(b => b.BlogOwner);
+                
 
         }
     }

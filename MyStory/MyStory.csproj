@@ -99,7 +99,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Comment.cs" />
-    <Compile Include="Models\DbInitializationStrategy.cs" />
+    <Compile Include="Infrastructure\Models\DbInitializationStrategy.cs" />
     <Compile Include="Models\Location.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\Blog.cs" />
@@ -109,7 +109,7 @@
     <Compile Include="Models\Mapping\LocationMap.cs" />
     <Compile Include="Models\Mapping\PostMap.cs" />
     <Compile Include="Models\Mapping\TagMap.cs" />
-    <Compile Include="Models\MyStoryContext.cs" />
+    <Compile Include="Infrastructure\Models\MyStoryContext.cs" />
     <Compile Include="Models\Post.cs" />
     <Compile Include="Models\Tag.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -178,7 +178,6 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Infrastructure\" />
     <Folder Include="ViewModels\" />
   </ItemGroup>
   <ItemGroup>
