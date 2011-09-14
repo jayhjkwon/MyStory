@@ -1,0 +1,9 @@
+C:\PojectSource\MyStory\MyStory.Tests\bin\Debug\MyStory.Tests.dll
+C:\PojectSource\MyStory\MyStory.Tests\bin\Debug\MyStory.Tests.pdb
+C:\PojectSource\MyStory\MyStory.Tests\obj\Debug\ResolveAssemblyReference.cache
+C:\PojectSource\MyStory\MyStory.Tests\obj\Debug\MyStory.Tests.dll
+C:\PojectSource\MyStory\MyStory.Tests\obj\Debug\MyStory.Tests.pdb
+C:\PojectSource\MyStory\MyStory.Tests\bin\Debug\MvcContrib.TestHelper.dll
+C:\PojectSource\MyStory\MyStory.Tests\bin\Debug\Rhino.Mocks.dll
+C:\PojectSource\MyStory\MyStory.Tests\bin\Debug\xunit.dll
+C:\PojectSource\MyStory\MyStory.Tests\bin\Debug\xunit.xml

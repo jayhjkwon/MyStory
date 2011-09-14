@@ -1,0 +1,16 @@
+C:\PojectSource\MyStory\MyStory\bin\MyStory.dll
+C:\PojectSource\MyStory\MyStory\bin\MyStory.pdb
+C:\PojectSource\MyStory\MyStory\bin\EntityFramework.dll
+C:\PojectSource\MyStory\MyStory\bin\EntityFramework.xml
+C:\PojectSource\MyStory\MyStory\obj\Debug\ResolveAssemblyReference.cache
+C:\PojectSource\MyStory\MyStory\obj\Debug\MyStory.dll
+C:\PojectSource\MyStory\MyStory\obj\Debug\MyStory.pdb
+C:\PojectSource\MyStory\MyStory\bin\WebActivator.dll
+C:\PojectSource\MyStory\MyStory\bin\WebActivator.pdb
+C:\PojectSource\MyStory\MyStory\bin\Elmah.dll
+C:\PojectSource\MyStory\MyStory\bin\AutoMapper.dll
+C:\PojectSource\MyStory\MyStory\bin\Castle.Core.dll
+C:\PojectSource\MyStory\MyStory\bin\Castle.Windsor.dll
+C:\PojectSource\MyStory\MyStory\bin\Castle.Core.xml
+C:\PojectSource\MyStory\MyStory\bin\Castle.Windsor.pdb
+C:\PojectSource\MyStory\MyStory\bin\Castle.Windsor.xml

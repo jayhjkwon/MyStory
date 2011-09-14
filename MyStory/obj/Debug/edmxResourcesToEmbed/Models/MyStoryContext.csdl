@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MyStory.Models" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+  <ComplexType Name="Location">
+    <Property Name="Longitude" Type="Double" Nullable="false" />
+    <Property Name="Latitude" Type="Double" Nullable="false" />
+  </ComplexType>
+  <EntityType Name="Account">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" FixedLength="false" MaxLength="128" Unicode="true" Nullable="false" />
+    <Property Name="Password" Type="String" FixedLength="false" MaxLength="Max" Unicode="true" Nullable="true" />
+    <Property Name="IsOpenId" Type="Boolean" Nullable="false" />
+    <Property Name="GravatarUrl" Type="String" FixedLength="false" MaxLength="Max" Unicode="true" Nullable="true" />
+    <NavigationProperty Name="Blogs" Relationship="Self.Blog_BlogOwner" FromRole="Blog_BlogOwner_Target" ToRole="Blog_BlogOwner_Source" />
+  </EntityType>
+  <EntityType Name="Blog">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" p6:StoreGeneratedPattern="Identity" xmlns:p6="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+    <Property Name="Title" Type="String" FixedLength="false" MaxLength="Max" Unicode="true" Nullable="true" />
+    <Property Name="BlogOwnerId" Type="String" FixedLength="false" MaxLength="128" Unicode="true" Nullable="true" />
+    <NavigationProperty Name="BlogOwner" Relationship="Self.Blog_BlogOwner" FromRole="Blog_BlogOwner_Source" ToRole="Blog_BlogOwner_Target" />
+  </EntityType>
+  <EntityType Name="Comment">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" p6:StoreGeneratedPattern="Identity" xmlns:p6="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+    <Property Name="AuthorName" Type="String" FixedLength="false" MaxLength="Max" Unicode="true" Nullable="true" />
+    <Property Name="DateCreated" Type="DateTime" Nullable="false" />
+    <Property Name="AuthorEmail" Type="String" FixedLength="false" MaxLength="Max" Unicode="true" Nullable="true" />
+    <Property Name="AuthorWebSiteUrl" Type="String" FixedLength="false" MaxLength="Max" Unicode="true" Nullable="true" />
+    <Property Name="ContentWithoutHtml" Type="String" FixedLength="false" MaxLength="Max" Unicode="true" Nullable="true" />
+    <Property Name="IsOpenId" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Post">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" p6:StoreGeneratedPattern="Identity" xmlns:p6="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+    <Property Name="Title" Type="String" FixedLength="false" MaxLength="Max" Unicode="true" Nullable="true" />
+    <Property Name="ContentWithoutHtml" Type="String" FixedLength="false" MaxLength="Max" Unicode="true" Nullable="true" />
+    <Property Name="ContentWithHtml" Type="String" FixedLength="false" MaxLength="Max" Unicode="true" Nullable="true" />
+    <Property Name="DateCreated" Type="DateTime" Nullable="false" />
+    <Property Name="DateModified" Type="DateTime" Nullable="false" />
+    <Property Name="LocationOfWriting" Type="Self.Location" Nullable="false" />
+    <NavigationProperty Name="Author" Relationship="Self.Post_Author" FromRole="Post_Author_Source" ToRole="Post_Author_Target" />
+    <NavigationProperty Name="Tags" Relationship="Self.Tag_Posts" FromRole="Tag_Posts_Target" ToRole="Tag_Posts_Source" />
+  </EntityType>
+  <EntityType Name="Tag">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" p6:StoreGeneratedPattern="Identity" xmlns:p6="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+    <Property Name="TagText" Type="String" FixedLength="false" MaxLength="Max" Unicode="true" Nullable="true" />
+    <NavigationProperty Name="Posts" Relationship="Self.Tag_Posts" FromRole="Tag_Posts_Source" ToRole="Tag_Posts_Target" />
+  </EntityType>
+  <EntityType Name="EdmMetadata">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" p6:StoreGeneratedPattern="Identity" xmlns:p6="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+    <Property Name="ModelHash" Type="String" FixedLength="false" MaxLength="Max" Unicode="true" Nullable="true" />
+  </EntityType>
+  <Association Name="Blog_BlogOwner">
+    <End Role="Blog_BlogOwner_Source" Type="Self.Blog" Multiplicity="*" />
+    <End Role="Blog_BlogOwner_Target" Type="Self.Account" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Blog_BlogOwner_Target">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Blog_BlogOwner_Source">
+        <PropertyRef Name="BlogOwnerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Post_Author">
+    <End Role="Post_Author_Source" Type="Self.Post" Multiplicity="*" />
+    <End Role="Post_Author_Target" Type="Self.Account" Multiplicity="0..1" />
+  </Association>
+  <Association Name="Tag_Posts">
+    <End Role="Tag_Posts_Source" Type="Self.Tag" Multiplicity="*" />
+    <End Role="Tag_Posts_Target" Type="Self.Post" Multiplicity="*" />
+  </Association>
+  <EntityContainer Name="MyStoryContext">
+    <EntitySet Name="Accounts" EntityType="Self.Account" />
+    <EntitySet Name="Blogs" EntityType="Self.Blog" />
+    <EntitySet Name="Comments" EntityType="Self.Comment" />
+    <EntitySet Name="Posts" EntityType="Self.Post" />
+    <EntitySet Name="Tags" EntityType="Self.Tag" />
+    <EntitySet Name="EdmMetadatas" EntityType="Self.EdmMetadata" />
+    <AssociationSet Name="Blog_BlogOwner" Association="Self.Blog_BlogOwner">
+      <End Role="Blog_BlogOwner_Source" EntitySet="Blogs" />
+      <End Role="Blog_BlogOwner_Target" EntitySet="Accounts" />
+    </AssociationSet>
+    <AssociationSet Name="Post_Author" Association="Self.Post_Author">
+      <End Role="Post_Author_Source" EntitySet="Posts" />
+      <End Role="Post_Author_Target" EntitySet="Accounts" />
+    </AssociationSet>
+    <AssociationSet Name="Tag_Posts" Association="Self.Tag_Posts">
+      <End Role="Tag_Posts_Source" EntitySet="Tags" />
+      <End Role="Tag_Posts_Target" EntitySet="Posts" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
