@@ -9,7 +9,7 @@ namespace MyStory.Models
     {
         public int Id { get; set; }
         public string Title { get; set; }
-        public string BlogOwnerEmail { get; set; }
+
         public virtual Account BlogOwner { get; set; }
     }
 }
