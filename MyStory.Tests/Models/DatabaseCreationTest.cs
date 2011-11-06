@@ -23,9 +23,9 @@ namespace MyStory.Tests.Models
         {
             Assert.NotNull(context);
 
-            var accounts = context.Accounts.ToList();
+            var accounts = context.Accounts;
 
-            Assert.Equal(0, accounts.Count);
+            Assert.Equal(0, accounts.Count());
         }
     }
 }

@@ -13,11 +13,11 @@ namespace MyStory.Infrastructure.Models
     {
         static MyStoryContext()
         {
-            Database.SetInitializer<MyStoryContext>(new DropCreateDatabaseAlways<MyStoryContext>());
+            Database.SetInitializer<MyStoryContext>(new MyStoryDbInitializationStrategy());
         }
 
         public MyStoryContext()
-            : base("name=MyStorySQLCEDB")
+            //: base("name=MyStorySQLCEDB")
         {}
 
         public IDbSet<Account> Accounts { get; set; }

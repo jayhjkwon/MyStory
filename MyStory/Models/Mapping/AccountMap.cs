@@ -14,17 +14,23 @@ namespace MyStory.Models.Mapping
             this.ToTable("Accounts");
 
             // PK
-            this.HasKey(t => t.Email);
+            this.HasKey(t => t.Id);
 
             // Columns
-            this.Property(t => t.FullName).HasColumnName("FullName");
-            this.Property(t => t.GravatarUrl).HasColumnName("GravatarUrl");
-            this.Property(t => t.IsOpenId).HasColumnName("IsOpenId");
-            this.Property(t => t.Password).HasColumnName("Password");
+            this.Property(t => t.FullName)
+                .HasColumnName("FullName");
+            this.Property(t => t.GravatarUrl)
+                .HasColumnName("GravatarUrl");
+            this.Property(t => t.IsOpenId)
+                .HasColumnName("IsOpenId");
+            this.Property(t => t.Password)
+                .HasColumnName("Password");
 
             // Relationships
             this.HasOptional(t => t.Blog)
-                .WithRequired(b => b.BlogOwner);
+                .WithRequired(b => b.BlogOwner)
+                .WillCascadeOnDelete(true)
+                ;
                 
 
         }

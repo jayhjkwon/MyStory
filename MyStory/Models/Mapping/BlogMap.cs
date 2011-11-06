@@ -17,12 +17,13 @@ namespace MyStory.Models.Mapping
             this.HasKey(t => t.Id);
 
             // Columns
-            this.Property(t => t.Title).HasColumnName("Title");
-
+            this.Property(t => t.Title)
+                .HasColumnName("Title");
+            
             // Relationships
-            //this.HasRequired(t => t.BlogOwner)
-            //    .WithMany()
-            //    .HasForeignKey(t => t.AccountEmail);
+            this.HasRequired(t => t.BlogOwner)
+                .WithOptional()
+                ;
 
 
         }

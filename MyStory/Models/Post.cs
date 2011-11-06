@@ -15,5 +15,7 @@ namespace MyStory.Models
         public DateTime DateModified { get; set; }
         public virtual ICollection<Tag> Tags { get; set; }
         public Location LocationOfWriting { get; set; }
+
+        public virtual Blog Blog { get; set; }
     }
 }
