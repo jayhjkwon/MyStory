@@ -18,5 +18,10 @@ namespace MyStory.Models.Metadata
         [MaxLength(12)]
         [DataType(DataType.Password)]
         public string Password { get; set; }
+
+        [Required]
+        [MinLength(1)]
+        [MaxLength(125)]
+        public string FullName { get; set; }
     }
 }
