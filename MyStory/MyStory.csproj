@@ -115,6 +115,10 @@
     <Compile Include="Models\Mapping\PostMap.cs" />
     <Compile Include="Models\Mapping\TagMap.cs" />
     <Compile Include="Infrastructure\Models\MyStoryContext.cs" />
+    <Compile Include="Models\Metadata\BlogMetadata.cs" />
+    <Compile Include="Models\Metadata\CommentMetadata.cs" />
+    <Compile Include="Models\Metadata\PostMetadata.cs" />
+    <Compile Include="Models\Metadata\TagMetadata.cs" />
     <Compile Include="Models\Post.cs" />
     <Compile Include="Models\Tag.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

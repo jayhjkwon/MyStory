@@ -14,5 +14,6 @@ namespace MyStory.Models
         public string Title { get; set; }
 
         public virtual Account BlogOwner { get; set; }
+        public virtual ICollection<Post> Posts { get; set; }
     }
 }

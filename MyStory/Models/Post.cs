@@ -13,9 +13,11 @@ namespace MyStory.Models
         public string ContentWithHtml { get; set; }
         public DateTime DateCreated { get; set; }
         public DateTime DateModified { get; set; }
+
         public virtual ICollection<Tag> Tags { get; set; }
         public Location LocationOfWriting { get; set; }
 
+        public int BlogId { get; set; }
         public virtual Blog Blog { get; set; }
     }
 }
