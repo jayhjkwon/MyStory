@@ -9,7 +9,7 @@ namespace MyStory.Models.Metadata
     public class AccountMetadata
     {
         [Required]
-        [StringLength(255)]
+        [StringLength(125)]
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
 

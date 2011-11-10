@@ -2,9 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using MyStory.Models.Metadata;
+using System.ComponentModel.DataAnnotations;
 
 namespace MyStory.Models
 {
+    [MetadataType(typeof(CommentMetadata))]
     public class Comment
     {
         public int Id { get; set; }
