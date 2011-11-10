@@ -15,6 +15,7 @@ namespace MyStory.Models
         public string ContentWithoutHtml { get; set; }
         public bool IsOpenId { get; set; }
 
+        public int PostId { get; set; }
         public virtual Post Post { get; set; }
     }
 }
