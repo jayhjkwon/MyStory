@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using MyStory.Models.Metadata;
+using System.ComponentModel.DataAnnotations;
 
 namespace MyStory.Models
 {
-    [System.ComponentModel.DataAnnotations.MetadataType(typeof(AccountMetadata))]
+    [MetadataType(typeof(AccountMetadata))]
     public class Account
     {
         public int Id { get; set; } // key
