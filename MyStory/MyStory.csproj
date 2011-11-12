@@ -102,6 +102,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructure\Models\MyStoryContext.cs" />
     <Compile Include="Models\Metadata\AccountMetadata.cs" />
     <Compile Include="Models\Comment.cs" />
     <Compile Include="Infrastructure\Models\MyStoryDbInitializationStrategy.cs" />
@@ -114,7 +115,6 @@
     <Compile Include="Models\Mapping\LocationMap.cs" />
     <Compile Include="Models\Mapping\PostMap.cs" />
     <Compile Include="Models\Mapping\TagMap.cs" />
-    <Compile Include="Infrastructure\Models\MyStoryContext.cs" />
     <Compile Include="Models\Metadata\BlogMetadata.cs" />
     <Compile Include="Models\Metadata\CommentMetadata.cs" />
     <Compile Include="Models\Metadata\PostMetadata.cs" />

@@ -31,7 +31,7 @@ namespace MyStory.Models.Mapping
                     m =>
                     {
                         m.MapLeftKey("PostId");
-                        m.MapRightKey("ItemId");
+                        m.MapRightKey("TagId");
                         m.ToTable("TagPost");
                     }
                 );
