@@ -10,11 +10,21 @@ namespace MyStory.Controllers
 {
     public class HomeController : Controller
     {
-        //
-        // GET: /Home/
+        // if lazy exception occurs in view, use OSIV pattern (e.g. HttpContext.Items)
+        MyStoryContext context = new MyStoryContext();
 
         public ActionResult Index()
         {
+            ViewBag.NumberOfAccounts = context.Accounts.Count();
+
+            if (ViewBag.NumberOfAccounts == 0)
+            {
+                return View();
+            }
+
+            
+
+
             return View();
         }
 

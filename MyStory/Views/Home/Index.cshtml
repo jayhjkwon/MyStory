@@ -3,4 +3,12 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+@if (ViewBag.NumberOfAccounts == 0)
+{
+    <span>No Accounts created yet. @Html.ActionLink("Please Register Account", "Register", "Account")</span>
+}
+else
+{
+    
+}
+

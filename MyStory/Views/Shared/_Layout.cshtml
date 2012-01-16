@@ -9,6 +9,26 @@
 </head>
 
 <body>
-    @RenderBody()
+   <div class="page">
+        <header>
+            <div id="title">
+                <h2>MyStory</h2>
+            </div>
+            @*<div id="logindisplay">
+                @Html.Partial("_LogOnPartial")
+            </div>*@
+            <nav>
+                <ul id="menu">
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    @*<li>@Html.ActionLink("About", "About", "Home")</li>*@
+                </ul>
+            </nav>
+        </header>
+        <section id="main">
+            @RenderBody()
+        </section>
+        <footer>
+        </footer>
+    </div>
 </body>
 </html>
