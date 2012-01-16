@@ -17,7 +17,7 @@ namespace MyStory.Tests.Models
             context = new MyStoryContext();
         }
 
-       
+
         [Fact]
         public void accounts_should_have_nothing()
         {

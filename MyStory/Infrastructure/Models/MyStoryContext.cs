@@ -9,16 +9,20 @@ using MyStory.Models;
 
 namespace MyStory.Infrastructure.Models
 {
-    public class MyStoryContext : DbContext 
+    public class MyStoryContext : DbContext
     {
-        static MyStoryContext()
-        {
-            Database.SetInitializer<MyStoryContext>(new MyStoryDbInitializationStrategy());
-        }
+        //static MyStoryContext()
+        //{
+        //    Database.SetInitializer<MyStoryContext>
+        //        (new MyStoryDbInitializationStrategy());
+        //}
 
         public MyStoryContext()
-            //: base("name=MyStorySQLCEDB")
-        {}
+        //: base("name=MyStorySQLCEDB")
+        {
+            Database.SetInitializer<MyStoryContext>
+                (new MyStoryDbInitializationStrategy());
+        }
 
         public IDbSet<Account> Accounts { get; set; }
         public IDbSet<Blog> Blogs { get; set; }

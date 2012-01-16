@@ -15,10 +15,6 @@ namespace MyStory.Controllers
 
         public ActionResult Index()
         {
-            MyStoryContext context = new MyStoryContext();
-
-            var accounts = context.Accounts.ToList();
-
             return View();
         }
 
