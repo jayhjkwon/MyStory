@@ -45,28 +45,14 @@
     <Reference Include="AutoMapper">
       <HintPath>..\packages\AutoMapper.1.1.0.118\lib\AutoMapper.dll</HintPath>
     </Reference>
-    <Reference Include="Castle.Core">
-      <HintPath>..\packages\Castle.Core.2.5.2\lib\NET35\Castle.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Castle.Windsor">
-      <HintPath>..\packages\Castle.Windsor.2.5.3\lib\NET40\Castle.Windsor.dll</HintPath>
-    </Reference>
     <Reference Include="Elmah">
       <HintPath>..\packages\elmah.corelibrary.1.2\lib\Elmah.dll</HintPath>
     </Reference>
-    <Reference Include="EntityFramework, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <Private>True</Private>
-      <HintPath>..\packages\EntityFramework.4.1.10715.0\lib\EntityFramework.dll</HintPath>
+    <Reference Include="EntityFramework, Version=4.2.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.4.2.0.0\lib\net40\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="System.Data.Entity" />
-    <Reference Include="System.Data.SqlServerCe, Version=4.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\SqlServerCompact.4.0.8482.1\lib\System.Data.SqlServerCe.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Data.SqlServerCe.Entity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\EntityFramework.SqlServerCompact.4.1.8482.2\lib\System.Data.SqlServerCe.Entity.dll</HintPath>
-    </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Transactions" />
@@ -92,33 +78,18 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
-    <Reference Include="WebActivator">
-      <HintPath>..\packages\WebActivator.1.0.0.0\lib\WebActivator.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App_Start\EntityFramework.SqlServerCompact.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Infrastructure\Models\MyStoryContext.cs" />
-    <Compile Include="Models\Metadata\AccountMetadata.cs" />
+    <Compile Include="Models\MyStoryContext.cs" />
     <Compile Include="Models\Comment.cs" />
-    <Compile Include="Infrastructure\Models\MyStoryDbInitializationStrategy.cs" />
+    <Compile Include="Models\Infrastructure\MyStoryDbInitializationStrategy.cs" />
     <Compile Include="Models\Location.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\Blog.cs" />
-    <Compile Include="Models\Mapping\AccountMap.cs" />
-    <Compile Include="Models\Mapping\BlogMap.cs" />
-    <Compile Include="Models\Mapping\CommentMap.cs" />
-    <Compile Include="Models\Mapping\LocationMap.cs" />
-    <Compile Include="Models\Mapping\PostMap.cs" />
-    <Compile Include="Models\Mapping\TagMap.cs" />
-    <Compile Include="Models\Metadata\BlogMetadata.cs" />
-    <Compile Include="Models\Metadata\CommentMetadata.cs" />
-    <Compile Include="Models\Metadata\PostMetadata.cs" />
-    <Compile Include="Models\Metadata\TagMetadata.cs" />
     <Compile Include="Models\Post.cs" />
     <Compile Include="Models\Tag.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -229,9 +200,6 @@
   </ProjectExtensions>
   <PropertyGroup>
     <PostBuildEvent>
-if not exist "$(TargetDir)x86" md "$(TargetDir)x86"
-xcopy /s /y "$(SolutionDir)packages\SqlServerCompact.4.0.8482.1\NativeBinaries\x86\*.*" "$(TargetDir)x86"
-if not exist "$(TargetDir)amd64" md "$(TargetDir)amd64"
-xcopy /s /y "$(SolutionDir)packages\SqlServerCompact.4.0.8482.1\NativeBinaries\amd64\*.*" "$(TargetDir)amd64"</PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
 </Project>

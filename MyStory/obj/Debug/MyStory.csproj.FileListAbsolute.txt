@@ -33,16 +33,9 @@ C:\ProjectSource\MyStory\MyStory\obj\Debug\MyStory.pdb
 D:\GitRepositories\MyStory\MyStory\bin\MyStory.dll
 D:\GitRepositories\MyStory\MyStory\bin\MyStory.pdb
 D:\GitRepositories\MyStory\MyStory\bin\AutoMapper.dll
-D:\GitRepositories\MyStory\MyStory\bin\Castle.Core.dll
-D:\GitRepositories\MyStory\MyStory\bin\Castle.Windsor.dll
 D:\GitRepositories\MyStory\MyStory\bin\Elmah.dll
 D:\GitRepositories\MyStory\MyStory\bin\EntityFramework.dll
-D:\GitRepositories\MyStory\MyStory\bin\WebActivator.dll
-D:\GitRepositories\MyStory\MyStory\bin\Castle.Core.xml
-D:\GitRepositories\MyStory\MyStory\bin\Castle.Windsor.pdb
-D:\GitRepositories\MyStory\MyStory\bin\Castle.Windsor.xml
 D:\GitRepositories\MyStory\MyStory\bin\EntityFramework.xml
-D:\GitRepositories\MyStory\MyStory\bin\WebActivator.pdb
 D:\GitRepositories\MyStory\MyStory\obj\Debug\ResolveAssemblyReference.cache
 D:\GitRepositories\MyStory\MyStory\obj\Debug\MyStory.dll
 D:\GitRepositories\MyStory\MyStory\obj\Debug\MyStory.pdb

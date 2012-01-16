@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using MyStory.Models;
-using MyStory.Infrastructure.Models;
+using MyStory.Models.Infrastructure;
 
 namespace MyStory.Controllers
 {
