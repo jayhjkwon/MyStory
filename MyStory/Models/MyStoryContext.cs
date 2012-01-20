@@ -5,23 +5,31 @@ using System.Web;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using MyStory.Models;
+using MyStory.Models.Infrastructure;
 
 namespace MyStory.Models
 {
     public class MyStoryContext : DbContext
     {
         public MyStoryContext()
-        //: base("name=MyStorySQLCEDB")
+            : base("name=MyStorySQLEXPRESSDB")
         {
             //Database.SetInitializer<MyStoryContext>
             //    (new MyStoryDbInitializationStrategy());
         }
 
-        public IDbSet<Account> Accounts { get; set; }
-        public IDbSet<Blog> Blogs { get; set; }
-        public IDbSet<Comment> Comments { get; set; }
-        public IDbSet<Post> Posts { get; set; }
-        public IDbSet<Tag> Tags { get; set; }
+        // for integration test purpose
+        public MyStoryContext(string connectionString) : base(connectionString)
+        {
+            //Database.SetInitializer<MyStoryContext>
+            //    (new MyStoryDbInitializationStrategy());
+        }
+
+        public DbSet<Account> Accounts { get; set; }
+        public DbSet<Blog> Blogs { get; set; }
+        public DbSet<Comment> Comments { get; set; }
+        public DbSet<Post> Posts { get; set; }
+        public DbSet<Tag> Tags { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -34,5 +42,7 @@ namespace MyStory.Models
             modelBuilder.Configurations.Add(new PostMap());
             modelBuilder.Configurations.Add(new TagMap());
         }
+
+        
     }
 }

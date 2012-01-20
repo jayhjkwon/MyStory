@@ -1,14 +1,47 @@
-﻿@{
+﻿@model IEnumerable<MyStory.Models.Post>
+
+@{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<h2>Index</h2>
+
 @if (ViewBag.NumberOfAccounts == 0)
 {
-    <span>No Accounts created yet. @Html.ActionLink("Please Register Account", "Register", "Account")</span>
+    <span>No Accounts created yet.<br />@Html.ActionLink("Please Register Account and Create Blog", "Register", "Account")</span>
 }
 else
 {
-    
+    if (!Request.IsAuthenticated)
+    {
+        <span>@Html.ActionLink("Please Sign In", "LogOn", "Account")</span>
+    }
+    else
+    {
+        <span>@Html.ActionLink("Write Post", "Write", "Post")</span>
+    }
 }
 
+<table>
+@if (Model != null)
+{
+    foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ContentWithHtml)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", "Post", new { id = item.Id }, null) |
+                @Html.ActionLink("Delete", "Delete", "Post", new { id = item.Id }, null)
+                Blog Title : @item.Blog.Title
+            </td>
+        </tr>
+    }
+}
+
+</table>

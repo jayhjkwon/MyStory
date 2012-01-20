@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TestRun id="ebea5d76-c26c-45f7-b917-79564679e1b3" name="305024278@305024278-PC 2012-01-20 14:23:44" runUser="305024278-PC\305024278" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <TestSettings name="Local" id="f71d3d1c-fcb9-4cb8-bd16-ef1b721fb9d0">
+    <Description>These are default test settings for a local test run.</Description>
+    <Deployment enabled="false" runDeploymentRoot="305024278_305024278-PC 2012-01-20 14_23_44">
+      <DeploymentItem filename="D:\GitRepositories\MyStory\packages\WebActivator.1.0.0.0\lib\WebActivator.dll" />
+      <DeploymentItem filename="D:\GitRepositories\MyStory\packages\elmah.corelibrary.1.2\lib\Elmah.dll" />
+      <DeploymentItem filename="D:\GitRepositories\MyStory\packages\EntityFramework.SqlServerCompact.4.1.8482.2\lib\System.Data.SqlServerCe.Entity.dll" />
+      <DeploymentItem filename="D:\GitRepositories\MyStory\packages\EntityFramework.4.2.0.0\lib\net40\EntityFramework.dll" />
+      <DeploymentItem filename="D:\GitRepositories\MyStory\packages\AutoMapper.1.1.0.118\lib\AutoMapper.dll" />
+      <DeploymentItem filename="D:\GitRepositories\MyStory\MyStory\bin\MyStory.dll" />
+      <DeploymentItem filename="D:\GitRepositories\MyStory\packages\SqlServerCompact.4.0.8482.1\lib\System.Data.SqlServerCe.dll" />
+      <DeploymentItem filename="D:\GitRepositories\MyStory\packages\Moq.4.0.10827\lib\NET40\Moq.dll" />
+    </Deployment>
+    <Execution>
+      <TestTypeSpecific />
+      <AgentRule name="Execution Agents">
+      </AgentRule>
+    </Execution>
+  </TestSettings>
+  <Times creation="2012-01-20T14:23:44.6412168+09:00" queuing="2012-01-20T14:23:44.8312277+09:00" start="2012-01-20T14:23:44.8612294+09:00" finish="2012-01-20T14:23:47.3233702+09:00" />
+  <ResultSummary outcome="Completed">
+    <Counters total="5" executed="5" passed="5" error="0" failed="0" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+  </ResultSummary>
+  <TestDefinitions>
+    <UnitTest name="write_should_validate_model" storage="d:\gitrepositories\mystory\mystory.tests\bin\debug\mystory.tests.dll" id="378a00ad-90cc-dcbf-e2a3-b29f817c6ee6">
+      <Execution id="41108139-44e6-4ca9-84cf-296202a55b1c" />
+      <TestMethod codeBase="D:/GitRepositories/MyStory/MyStory.Tests/bin/Debug/MyStory.Tests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="MyStory.Tests.IntegrationTests.Controllers.PostControllerTest, MyStory.Tests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="write_should_validate_model" />
+    </UnitTest>
+    <UnitTest name="index_should_return_zero_posts_if_account_exist" storage="d:\gitrepositories\mystory\mystory.tests\bin\debug\mystory.tests.dll" id="a3d04c0f-32f0-752c-2a1d-ce288d6d0c63">
+      <Execution id="64869c3e-c7bc-4c2e-98e1-8539412d5fee" />
+      <TestMethod codeBase="D:/GitRepositories/MyStory/MyStory.Tests/bin/Debug/MyStory.Tests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="MyStory.Tests.IntegrationTests.Controllers.HomeControllerTest, MyStory.Tests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="index_should_return_zero_posts_if_account_exist" />
+    </UnitTest>
+    <UnitTest name="test_should_add_blog" storage="d:\gitrepositories\mystory\mystory.tests\bin\debug\mystory.tests.dll" id="127a9b4e-32cc-7d8a-f412-16f3e7e49e17">
+      <Execution id="2de4c092-3f77-4546-a310-f605085400fc" />
+      <TestMethod codeBase="D:/GitRepositories/MyStory/MyStory.Tests/bin/Debug/MyStory.Tests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="MyStory.Tests.IntegrationTests.Controllers.HomeControllerTest, MyStory.Tests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="test_should_add_blog" />
+    </UnitTest>
+    <UnitTest name="TestMethod1" storage="d:\gitrepositories\mystory\mystory.tests\bin\debug\mystory.tests.dll" id="51fd3b83-b9be-d2ea-12af-6d2540f30a4d">
+      <Execution id="b43b044e-b571-446b-83eb-c1a483a9d8fa" />
+      <TestMethod codeBase="D:/GitRepositories/MyStory/MyStory.Tests/bin/Debug/MyStory.Tests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="MyStory.Tests.UnitTests.Models.DomainMappingTest, MyStory.Tests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="TestMethod1" />
+    </UnitTest>
+    <UnitTest name="index_shoul_return_zero_account" storage="d:\gitrepositories\mystory\mystory.tests\bin\debug\mystory.tests.dll" id="7744e024-8ae1-5502-d296-ebc63bc3c3eb">
+      <Execution id="c5a4974b-b332-4c17-87f0-6695dcc3be0e" />
+      <TestMethod codeBase="D:/GitRepositories/MyStory/MyStory.Tests/bin/Debug/MyStory.Tests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="MyStory.Tests.IntegrationTests.Controllers.HomeControllerTest, MyStory.Tests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="index_shoul_return_zero_account" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestLists>
+    <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <TestEntries>
+    <TestEntry testId="127a9b4e-32cc-7d8a-f412-16f3e7e49e17" executionId="2de4c092-3f77-4546-a310-f605085400fc" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="378a00ad-90cc-dcbf-e2a3-b29f817c6ee6" executionId="41108139-44e6-4ca9-84cf-296202a55b1c" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="51fd3b83-b9be-d2ea-12af-6d2540f30a4d" executionId="b43b044e-b571-446b-83eb-c1a483a9d8fa" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="7744e024-8ae1-5502-d296-ebc63bc3c3eb" executionId="c5a4974b-b332-4c17-87f0-6695dcc3be0e" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="a3d04c0f-32f0-752c-2a1d-ce288d6d0c63" executionId="64869c3e-c7bc-4c2e-98e1-8539412d5fee" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <Results>
+    <UnitTestResult executionId="2de4c092-3f77-4546-a310-f605085400fc" testId="127a9b4e-32cc-7d8a-f412-16f3e7e49e17" testName="test_should_add_blog" computerName="305024278-PC" duration="00:00:01.0831709" startTime="2012-01-20T14:23:44.8702299+09:00" endTime="2012-01-20T14:23:46.1743045+09:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="2de4c092-3f77-4546-a310-f605085400fc">
+    </UnitTestResult>
+    <UnitTestResult executionId="41108139-44e6-4ca9-84cf-296202a55b1c" testId="378a00ad-90cc-dcbf-e2a3-b29f817c6ee6" testName="write_should_validate_model" computerName="305024278-PC" duration="00:00:00.7339119" startTime="2012-01-20T14:23:46.1763046+09:00" endTime="2012-01-20T14:23:46.9133468+09:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="41108139-44e6-4ca9-84cf-296202a55b1c">
+    </UnitTestResult>
+    <UnitTestResult executionId="b43b044e-b571-446b-83eb-c1a483a9d8fa" testId="51fd3b83-b9be-d2ea-12af-6d2540f30a4d" testName="TestMethod1" computerName="305024278-PC" duration="00:00:00.0003668" startTime="2012-01-20T14:23:46.9143468+09:00" endTime="2012-01-20T14:23:46.9173470+09:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="b43b044e-b571-446b-83eb-c1a483a9d8fa">
+    </UnitTestResult>
+    <UnitTestResult executionId="c5a4974b-b332-4c17-87f0-6695dcc3be0e" testId="7744e024-8ae1-5502-d296-ebc63bc3c3eb" testName="index_shoul_return_zero_account" computerName="305024278-PC" duration="00:00:00.1653799" startTime="2012-01-20T14:23:46.9183471+09:00" endTime="2012-01-20T14:23:47.0863567+09:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="c5a4974b-b332-4c17-87f0-6695dcc3be0e">
+    </UnitTestResult>
+    <UnitTestResult executionId="64869c3e-c7bc-4c2e-98e1-8539412d5fee" testId="a3d04c0f-32f0-752c-2a1d-ce288d6d0c63" testName="index_should_return_zero_posts_if_account_exist" computerName="305024278-PC" duration="00:00:00.2031320" startTime="2012-01-20T14:23:47.0893568+09:00" endTime="2012-01-20T14:23:47.2943686+09:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="64869c3e-c7bc-4c2e-98e1-8539412d5fee">
+    </UnitTestResult>
+  </Results>
+</TestRun>

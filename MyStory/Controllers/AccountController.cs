@@ -4,10 +4,12 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using MyStory.Models;
+using MyStory.ViewModels;
+using System.Web.Security;
 
 namespace MyStory.Controllers
 {
-    public class AccountController : Controller
+    public class AccountController : MyStoryController
     {
         public ActionResult Register()
         {
@@ -15,14 +17,64 @@ namespace MyStory.Controllers
         }
 
         [HttpPost]
-        public ActionResult Register(Account account)
+        public ActionResult Register(AccountInputViewModel accountInput)
         {
-            if (ModelState.IsValid)
-            {
+            if (!ModelState.IsValid)
+                return View(accountInput);
 
+            var blog = new Blog
+            {
+                Title = accountInput.BlogTitle,
+                BlogOwner = new Account
+                {
+                    Email = accountInput.AccountEmail,
+                    FullName = accountInput.AccountFullName,
+                    Password = accountInput.AccountPassword,
+                }
+            };
+
+            dbContext.Blogs.Add(blog);
+            dbContext.SaveChanges();
+
+            FormsAuthentication.SetAuthCookie(accountInput.AccountEmail, accountInput.RememberMe);
+            return RedirectToAction("Index", "Home");
+        }
+
+        [HttpGet]
+        public ActionResult LogOn()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult LogOn(LogOnInputViewModel input)
+        {
+            if (!ModelState.IsValid)
+                return View(input);
+
+            var accountFromDb = dbContext.Accounts.FirstOrDefault(a => a.Email == input.AccountEmail && a.Password == input.AccountPassword);
+
+            if (accountFromDb == null)
+            {
+                ModelState.AddModelError("LogOnFailed", "Email or Password is wrong");
+                return View(input);
+            }
+            else
+            {
+                FormsAuthentication.SetAuthCookie(input.AccountEmail, input.RememberMe);
+
+                if (string.IsNullOrEmpty(input.ReturnUrl))
+                    return RedirectToAction("Index", "Home");
+                else
+                    return Redirect(input.ReturnUrl);
             }
 
-            return View();
+        }
+
+        public ActionResult LogOff()
+        {
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Index", "Home");
         }
 
     }

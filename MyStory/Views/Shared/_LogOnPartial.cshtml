@@ -1,6 +1,7 @@
-﻿@{
-    ViewBag.Title = "_LogOnPartial.cshtml";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+﻿@if(Request.IsAuthenticated) {
+    <text>Welcome <strong>@User.Identity.Name</strong>!
+    [ @Html.ActionLink("Log Off", "LogOff", "Account") ]</text>
 }
-
-<h2>_LogOnPartial.cshtml</h2>
+else {
+    @:[ @Html.ActionLink("Log On", "LogOn", "Account") ]
+}

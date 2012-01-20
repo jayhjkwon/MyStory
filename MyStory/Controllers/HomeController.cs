@@ -3,115 +3,46 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Data.Entity;
 using MyStory.Models;
 using MyStory.Models.Infrastructure;
 
 namespace MyStory.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : MyStoryController
     {
-        // if lazy exception occurs in view, use OSIV pattern (e.g. HttpContext.Items)
-        MyStoryContext context = new MyStoryContext();
+        public HomeController(){}
+
+        // for test purpose
+        public HomeController(MyStoryContext context)
+        {
+            base.dbContext = context;
+        }
 
         public ActionResult Index()
         {
-            ViewBag.NumberOfAccounts = context.Accounts.Count();
+            ViewBag.NumberOfAccounts = dbContext.Accounts.Count();
 
             if (ViewBag.NumberOfAccounts == 0)
             {
                 return View();
             }
 
-            
-
-
-            return View();
+            var posts = dbContext.Posts.Include(p => p.Blog);
+                        
+            return View("Index", posts);
         }
 
-        //
-        // GET: /Home/Details/5
-
-        public ActionResult Details(int id)
+        public ActionResult Test()
         {
-            return View();
+            var blog = dbContext.Blogs.Add(new Blog { Title = "t1", BlogOwner = new Account { Email = "email", Password = "password", FullName = "name" } });
+            return View(blog);
         }
 
-        //
-        // GET: /Home/Create
-
-        public ActionResult Create()
+        [Authorize]
+        public ActionResult About()
         {
             return View();
-        } 
-
-        //
-        // POST: /Home/Create
-
-        [HttpPost]
-        public ActionResult Create(FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-        
-        //
-        // GET: /Home/Edit/5
- 
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        //
-        // POST: /Home/Edit/5
-
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
- 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        //
-        // GET: /Home/Delete/5
- 
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        //
-        // POST: /Home/Delete/5
-
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
- 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
         }
     }
 }

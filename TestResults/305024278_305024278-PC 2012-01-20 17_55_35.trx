@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TestRun id="38f7e1d9-1af7-4dcd-a513-3d57a2f292e2" name="305024278@305024278-PC 2012-01-20 17:55:35" runUser="305024278-PC\305024278" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <TestSettings name="Local" id="f71d3d1c-fcb9-4cb8-bd16-ef1b721fb9d0">
+    <Description>These are default test settings for a local test run.</Description>
+    <Deployment enabled="false" runDeploymentRoot="305024278_305024278-PC 2012-01-20 17_55_35">
+      <DeploymentItem filename="D:\GitRepositories\MyStory\packages\WebActivator.1.0.0.0\lib\WebActivator.dll" />
+      <DeploymentItem filename="D:\GitRepositories\MyStory\packages\elmah.corelibrary.1.2\lib\Elmah.dll" />
+      <DeploymentItem filename="D:\GitRepositories\MyStory\packages\EntityFramework.SqlServerCompact.4.1.8482.2\lib\System.Data.SqlServerCe.Entity.dll" />
+      <DeploymentItem filename="D:\GitRepositories\MyStory\packages\EntityFramework.4.2.0.0\lib\net40\EntityFramework.dll" />
+      <DeploymentItem filename="D:\GitRepositories\MyStory\packages\AutoMapper.1.1.0.118\lib\AutoMapper.dll" />
+      <DeploymentItem filename="D:\GitRepositories\MyStory\MyStory\bin\MyStory.dll" />
+      <DeploymentItem filename="D:\GitRepositories\MyStory\packages\SqlServerCompact.4.0.8482.1\lib\System.Data.SqlServerCe.dll" />
+      <DeploymentItem filename="D:\GitRepositories\MyStory\packages\Moq.4.0.10827\lib\NET40\Moq.dll" />
+    </Deployment>
+    <Execution>
+      <TestTypeSpecific />
+      <AgentRule name="Execution Agents">
+      </AgentRule>
+    </Execution>
+  </TestSettings>
+  <Times creation="2012-01-20T17:55:35.3572282+09:00" queuing="2012-01-20T17:55:36.7423074+09:00" start="2012-01-20T17:55:36.8793152+09:00" finish="2012-01-20T17:55:50.9061175+09:00" />
+  <ResultSummary outcome="Error">
+    <Counters total="1" executed="1" error="0" failed="0" timeout="0" aborted="1" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" passed="0" completed="0" inProgress="0" pending="0" />
+    <RunInfos>
+      <RunInfo computerName="305024278-PC" outcome="Error" timestamp="2012-01-20T17:55:50.9031174+09:00">
+        <Text>Test host process exited unexpectedly.</Text>
+      </RunInfo>
+    </RunInfos>
+  </ResultSummary>
+  <TestDefinitions>
+    <UnitTest name="edit_postmethod_should_not_update_invalid_mode" storage="d:\gitrepositories\mystory\mystory.tests\bin\debug\mystory.tests.dll" id="c809a1e5-41e6-ce78-f745-1c57242d5318">
+      <Execution id="02ff6d92-0e90-4c2b-9d63-46c45d937c12" />
+      <TestMethod codeBase="D:/GitRepositories/MyStory/MyStory.Tests/bin/Debug/MyStory.Tests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="MyStory.Tests.IntegrationTests.Controllers.PostControllerTest, MyStory.Tests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="edit_postmethod_should_not_update_invalid_mode" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestLists>
+    <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <TestEntries>
+    <TestEntry testId="c809a1e5-41e6-ce78-f745-1c57242d5318" executionId="02ff6d92-0e90-4c2b-9d63-46c45d937c12" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <Results>
+    <UnitTestResult executionId="02ff6d92-0e90-4c2b-9d63-46c45d937c12" testId="c809a1e5-41e6-ce78-f745-1c57242d5318" testName="edit_postmethod_should_not_update_invalid_mode" computerName="305024278-PC" duration="00:00:13.8877943" startTime="2012-01-20T17:55:37.0183232+09:00" endTime="2012-01-20T17:55:50.9061175+09:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Aborted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="02ff6d92-0e90-4c2b-9d63-46c45d937c12">
+    </UnitTestResult>
+  </Results>
+</TestRun>

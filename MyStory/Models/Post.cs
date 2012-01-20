@@ -13,14 +13,18 @@ namespace MyStory.Models
     {
         public int Id { get; set; }
         public string Title { get; set; }
+        [ScaffoldColumn(false)]
         public string ContentWithoutHtml { get; set; }
         public string ContentWithHtml { get; set; }
+        [ScaffoldColumn(false)]
         public DateTime DateCreated { get; set; }
+        [ScaffoldColumn(false)]
         public DateTime DateModified { get; set; }
 
         public virtual ICollection<Tag> Tags { get; set; }
         public Location LocationOfWriting { get; set; }
 
+        [ScaffoldColumn(false)]
         public int BlogId { get; set; }
         public virtual Blog Blog { get; set; }
 
@@ -58,10 +62,8 @@ namespace MyStory.Models
         public string Title { get; set; }
 
         [Required]
-        public string ContentWithoutHtml { get; set; }
-
-        [Required]
         [AllowHtml]
+        [Display(Name="Content")]
         public string ContentWithHtml { get; set; }
 
         [Required]

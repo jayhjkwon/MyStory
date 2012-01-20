@@ -1,4 +1,4 @@
-﻿@model MyStory.Models.Account
+﻿@model MyStory.ViewModels.AccountInputViewModel
 
 @{
     ViewBag.Title = "Register";
@@ -13,46 +13,46 @@
 @using (Html.BeginForm()) {
     @Html.ValidationSummary(true)
     <fieldset>
-        <legend>Account</legend>
+        <legend>AccountInputViewModel</legend>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.Email)
+            @Html.LabelFor(model => model.AccountEmail)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.Email)
-            @Html.ValidationMessageFor(model => model.Email)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.FullName)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.FullName)
-            @Html.ValidationMessageFor(model => model.FullName)
+            @Html.EditorFor(model => model.AccountEmail)
+            @Html.ValidationMessageFor(model => model.AccountEmail)
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.Password)
+            @Html.LabelFor(model => model.AccountPassword)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.Password)
-            @Html.ValidationMessageFor(model => model.Password)
+            @Html.EditorFor(model => model.AccountPassword)
+            @Html.ValidationMessageFor(model => model.AccountPassword)
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.IsOpenId)
+            @Html.LabelFor(model => model.AccountFullName)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.IsOpenId)
-            @Html.ValidationMessageFor(model => model.IsOpenId)
+            @Html.EditorFor(model => model.AccountFullName)
+            @Html.ValidationMessageFor(model => model.AccountFullName)
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.GravatarUrl)
+            @Html.LabelFor(model => model.BlogTitle)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.GravatarUrl)
-            @Html.ValidationMessageFor(model => model.GravatarUrl)
+            @Html.EditorFor(model => model.BlogTitle)
+            @Html.ValidationMessageFor(model => model.BlogTitle)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.RememberMe)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.RememberMe)
+            @Html.ValidationMessageFor(model => model.RememberMe)
         </div>
 
         <p>

@@ -47,21 +47,21 @@ namespace MyStory.Tests.UnitTests.Models
         [TestInitialize()]
         public void TestInitialize()
         {
-            context = new MyStoryContext();
-            Database.SetInitializer<MyStoryContext>(new MyStoryDbInitializationStrategy());
+            //context = new MyStoryContext();
+            //Database.SetInitializer<MyStoryContext>(new MyStoryDbInitializationStrategy());
 
-            // create test data
-            Account account = new Account
-            {
-                Email = "a@aa.com",
-                Password = "password",
-                FullName = "JonDoe"
-            };
+            //// create test data
+            //Account account = new Account
+            //{
+            //    Email = "a@aa.com",
+            //    Password = "password",
+            //    FullName = "JonDoe"
+            //};
            
 
-            context.Accounts.Add(account);
+            //context.Accounts.Add(account);
 
-            context.SaveChanges();
+            //context.SaveChanges();
         }
 
         // Use TestCleanup to run code after each test has run

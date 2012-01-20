@@ -8,8 +8,8 @@ namespace MyStory.Models
 {
     public class Location
     {
-        public double Longitude { get; set; }
-        public double Latitude { get; set; }
+        public double? Longitude { get; set; }
+        public double? Latitude { get; set; }
     }
 
     public class LocationMap : ComplexTypeConfiguration<Location>

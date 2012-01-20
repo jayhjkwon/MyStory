@@ -7,3 +7,13 @@ D:\GitRepositories\MyStory\MyStory.Tests\bin\Debug\EntityFramework.dll
 D:\GitRepositories\MyStory\MyStory.Tests\bin\Debug\MyStory.dll
 D:\GitRepositories\MyStory\MyStory.Tests\bin\Debug\MyStory.pdb
 D:\GitRepositories\MyStory\MyStory.Tests\bin\Debug\EntityFramework.xml
+D:\GitRepositories\MyStory\MyStory.Tests\bin\Debug\MyStory.Tests.dll.config
+D:\GitRepositories\MyStory\MyStory.Tests\bin\Debug\System.Data.SqlServerCe.dll
+D:\GitRepositories\MyStory\MyStory.Tests\bin\Debug\System.Data.SqlServerCe.Entity.dll
+D:\GitRepositories\MyStory\MyStory.Tests\bin\Debug\WebActivator.dll
+D:\GitRepositories\MyStory\MyStory.Tests\bin\Debug\WebActivator.pdb
+D:\GitRepositories\MyStory\MyStory.Tests\bin\Debug\AutoMapper.dll
+D:\GitRepositories\MyStory\MyStory.Tests\bin\Debug\Elmah.dll
+D:\GitRepositories\MyStory\MyStory.Tests\bin\Debug\Moq.dll
+D:\GitRepositories\MyStory\MyStory.Tests\bin\Debug\Moq.pdb
+D:\GitRepositories\MyStory\MyStory.Tests\bin\Debug\Moq.xml

@@ -1,0 +1,42 @@
+﻿@model MyStory.ViewModels.PostInputViewModel
+
+@{
+    ViewBag.Title = "Write";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Write</h2>
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>PostInputViewModel</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Title)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Title)
+            @Html.ValidationMessageFor(model => model.Title)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ContentWithHtml)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ContentWithHtml)
+            @Html.ValidationMessageFor(model => model.ContentWithHtml)
+        </div>
+
+        <p>
+            <input type="submit" value="Write" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
