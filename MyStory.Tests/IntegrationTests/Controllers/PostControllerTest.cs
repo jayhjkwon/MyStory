@@ -28,7 +28,9 @@ namespace MyStory.Tests.IntegrationTests.Controllers
         {
             // Arrange
             context = new MyStoryContext("MyStorySQLCEDB");
-            context.Database.Delete(); 
+            //context = new MyStoryContext();
+            if (context.Database.Exists())
+                context.Database.Delete(); 
             context.Database.Create();
             controller = new PostController(context);
         }
@@ -41,6 +43,14 @@ namespace MyStory.Tests.IntegrationTests.Controllers
                 context.Database.Delete();
                 controller.Dispose();
             }
+        }
+
+        [TestMethod]
+        public void test()
+        {
+            var blog = context.Posts.Include("Tags").Include("Comments");
+            var blogList = blog.ToList();
+            Assert.IsNull(null);
         }
 
         [TestMethod]

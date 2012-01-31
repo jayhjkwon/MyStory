@@ -12,14 +12,14 @@ namespace MyStory.Models
     public class MyStoryContext : DbContext
     {
         public MyStoryContext()
-            : base("name=MyStorySQLEXPRESSDB")
+            //: base("name=MyStorySQLEXPRESSDB")
         {
             //Database.SetInitializer<MyStoryContext>
             //    (new MyStoryDbInitializationStrategy());
         }
 
         // for integration test purpose
-        public MyStoryContext(string connectionString) : base(connectionString)
+        public MyStoryContext(string connectionStringName) : base(connectionStringName)
         {
             //Database.SetInitializer<MyStoryContext>
             //    (new MyStoryDbInitializationStrategy());
