@@ -96,6 +96,7 @@
     <Compile Include="IntegrationTests\Controllers\HomeControllerTest.cs" />
     <Compile Include="IntegrationTests\Controllers\PostControllerTest.cs" />
     <Compile Include="IntegrationTests\IntegrationTestHelper.cs" />
+    <Compile Include="SpecExtensions\MSTestSpecificationExtensions.cs" />
     <Compile Include="UnitTests\Models\DomainMappingTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UnitTests\Models\BaseModelTest.cs" />

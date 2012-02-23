@@ -50,16 +50,20 @@ namespace MyStory.Tests.IntegrationTests.Controllers
             var actionResult = controller.Index() as ViewResult;
 
             // Assert
-            Assert.AreEqual(0, actionResult.ViewBag.NumberOfAccounts);
+            int cnt = actionResult.ViewBag.NumberOfAccounts;
+            cnt.ShouldEqual(0);
         }
 
         [TestMethod]
         public void test_should_add_blog()
         {
+            // Act
             var actionResult = controller.Test() as ViewResult;
             var blog = (Blog)actionResult.Model;
-            Assert.AreEqual("t1", blog.Title);
-            Assert.AreEqual("email", blog.BlogOwner.Email);    
+         
+            // Assert
+            blog.Title.ShouldEqual("t1");
+            blog.BlogOwner.Email.ShouldEqual("email");
         }
     }
 }

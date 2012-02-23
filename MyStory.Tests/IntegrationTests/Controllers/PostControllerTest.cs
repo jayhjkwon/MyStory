@@ -75,9 +75,10 @@ namespace MyStory.Tests.IntegrationTests.Controllers
             // #2 test data inpu failure and view result
             controller.ModelState.AddModelError("InvalidModel", "Title and Content are empty");
             var actionResult = controller.Write(input) as ViewResult;
-            Assert.AreEqual("Write", actionResult.ViewName);
-            Assert.AreEqual(input, actionResult.Model);
-            Assert.AreEqual(0, context.Posts.Count());
+            
+            actionResult.ViewName.ShouldEqual("Write");
+            actionResult.Model.ShouldEqual(input);
+            context.Posts.Count().ShouldEqual(0);
         }
 
         [TestMethod]
@@ -107,9 +108,9 @@ namespace MyStory.Tests.IntegrationTests.Controllers
             var post = result.Model as Post;
 
             // Assert
-            Assert.AreEqual("title", post.Title);
-            Assert.AreEqual("content", post.ContentWithHtml);
-            Assert.AreEqual("Edit", result.ViewName);
+            "title".ShouldEqual(post.Title);
+            "content".ShouldEqual(post.ContentWithHtml);
+            "Edit".ShouldEqual(result.ViewName);
         }
 
         [TestMethod]
@@ -147,6 +148,10 @@ namespace MyStory.Tests.IntegrationTests.Controllers
             Assert.AreEqual("Edit", result.ViewName);
             Assert.AreEqual("title", context.Posts.SingleOrDefault(p => p.Id == 1).Title);
             Assert.AreEqual("content", context.Posts.SingleOrDefault(p => p.Id == 1).ContentWithHtml);
+
+            //"Edit".ShouldEqual(result.ViewName);
+            //"title".ShouldEqual(context.Posts.SingleOrDefault(p => p.Id == 1).Title);
+            //"content".ShouldEqual(context.Posts.SingleOrDefault(p => p.Id == 1).ContentWithHtml);
         }
 
         [TestMethod]

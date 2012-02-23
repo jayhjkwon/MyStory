@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TestRun id="75e72fe5-a029-4281-b34c-63d19ed7ab3f" name="305024278@305024278-PC 2012-02-23 14:57:12" runUser="305024278-PC\305024278" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <TestSettings name="Local" id="f71d3d1c-fcb9-4cb8-bd16-ef1b721fb9d0">
+    <Description>These are default test settings for a local test run.</Description>
+    <Deployment enabled="false" runDeploymentRoot="305024278_305024278-PC 2012-02-23 14_57_12">
+      <DeploymentItem filename="D:\GitRepositories\MyStory\packages\WebActivator.1.0.0.0\lib\WebActivator.dll" />
+      <DeploymentItem filename="D:\GitRepositories\MyStory\packages\elmah.corelibrary.1.2\lib\Elmah.dll" />
+      <DeploymentItem filename="D:\GitRepositories\MyStory\packages\EntityFramework.SqlServerCompact.4.1.8482.2\lib\System.Data.SqlServerCe.Entity.dll" />
+      <DeploymentItem filename="D:\GitRepositories\MyStory\packages\EntityFramework.4.2.0.0\lib\net40\EntityFramework.dll" />
+      <DeploymentItem filename="D:\GitRepositories\MyStory\packages\AutoMapper.1.1.0.118\lib\AutoMapper.dll" />
+      <DeploymentItem filename="D:\GitRepositories\MyStory\MyStory\bin\MyStory.dll" />
+      <DeploymentItem filename="D:\GitRepositories\MyStory\packages\SqlServerCompact.4.0.8482.1\lib\System.Data.SqlServerCe.dll" />
+      <DeploymentItem filename="D:\GitRepositories\MyStory\packages\Moq.4.0.10827\lib\NET40\Moq.dll" />
+    </Deployment>
+    <Execution>
+      <TestTypeSpecific />
+      <AgentRule name="Execution Agents">
+      </AgentRule>
+    </Execution>
+  </TestSettings>
+  <Times creation="2012-02-23T14:57:12.1000943+09:00" queuing="2012-02-23T14:57:12.2711040+09:00" start="2012-02-23T14:57:12.2781044+09:00" finish="2012-02-23T14:57:13.6411824+09:00" />
+  <ResultSummary outcome="Failed">
+    <Counters total="1" executed="1" error="0" failed="1" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" passed="0" completed="0" inProgress="0" pending="0" />
+  </ResultSummary>
+  <TestDefinitions>
+    <UnitTest name="index_shoul_return_zero_account" storage="d:\gitrepositories\mystory\mystory.tests\bin\debug\mystory.tests.dll" id="7744e024-8ae1-5502-d296-ebc63bc3c3eb">
+      <Execution id="4e04b13b-66c1-4339-92a0-c0cc9f4df7ff" />
+      <TestMethod codeBase="D:/GitRepositories/MyStory/MyStory.Tests/bin/Debug/MyStory.Tests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="MyStory.Tests.IntegrationTests.Controllers.HomeControllerTest, MyStory.Tests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="index_shoul_return_zero_account" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestLists>
+    <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <TestEntries>
+    <TestEntry testId="7744e024-8ae1-5502-d296-ebc63bc3c3eb" executionId="4e04b13b-66c1-4339-92a0-c0cc9f4df7ff" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <Results>
+    <UnitTestResult executionId="4e04b13b-66c1-4339-92a0-c0cc9f4df7ff" testId="7744e024-8ae1-5502-d296-ebc63bc3c3eb" testName="index_shoul_return_zero_account" computerName="305024278-PC" duration="00:00:01.1890714" startTime="2012-02-23T14:57:12.2811046+09:00" endTime="2012-02-23T14:57:13.6211813+09:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="4e04b13b-66c1-4339-92a0-c0cc9f4df7ff">
+      <Output>
+        <ErrorInfo>
+          <Message>Test method MyStory.Tests.IntegrationTests.Controllers.HomeControllerTest.index_shoul_return_zero_account threw exception: 
+Microsoft.CSharp.RuntimeBinder.RuntimeBinderException: 'int' does not contain a definition for 'ShouldEqual'</Message>
+          <StackTrace>    at CallSite.Target(Closure , CallSite , Object , Int32 )
+   at System.Dynamic.UpdateDelegates.UpdateAndExecuteVoid2[T0,T1](CallSite site, T0 arg0, T1 arg1)
+   at MyStory.Tests.IntegrationTests.Controllers.HomeControllerTest.index_shoul_return_zero_account() in D:\GitRepositories\MyStory\MyStory.Tests\IntegrationTests\Controllers\HomeControllerTest.cs:line 54
+</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+  </Results>
+</TestRun>
