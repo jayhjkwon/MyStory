@@ -39,3 +39,5 @@ D:\GitRepositories\MyStory\MyStory\bin\EntityFramework.xml
 D:\GitRepositories\MyStory\MyStory\obj\Debug\ResolveAssemblyReference.cache
 D:\GitRepositories\MyStory\MyStory\obj\Debug\MyStory.dll
 D:\GitRepositories\MyStory\MyStory\obj\Debug\MyStory.pdb
+D:\GitRepositories\MyStory\MyStory\bin\MarkdownDeep.dll
+D:\GitRepositories\MyStory\MyStory\bin\MarkdownDeep.pdb

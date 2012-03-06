@@ -48,9 +48,12 @@
     <Reference Include="Elmah">
       <HintPath>..\packages\elmah.corelibrary.1.2\lib\Elmah.dll</HintPath>
     </Reference>
-    <Reference Include="EntityFramework, Version=4.2.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+    <Reference Include="EntityFramework, Version=4.3.1.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\EntityFramework.4.2.0.0\lib\net40\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.4.3.1\lib\net40\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="MarkdownDeep">
+      <HintPath>..\packages\MarkdownDeep.Full.1.4\lib\.NetFramework 3.5\MarkdownDeep.dll</HintPath>
     </Reference>
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Runtime.Serialization" />
@@ -103,6 +106,16 @@
     <Compile Include="ViewModels\PostInputViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\bootstrap-responsive.css" />
+    <Content Include="Content\bootstrap-responsive.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\images\glyphicons-halflings-white.png" />
+    <Content Include="Content\images\glyphicons-halflings.png" />
+    <Content Include="Content\Prettify\prettify.css" />
+    <Content Include="Content\Prettify\Themes\desert.css" />
+    <Content Include="Content\Prettify\Themes\sons-of-obsidian.css" />
+    <Content Include="Content\Prettify\Themes\sunburst.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -132,6 +145,8 @@
     <Content Include="Content\themes\base\jquery.ui.theme.css" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-1.5.1-vsdoc.js" />
     <Content Include="Scripts\jquery-1.5.1.js" />
     <Content Include="Scripts\jquery-1.5.1.min.js" />
@@ -140,8 +155,36 @@
     <Content Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\MarkdownDeep License.txt" />
+    <Content Include="Scripts\MarkdownDeep Quick Reference.txt" />
+    <Content Include="Scripts\MarkdownDeepLib.min.js" />
+    <Content Include="Scripts\mdd_ajax_loader.gif" />
+    <Content Include="Scripts\mdd_gripper.png" />
+    <Content Include="Scripts\mdd_help.htm" />
+    <Content Include="Scripts\mdd_modal_background.png" />
+    <Content Include="Scripts\mdd_styles.css" />
+    <Content Include="Scripts\mdd_toolbar.png" />
     <Content Include="Scripts\modernizr-1.7.js" />
     <Content Include="Scripts\modernizr-1.7.min.js" />
+    <Content Include="Scripts\Prettify\lang-apollo.js" />
+    <Content Include="Scripts\Prettify\lang-clj.js" />
+    <Content Include="Scripts\Prettify\lang-css.js" />
+    <Content Include="Scripts\Prettify\lang-go.js" />
+    <Content Include="Scripts\Prettify\lang-hs.js" />
+    <Content Include="Scripts\Prettify\lang-lisp.js" />
+    <Content Include="Scripts\Prettify\lang-lua.js" />
+    <Content Include="Scripts\Prettify\lang-ml.js" />
+    <Content Include="Scripts\Prettify\lang-n.js" />
+    <Content Include="Scripts\Prettify\lang-proto.js" />
+    <Content Include="Scripts\Prettify\lang-scala.js" />
+    <Content Include="Scripts\Prettify\lang-sql.js" />
+    <Content Include="Scripts\Prettify\lang-tex.js" />
+    <Content Include="Scripts\Prettify\lang-vb.js" />
+    <Content Include="Scripts\Prettify\lang-vhdl.js" />
+    <Content Include="Scripts\Prettify\lang-wiki.js" />
+    <Content Include="Scripts\Prettify\lang-xq.js" />
+    <Content Include="Scripts\Prettify\lang-yaml.js" />
+    <Content Include="Scripts\Prettify\prettify.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
