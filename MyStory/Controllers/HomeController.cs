@@ -55,7 +55,7 @@ namespace MyStory.Controllers
             return View(blog);
         }
 
-        [Authorize]
+        
         public ActionResult About()
         {
             return View();
