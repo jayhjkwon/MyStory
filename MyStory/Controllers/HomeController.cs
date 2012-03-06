@@ -12,7 +12,7 @@ namespace MyStory.Controllers
 {
     public class HomeController : MyStoryController
     {
-        public HomeController(){}
+        public HomeController() { }
 
         // for test purpose
         public HomeController(MyStoryContext context)
@@ -36,13 +36,22 @@ namespace MyStory.Controllers
             var posts = dbContext.Posts.Include(p => p.Blog);
 
             posts.ToList().ForEach(p => p.ContentWithHtml = md.Transform(p.ContentWithHtml));
-                        
+
             return View("Index", posts);
         }
 
         public ActionResult Test()
         {
-            var blog = dbContext.Blogs.Add(new Blog { Title = "t1", BlogOwner = new Account { Email = "email", Password = "password", FullName = "name" } });
+            var blog = dbContext.Blogs.Add(new Blog 
+                                                { 
+                                                    Title = "t1", 
+                                                    BlogOwner = new Account 
+                                                                    {
+                                                                        Email = "email", 
+                                                                        Password = "password", 
+                                                                        FullName = "name" 
+                                                                    } 
+                                                });
             return View(blog);
         }
 
