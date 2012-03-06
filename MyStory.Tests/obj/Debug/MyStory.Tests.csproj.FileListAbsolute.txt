@@ -17,3 +17,5 @@ D:\GitRepositories\MyStory\MyStory.Tests\bin\Debug\Elmah.dll
 D:\GitRepositories\MyStory\MyStory.Tests\bin\Debug\Moq.dll
 D:\GitRepositories\MyStory\MyStory.Tests\bin\Debug\Moq.pdb
 D:\GitRepositories\MyStory\MyStory.Tests\bin\Debug\Moq.xml
+D:\GitRepositories\MyStory\MyStory.Tests\bin\Debug\MarkdownDeep.dll
+D:\GitRepositories\MyStory\MyStory.Tests\bin\Debug\MarkdownDeep.pdb

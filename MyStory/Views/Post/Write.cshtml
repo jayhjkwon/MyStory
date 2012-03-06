@@ -1,18 +1,26 @@
 ﻿@model MyStory.ViewModels.PostInputViewModel
-
 @{
     ViewBag.Title = "Write";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<h2>Write</h2>
-
+<link href="@Url.Content("~/Scripts/mdd_styles.css")" rel="stylesheet" type="text/css" />
 <script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
 <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
-
-@using (Html.BeginForm()) {
+<script src="@Url.Content("~/Scripts/MarkdownDeepLib.min.js")" type="text/javascript"></script>
+<script type="text/javascript">
+    $(function () {
+        $("textarea.mdd_editor").MarkdownDeep({
+            help_location: "/Scripts/mdd_help.htm",
+            ExtraMode: true
+        });
+    })
+</script>
+<h2 class="page-header">
+    Posting</h2>
+@using (Html.BeginForm())
+{
     @Html.ValidationSummary(true)
-    <fieldset>
+@*<fieldset>
         <legend>PostInputViewModel</legend>
 
         <div class="editor-label">
@@ -34,9 +42,28 @@
         <p>
             <input type="submit" value="Write" />
         </p>
-    </fieldset>
+    </fieldset>*@
+    
+    <div>
+        @Html.TextBoxFor(model => model.Title, new { @class="input-xlarge", style="width:100%", placeholder="Title" })
+        @Html.ValidationMessageFor(model => model.Title)
+    </div>
+    
+    <div class="mdd_toolbar">
+    </div>
+    
+    @Html.TextArea("ContentWithHtml", new { @class = "mdd_editor", rows = 15 })
+    
+    <div class="mdd_resizer">
+    </div>
+    
+    @Html.ValidationMessageFor(model => model.ContentWithHtml)
+    
+    <div class="form-actions" align="center">
+        <input type="submit" value="Save" class="btn btn-primary btn-large" />
+        @Html.ActionLink("Cancel", "Index", "Home", null, new { @class = "btn btn-inverse btn-large" })
+    </div>
+        
+    <div class="mdd_preview">
+    </div>
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>

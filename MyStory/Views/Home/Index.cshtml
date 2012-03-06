@@ -1,47 +1,96 @@
 ﻿@model IEnumerable<MyStory.Models.Post>
-
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<link href="@Url.Content("~/Content/Prettify/Themes/sons-of-obsidian.css")" rel="stylesheet" type="text/css" />
+<script type="text/javascript">
+    $(function () {
 
-<h2>Index</h2>
+        $('pre').addClass('prettyprint linenums');
 
+        prettyPrint();
+    });
+</script>
+
+@* scripts for masonry*@
+<script src="@Url.Content("~/Scripts/jquery.masonry.min.js")" type="text/javascript"></script>
+<script type="text/javascript">
+    $(function () {
+        $('#masonry-container').masonry({
+            itemSelector: '.masonrybox',
+            columnWidth: 240,
+            isAnimated: true
+        });
+    });
+</script>
+
+@*<h2 class="page-header">Index</h2>*@
 @if (ViewBag.NumberOfAccounts == 0)
 {
-    <span>No Accounts created yet.<br />@Html.ActionLink("Please Register Account and Create Blog", "Register", "Account")</span>
+    <div class="hero-unit">
+        <h2>
+            No Account and Blog created yet.</h2>
+        <p>
+            To create account and blog</p>
+        <p>
+            <a href="@Url.Action("Register", "Account")" class="btn btn-primary btn-large"><i
+                class="icon-ok icon-white"></i>Click Here</a></p>
+    </div>
 }
 else
 {
     if (!Request.IsAuthenticated)
     {
-        <span>@Html.ActionLink("Please Sign In", "LogOn", "Account")</span>
-    }
-    else
-    {
-        <span>@Html.ActionLink("Write Post", "Write", "Post")</span>
+    <span>@Html.ActionLink("Please Sign In", "LogOn", "Account")</span>
     }
 }
 
-<table>
+@* view with Masonry *@
+<div id="masonry-container">
 @if (Model != null)
 {
     foreach (var item in Model)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ContentWithHtml)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", "Post", new { id = item.Id }, null) |
-                @Html.ActionLink("Delete", "Delete", "Post", new { id = item.Id }, null)
-                Blog Title : @item.Blog.Title
-            </td>
-        </tr>
+    <div class="masonrybox shadow">
+        <label>
+            <h3>
+                @Html.ActionLink(item.Title, "Detail", "Post")</h3>
+            <p>
+                @Html.Raw(item.ContentWithHtml)</p>
+                 <p>
+                @Html.ActionLink("edit", "Edit", "Post", new { id = item.Id }, null) |
+                @Html.ActionLink("delete", "Delete", "Post", new { id = item.Id }, null)
+            </p>
+        </label>
+    </div>
     }
 }
+</div>
 
-</table>
+
+@* view with Bootstrap Thumbnail *@
+@*<ul class="thumbnails">
+    @if (Model != null)
+    {
+        foreach (var item in Model)
+        {
+        <li class="span3">            
+            <div class="thumbnail shadow">
+            <p>
+                @Html.ActionLink(item.Title, "Detail")
+            </p>
+            <p>
+                @Html.Raw(item.ContentWithHtml)
+            </p>
+            <p>
+                @Html.ActionLink("Edit", "Edit", "Post", new { id = item.Id }, null) |
+                @Html.ActionLink("Delete", "Delete", "Post", new { id = item.Id }, null)
+            </p>
+            </div>
+        </li>
+        }
+    }
+</ul>*@
+
+

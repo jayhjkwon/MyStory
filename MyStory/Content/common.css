@@ -1,0 +1,47 @@
+﻿.field-validation-error {
+    color: #ff0000;
+}
+
+.field-validation-valid {
+    display: none;
+}
+
+.input-validation-error {
+    border: 1px solid #ff0000;
+    background-color: #ffeeee;
+}
+
+/*!
+.validation-summary-errors {
+    font-weight: bold;
+    color: #ff0000;
+}
+*/
+
+.validation-summary-valid {
+    display: none;
+}
+
+/* for masonry item */
+.masonrybox 
+{
+    width : 220px;
+    margin: 10px;
+    float: left;
+}
+
+.shadow {
+-moz-box-shadow: 6px 6px 8px #888;
+-webkit-box-shadow: 6px 6px 8px #888;
+box-shadow: 6px 6px 8px #888;
+/* For IE 8 */
+-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000')";
+/* For IE 5.5 - 7 */
+filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000');
+}
+
+/* space for line number column width in google-code-prettify */
+ol.linenums
+{
+    padding-left: 12px;
+}

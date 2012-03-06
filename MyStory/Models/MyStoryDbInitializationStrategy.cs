@@ -6,7 +6,7 @@ using System.Data.Entity;
 
 namespace MyStory.Models.Infrastructure
 {
-    public class MyStoryDbInitializationStrategy : DropCreateDatabaseAlways<MyStoryContext>
+    public class MyStoryDbInitializationStrategy : DropCreateDatabaseIfModelChanges<MyStoryContext>
     {
         protected override void Seed(MyStoryContext context)
         {

@@ -18,7 +18,7 @@ namespace MyStory.Helpers
         //    return context.GetUserByEmail(HttpContext.Current.User.Identity.Name);
         //}
 
-        public static Account GetUserByEmail(this MyStoryContext context, string email)
+        public static Account SelectUserByEmail(this MyStoryContext context, string email)
         {
             return context.Accounts.SingleOrDefault(a => a.Email == email);
         }

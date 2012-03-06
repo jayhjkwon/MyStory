@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Data.Entity;
 using MyStory.Models;
 using MyStory.Models.Infrastructure;
+using MarkdownDeep;
 
 namespace MyStory.Controllers
 {
@@ -28,7 +29,13 @@ namespace MyStory.Controllers
                 return View();
             }
 
+            var md = new Markdown();
+            md.SafeMode = true;
+            md.ExtraMode = true;
+
             var posts = dbContext.Posts.Include(p => p.Blog);
+
+            posts.ToList().ForEach(p => p.ContentWithHtml = md.Transform(p.ContentWithHtml));
                         
             return View("Index", posts);
         }
