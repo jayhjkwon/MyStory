@@ -39,9 +39,8 @@ namespace MyStory.Controllers
 
             //return View("Index", posts);
 
-            //using (var db = new MyStoryContext())
-            //{
-            var db = new MyStoryContext();
+            using (var db = new MyStoryContext())
+            {
                 ViewBag.NumberOfAccounts = db.Accounts.Count();
 
                 if (ViewBag.NumberOfAccounts == 0)
@@ -58,7 +57,7 @@ namespace MyStory.Controllers
                 posts.ToList().ForEach(p => p.ContentWithHtml = md.Transform(p.ContentWithHtml));
 
                 return View("Index", posts);
-            //}
+            }
         }
 
         public ActionResult Test()
