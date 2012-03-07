@@ -62,6 +62,12 @@ else
                 @Html.ActionLink("edit", "Edit", "Post", new { id = item.Id }, null) |
                 @Html.ActionLink("delete", "Delete", "Post", new { id = item.Id }, null)
             </p>
+            <p>
+                @foreach (var comment in item.Comments)
+                {
+                    @comment.ContentWithoutHtml<br />
+                }
+            </p>
         </label>
     </div>
     }

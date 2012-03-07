@@ -6,6 +6,7 @@ using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using MyStory.Models;
 using MyStory.Models.Infrastructure;
+using System.Data.Objects;
 
 namespace MyStory.Models
 {
