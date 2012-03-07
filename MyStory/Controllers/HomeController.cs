@@ -22,42 +22,42 @@ namespace MyStory.Controllers
 
         public ActionResult Index()
         {
-            //ViewBag.NumberOfAccounts = dbContext.Accounts.Count();
+            ViewBag.NumberOfAccounts = dbContext.Accounts.Count();
 
-            //if (ViewBag.NumberOfAccounts == 0)
-            //{
-            //    return View();
-            //}
-
-            //var md = new Markdown();
-            //md.SafeMode = true;
-            //md.ExtraMode = true;
-
-            //var posts = dbContext.Posts.Include(p => p.Blog);
-
-            //posts.ToList().ForEach(p => p.ContentWithHtml = md.Transform(p.ContentWithHtml));
-
-            //return View("Index", posts);
-
-            using (var db = new MyStoryContext())
+            if (ViewBag.NumberOfAccounts == 0)
             {
-                ViewBag.NumberOfAccounts = db.Accounts.Count();
-
-                if (ViewBag.NumberOfAccounts == 0)
-                {
-                    return View();
-                }
-
-                var md = new Markdown();
-                md.SafeMode = true;
-                md.ExtraMode = true;
-
-                var posts = db.Posts.Include(p => p.Blog);
-
-                posts.ToList().ForEach(p => p.ContentWithHtml = md.Transform(p.ContentWithHtml));
-
-                return View("Index", posts);
+                return View();
             }
+
+            var md = new Markdown();
+            md.SafeMode = true;
+            md.ExtraMode = true;
+
+            var posts = dbContext.Posts.Include(p => p.Blog);
+
+            posts.ToList().ForEach(p => p.ContentWithHtml = md.Transform(p.ContentWithHtml));
+
+            return View("Index", posts);
+
+            //using (var db = new MyStoryContext())
+            //{
+            //    ViewBag.NumberOfAccounts = db.Accounts.Count();
+
+            //    if (ViewBag.NumberOfAccounts == 0)
+            //    {
+            //        return View();
+            //    }
+
+            //    var md = new Markdown();
+            //    md.SafeMode = true;
+            //    md.ExtraMode = true;
+
+            //    var posts = db.Posts.Include(p => p.Blog);
+
+            //    posts.ToList().ForEach(p => p.ContentWithHtml = md.Transform(p.ContentWithHtml));
+
+            //    return View("Index", posts);
+            //}
         }
 
         public ActionResult Test()
