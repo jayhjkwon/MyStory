@@ -17,7 +17,7 @@ namespace MyStory.Controllers
         }
 
         [HttpPost]
-        public ActionResult Register(AccountInputViewModel accountInput)
+        public ActionResult Register(AccountInput accountInput)
         {
             if (!ModelState.IsValid)
                 return View(accountInput);
@@ -47,7 +47,7 @@ namespace MyStory.Controllers
         }
 
         [HttpPost]
-        public ActionResult LogOn(LogOnInputViewModel input)
+        public ActionResult LogOn(LogOnInput input)
         {
             if (!ModelState.IsValid)
                 return View(input);

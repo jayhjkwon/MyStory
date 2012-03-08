@@ -94,6 +94,8 @@
     </Compile>
     <Compile Include="Helpers\HtmlHelperExtensions.cs" />
     <Compile Include="Helpers\MyStoryContextExtension.cs" />
+    <Compile Include="Infrastructure\AutoMapper\IMapper.cs" />
+    <Compile Include="Infrastructure\AutoMapper\PostMapper.cs" />
     <Compile Include="Models\MyStoryContext.cs" />
     <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\MyStoryDbInitializationStrategy.cs" />
@@ -103,9 +105,10 @@
     <Compile Include="Models\Post.cs" />
     <Compile Include="Models\Tag.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModels\AccountInputViewModel.cs" />
-    <Compile Include="ViewModels\LogOnInputViewModel.cs" />
-    <Compile Include="ViewModels\PostInputViewModel.cs" />
+    <Compile Include="ViewModels\AccountInput.cs" />
+    <Compile Include="ViewModels\LogOnInput.cs" />
+    <Compile Include="ViewModels\PostInput.cs" />
+    <Compile Include="ViewModels\PostListViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-responsive.css" />
@@ -247,7 +250,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Infrastructure\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config">
@@ -274,6 +276,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Post\Edit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\__Index.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

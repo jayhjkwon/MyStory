@@ -27,7 +27,7 @@ namespace MyStory.Controllers
 
         [Authorize]
         [HttpPost]
-        public ActionResult Write(PostInputViewModel input)
+        public ActionResult Write(PostInput input)
         {
             // for test purpose, explicitly invoke controller lifecycle regarding validation
             //bool val = TryValidateModel(input);

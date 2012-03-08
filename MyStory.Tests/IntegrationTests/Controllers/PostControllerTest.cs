@@ -64,7 +64,7 @@ namespace MyStory.Tests.IntegrationTests.Controllers
 
             controller.ControllerContext = mock.Object;
 
-            var input = new PostInputViewModel();
+            var input = new PostInput();
             input.Title = null;
             input.ContentWithHtml = null;
 

@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using MyStory.Models;
 using System.Data.Entity;
+using MyStory.Infrastructure.AutoMapper;
 
 namespace MyStory
 {
@@ -36,6 +37,10 @@ namespace MyStory
             AreaRegistration.RegisterAllAreas();
             RegisterGlobalFilters(GlobalFilters.Filters);
             RegisterRoutes(RouteTable.Routes);
+
+            // create mapping rule
+            IMapper mapper = new PostMapper();
+            mapper.Execute();
 
         }
     }

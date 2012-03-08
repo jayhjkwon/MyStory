@@ -7,6 +7,8 @@ using System.Data.Entity;
 using MyStory.Models;
 using MyStory.Models.Infrastructure;
 using MarkdownDeep;
+using AutoMapper;
+using MyStory.ViewModels;
 
 namespace MyStory.Controllers
 {
@@ -33,31 +35,11 @@ namespace MyStory.Controllers
             md.SafeMode = true;
             md.ExtraMode = true;
 
-            var posts = dbContext.Posts.Include(p => p.Blog);
+            var posts = dbContext.Posts.ToList();
 
-            posts.ToList().ForEach(p => p.ContentWithHtml = md.Transform(p.ContentWithHtml));
+            posts.ForEach(p => p.ContentWithHtml = md.Transform(p.ContentWithHtml));
 
             return View("Index", posts);
-
-            //using (var db = new MyStoryContext())
-            //{
-            //    ViewBag.NumberOfAccounts = db.Accounts.Count();
-
-            //    if (ViewBag.NumberOfAccounts == 0)
-            //    {
-            //        return View();
-            //    }
-
-            //    var md = new Markdown();
-            //    md.SafeMode = true;
-            //    md.ExtraMode = true;
-
-            //    var posts = db.Posts.Include(p => p.Blog);
-
-            //    posts.ToList().ForEach(p => p.ContentWithHtml = md.Transform(p.ContentWithHtml));
-
-            //    return View("Index", posts);
-            //}
         }
 
         public ActionResult Test()
