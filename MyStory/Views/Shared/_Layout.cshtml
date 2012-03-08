@@ -29,13 +29,12 @@
                 </a><a class="brand" href="#"><strong>MyStory</strong></a>
                 <div class="nav-collapse">
                     <ul class="nav">
-                        <li><a href="@Url.Action("Index","Home")" ><i class="icon-home icon-white" ></i> <b>Home</b></a></li>
+                        <li id="home-nav"><a href="@Url.Action("Index","Home")" ><i class="icon-home icon-white" ></i> <b>Home</b></a></li>
                         @if (Request.IsAuthenticated)
                         {
-                            <li><a href="@Url.Action("Write","Post")" ><i class="icon-pencil icon-white" ></i> <b>New Post</b></a></li>
+                            <li id="new-post-nav"><a href="@Url.Action("Write","Post")" ><i class="icon-pencil icon-white" ></i> <b>New Post</b></a></li>
                         }
-                        <li><a href="@Url.Action("LogOn","Account")" ><i class="icon-user icon-white" ></i> <b>Log On</b></a></li>
-                        @*<li>@Html.ActionLink("About", "About", "Home")</li>*@
+                        <li id="logon-nav"><a href="@Url.Action("LogOn","Account")" ><i class="icon-user icon-white" ></i> <b>Log On</b></a></li>
                     </ul>
                     <ul class="nav pull-right">
                         <li>

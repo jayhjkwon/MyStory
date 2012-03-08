@@ -9,6 +9,8 @@
 <script src="@Url.Content("~/Scripts/MarkdownDeepLib.min.js")" type="text/javascript"></script>
 <script type="text/javascript">
     $(function () {
+        $('#new-post-nav').addClass('active');
+
         $("textarea.mdd_editor").MarkdownDeep({
             help_location: "/Scripts/mdd_help.htm",
             ExtraMode: true
