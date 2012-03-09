@@ -10,6 +10,10 @@ namespace MyStory.ViewModels
     public class PostInput
     {
         [Required]
+        [HiddenInput]
+        public int Id { get; set; }
+
+        [Required]
         [MinLength(1)]
         [MaxLength(125)]
         public string Title { get; set; }
@@ -17,12 +21,12 @@ namespace MyStory.ViewModels
         [Required]
         [AllowHtml]
         [Display(Name="Content")]
-        public string ContentWithHtml { get; set; }
+        public string Content { get; set; }
 
-        [ScaffoldColumn(false)]
+        [HiddenInput]
         public double? Longitude { get; set; }
 
-        [ScaffoldColumn(false)]
+        [HiddenInput]
         public double? Latitude { get; set; }
     }
 }

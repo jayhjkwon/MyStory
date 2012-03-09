@@ -56,7 +56,7 @@ else
             <h3>
                 @Html.ActionLink(item.Title, "Detail", "Post")</h3>
             <p>
-                @Html.Raw(item.ContentWithHtml)</p>
+                @Html.Raw(item.Content)</p>
             <p>
                 @Html.ActionLink("edit", "Edit", "Post", new { id = item.Id }, null) |
                 @Html.ActionLink("delete", "Delete", "Post", new { id = item.Id }, null)
@@ -82,7 +82,7 @@ else
                 @Html.ActionLink(item.Title, "Detail")
             </p>
             <p>
-                @Html.Raw(item.ContentWithHtml)
+                @Html.Raw(item.Content)
             </p>
             <p>
                 @Html.ActionLink("Edit", "Edit", "Post", new { id = item.Id }, null) |

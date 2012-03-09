@@ -14,8 +14,7 @@ namespace MyStory.Models
         public int Id { get; set; }
         public string Title { get; set; }
         [ScaffoldColumn(false)]
-        public string ContentWithoutHtml { get; set; }
-        public string ContentWithHtml { get; set; }
+        public string Content { get; set; }
         [ScaffoldColumn(false)]
         public DateTime DateCreated { get; set; }
         [ScaffoldColumn(false)]
@@ -64,7 +63,7 @@ namespace MyStory.Models
         [Required]
         [AllowHtml]
         [Display(Name="Content")]
-        public string ContentWithHtml { get; set; }
+        public string Content { get; set; }
 
         [Required]
         [DataType(DataType.DateTime)]

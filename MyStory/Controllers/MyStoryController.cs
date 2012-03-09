@@ -32,7 +32,7 @@ namespace MyStory.Controllers
             return dbContext.SelectUserByEmail(HttpContext.User.Identity.Name);
         }
 
-        protected Blog GetBlogOfCurrentUser()
+        protected Blog GetCurrentBlog()
         {
             if (!HttpContext.Request.IsAuthenticated)
                 return null;

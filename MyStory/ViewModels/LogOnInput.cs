@@ -24,7 +24,6 @@ namespace MyStory.ViewModels
         [Display(Name = "Remember Me?")]
         public bool RememberMe { get; set; }
 
-        [ScaffoldColumn(false)]
         public string ReturnUrl { get; set; }
     }
 }

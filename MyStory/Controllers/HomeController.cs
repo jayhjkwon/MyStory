@@ -37,7 +37,7 @@ namespace MyStory.Controllers
 
             var posts = dbContext.Posts.ToList();
 
-            posts.ForEach(p => p.ContentWithHtml = md.Transform(p.ContentWithHtml));
+            posts.ForEach(p => p.Content = md.Transform(p.Content));
 
             return View("Index", posts);
         }
