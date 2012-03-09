@@ -51,7 +51,7 @@ namespace MyStory.Controllers
         {
             var post = dbContext.Posts.SingleOrDefault(p => p.Id == id);
             var postInput = Mapper.Map<Post, PostInput>(post);
-            return View("Edit", post);
+            return View("Edit", postInput);
         }
 
         [Authorize]
@@ -61,10 +61,12 @@ namespace MyStory.Controllers
             if (!ModelState.IsValid)
                 return View("Edit", input);
 
-            var post = Mapper.Map<PostInput, Post>(input);
-            post.BlogId = GetCurrentBlog().Id;
+            var post = dbContext.Posts.Single(p => p.Id == input.Id);
+            if (!TryUpdateModel(post))
+            {
+                return View();
+            }
             post.DateModified = DateTime.Now;
-            dbContext.Entry(post).State = System.Data.EntityState.Modified;
             dbContext.SaveChanges();
 
             return RedirectToAction("Index", "Home");
