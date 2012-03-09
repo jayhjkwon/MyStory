@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using MyStory.Models;
 using MyStory.Helpers;
+using MyStory.ViewModels;
 
 namespace MyStory.Controllers
 {

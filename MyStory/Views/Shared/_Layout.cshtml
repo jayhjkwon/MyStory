@@ -34,7 +34,7 @@
                         {
                             <li id="new-post-nav"><a href="@Url.Action("Write","Post")" ><i class="icon-pencil icon-white" ></i> <b>New Post</b></a></li>
                         }
-                        <li id="logon-nav"><a href="@Url.Action("LogOn","Account")" ><i class="icon-user icon-white" ></i> <b>Log On</b></a></li>
+                        <li id="logon-nav">@Html.Action("CurrentUser", "Account")</li>
                     </ul>
                     <ul class="nav pull-right">
                         <li>

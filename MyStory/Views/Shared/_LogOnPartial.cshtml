@@ -1,7 +1,19 @@
-﻿@if(Request.IsAuthenticated) {
-    <text>Welcome <strong>@User.Identity.Name</strong>!
-    [ @Html.ActionLink("Log Off", "LogOff", "Account") ]</text>
+﻿<script type="text/javascript">
+    $(function () {
+        $("#username").popover(
+        {
+            placement: 'bottom',
+            delay: { show: 200, hide: 100 }
+        });
+    }); 
+</script>
+@if (Request.IsAuthenticated)
+{
+    <a href="@Url.Action("LogOff", "Account")" id="username" title="Welcome" Content="@ViewBag.CurrentUserViewModel.FullName" ><i class="icon-user icon-white"></i> <b>Log
+        Off</b></a>
 }
-else {
-    @:[ @Html.ActionLink("Log On", "LogOn", "Account") ]
+else
+{
+    <a href="@Url.Action("LogOn", "Account")" ><i class="icon-user icon-white"></i> <b>Log
+        On</b></a>
 }

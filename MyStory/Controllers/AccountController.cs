@@ -77,5 +77,19 @@ namespace MyStory.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        [ChildActionOnly]
+        public ActionResult CurrentUser()
+        {
+            if (!HttpContext.Request.IsAuthenticated)
+                return View("CurrentUser");
+
+            var currentUser = new CurrentUserViewModel
+            {
+                Email = HttpContext.User.Identity.Name,
+                FullName = GetCurrentUser().FullName
+            };
+
+            return View("CurrentUser", currentUser);
+        }
     }
 }
