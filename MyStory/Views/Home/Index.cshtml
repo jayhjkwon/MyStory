@@ -18,32 +18,33 @@
         $('pre').addClass('prettyprint linenums');
         prettyPrint();
 
+        $('#delete-confirm').click(function () {
+            $.ajax({
+                cache: false,
+                type: "POST",
+                async: false,
+                url: "Post/Delete/" + selectedPostIdToDelete,
+                contentType: "application/json",
+                dataType: "json",
+                success: function (result) {
+                    $('#modal-delete-post').modal('hide');  // hide modal
+                    $('div#' + selectedPostIdToDelete).remove();            // remove the deleted article
+                    $('#masonry-container').masonry().reload(); // reload masonry layout
+                },
+                error: function (request, status, error) {
+                    alert(error);
+                }
+            });
+        });
+
     });
 
-    var selectedPostId;
+    var selectedPostIdToDelete;
 
     function openModal(postId) {
-        this.selectedPostId = postId;
+        this.selectedPostIdToDelete = postId;
     }
-
-    function deletePost() {
-        $.ajax({
-            cache: false,
-            type: "POST",
-            async: false,
-            url: "Post/Delete/" + selectedPostId,
-            contentType: "application/json",
-            dataType: "json",
-            success: function (result) {
-                $('#modal-delete-post').modal('hide');  // hide modal
-                $('div#' + selectedPostId).remove();            // remove the deleted article
-                $('#masonry-container').masonry().reload(); // reload masonry layout
-            },
-            error: function (request, status, error) {
-                alert(error);
-            }
-        });
-    }
+    
 </script>
 @if (ViewBag.NumberOfAccounts == 0)
 {
@@ -92,7 +93,7 @@
             Delete Post?</p>
     </div>
     <div class="modal-footer">
-        <a id="delete-confirm" href="#" class="btn btn-primary" onclick="deletePost();">Delete</a>
+        <a id="delete-confirm" href="#" class="btn btn-primary" >Delete</a>
         <a href="#" class="btn" data-dismiss="modal">Close</a>
     </div>
 </div>
