@@ -74,5 +74,25 @@ namespace MyStory.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        [Authorize]
+        [HttpPost]
+        public ActionResult Delete(int id)
+        {
+            var post = dbContext.Posts.Single(p => p.Id == id);
+            if (post == null)
+                return HttpNotFound();
+
+            dbContext.Posts.Remove(post);
+            dbContext.SaveChanges();
+
+            if (Request.IsAjaxRequest()) 
+            {
+                return Json(new { success = true }); 
+            } else
+            {
+                return RedirectToAction("Index", "Home"); 
+            }
+        }
+
     }
 }

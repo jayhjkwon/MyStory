@@ -7,7 +7,6 @@
 <script src="@Url.Content("~/Scripts/jquery.masonry.min.js")" type="text/javascript"></script>
 <script type="text/javascript">
     $(function () {
-
         $('#home-nav').addClass('active');
 
         $('#masonry-container').masonry({
@@ -18,7 +17,33 @@
 
         $('pre').addClass('prettyprint linenums');
         prettyPrint();
+
     });
+
+    var selectedPostId;
+
+    function openModal(postId) {
+        this.selectedPostId = postId;
+    }
+
+    function deletePost() {
+        $.ajax({
+            cache: false,
+            type: "POST",
+            async: false,
+            url: "Post/Delete/" + selectedPostId,
+            contentType: "application/json",
+            dataType: "json",
+            success: function (result) {
+                $('#modal-delete-post').modal('hide');  // hide modal
+                $('div#' + selectedPostId).remove();            // remove the deleted article
+                $('#masonry-container').masonry().reload(); // reload masonry layout
+            },
+            error: function (request, status, error) {
+                alert(error);
+            }
+        });
+    }
 </script>
 @if (ViewBag.NumberOfAccounts == 0)
 {
@@ -39,24 +64,37 @@
     {
         foreach (var item in Model)
         {
-        <div class="masonrybox shadow">
+        <div class="masonrybox shadow" id="@item.Id">
             <h3>
                 @Html.ActionLink(item.Title, "Detail", "Post")</h3>
             <p>
                 @Html.Raw(item.Content)</p>
-            <p>
-                @Html.ActionLink("edit", "Edit", "Post", new { id = item.Id }, null) |
-                @Html.ActionLink("delete", "Delete", "Post", new { id = item.Id }, null)
-            </p>
-            @*<p>
-                @foreach (var comment in item.Comments)
-                {
-                    @comment.ContentWithoutHtml<br />
-                }
-            </p>*@
+            @if (Request.IsAuthenticated)
+            {
+                <p>
+                    @Html.ActionLink("edit", "Edit", "Post", new { id = item.Id }, null) | <a  class="delete-post-link" data-toggle="modal" href="#modal-delete-post" onclick="openModal('@item.Id');" >
+                        delete</a>
+                </p>
+            }
         </div>
         }
     }
+</div>
+@*Modal popup for delete post*@
+<div class="modal hide fade" id="modal-delete-post">
+    <div class="modal-header">
+        <a class="close" data-dismiss="modal">×</a>
+        <h3>
+            MyStory</h3>
+    </div>
+    <div class="modal-body">
+        <p>
+            Delete Post?</p>
+    </div>
+    <div class="modal-footer">
+        <a id="delete-confirm" href="#" class="btn btn-primary" onclick="deletePost();">Delete</a>
+        <a href="#" class="btn" data-dismiss="modal">Close</a>
+    </div>
 </div>
 @* view with Bootstrap Thumbnail *@ @*<ul class="thumbnails">
     @if (Model != null)
