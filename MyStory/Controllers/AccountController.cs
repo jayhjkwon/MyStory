@@ -28,7 +28,7 @@ namespace MyStory.Controllers
                 BlogOwner = new Account
                 {
                     Email = accountInput.AccountEmail,
-                    FullName = accountInput.AccountFullName,
+                    Name = accountInput.AccountName,
                     Password = accountInput.AccountPassword,
                 }
             };
@@ -86,7 +86,7 @@ namespace MyStory.Controllers
             var currentUser = new CurrentUserViewModel
             {
                 Email = HttpContext.User.Identity.Name,
-                FullName = GetCurrentUser().FullName
+                Name = GetCurrentUser().Name
             };
 
             return View("CurrentUser", currentUser);

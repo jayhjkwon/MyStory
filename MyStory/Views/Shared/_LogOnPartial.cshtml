@@ -9,7 +9,7 @@
 </script>
 @if (Request.IsAuthenticated)
 {
-    <a href="@Url.Action("LogOff", "Account")" id="username" title="Welcome" Content="@ViewBag.CurrentUserViewModel.FullName" ><i class="icon-user icon-white"></i> <b>Log
+    <a href="@Url.Action("LogOff", "Account")" id="username" title="Welcome" Content="@ViewBag.CurrentUserViewModel.Name" ><i class="icon-user icon-white"></i> <b>Log
         Off</b></a>
 }
 else

@@ -10,7 +10,7 @@ namespace MyStory.Tests.IntegrationTests
     {
         public static void CreateAccountAndBlog(MyStoryContext context)
         {
-            context.Blogs.Add(new Blog { Title = "blog", BlogOwner = new Account { Email = "a@a.com", Password = "password", FullName = "john" } });
+            context.Blogs.Add(new Blog { Title = "blog", BlogOwner = new Account { Email = "a@a.com", Password = "password", Name = "john" } });
             context.SaveChanges();
         }
     }

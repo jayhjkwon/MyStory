@@ -7,6 +7,7 @@ using MyStory.Models;
 using MyStory.Helpers;
 using MyStory.ViewModels;
 using AutoMapper;
+using MarkdownDeep;
 
 namespace MyStory.Controllers
 {
@@ -19,6 +20,7 @@ namespace MyStory.Controllers
             base.dbContext = context;
         }
 
+        
         [Authorize]
         [HttpGet]
         public ActionResult Write()

@@ -25,7 +25,7 @@ namespace MyStory.ViewModels
         [MinLength(1)]
         [MaxLength(125)]
         [Display(Name="User Name", Description="This name will be used in blog")]
-        public string AccountFullName { get; set; }
+        public string AccountName { get; set; }
 
         [Required]
         [MinLength(1)]
@@ -35,5 +35,6 @@ namespace MyStory.ViewModels
 
         [Display(Name="Remember Me?")]
         public bool RememberMe { get; set; }
+
     }
 }

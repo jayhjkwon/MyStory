@@ -55,7 +55,7 @@ namespace MyStory.Tests.UnitTests.Models
             //{
             //    Email = "a@aa.com",
             //    Password = "password",
-            //    FullName = "JonDoe"
+            //    Name = "JonDoe"
             //};
            
 

@@ -12,7 +12,7 @@ namespace MyStory.Models
     {
         public int Id { get; set; } // key
         public string Email { get; set; }   // unique key, used when siging in
-        public string FullName { get; set; }
+        public string Name { get; set; }    // unique key
         public string Password { get; set; }
         public bool IsOpenId { get; set; }
         public string GravatarUrl { get; set; }
@@ -51,6 +51,6 @@ namespace MyStory.Models
         [Required]
         [MinLength(1)]
         [MaxLength(125)]
-        public string FullName { get; set; }
+        public string Name { get; set; }
     }
 }

@@ -26,41 +26,15 @@ namespace MyStory.Controllers
         {
             ViewBag.NumberOfAccounts = dbContext.Accounts.Count();
 
-            if (ViewBag.NumberOfAccounts == 0)
-            {
-                return View();
-            }
-
             var md = new Markdown();
             md.SafeMode = true;
             md.ExtraMode = true;
 
-            var posts = dbContext.Posts.ToList();
-
+            var posts = dbContext.Posts.OrderByDescending(p => p.DateCreated).ToList();
             posts.ForEach(p => p.Content = md.Transform(p.Content));
 
             return View("Index", posts);
         }
 
-        public ActionResult Test()
-        {
-            var blog = dbContext.Blogs.Add(new Blog 
-                                                { 
-                                                    Title = "t1", 
-                                                    BlogOwner = new Account 
-                                                                    {
-                                                                        Email = "email", 
-                                                                        Password = "password", 
-                                                                        FullName = "name" 
-                                                                    } 
-                                                });
-            return View(blog);
-        }
-
-        
-        public ActionResult About()
-        {
-            return View();
-        }
     }
 }

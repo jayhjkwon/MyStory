@@ -8,6 +8,7 @@ namespace MyStory.ViewModels
     public class CurrentUserViewModel
     {
         public string Email { get; set; }   
-        public string FullName { get; set; }
+        public string Name { get; set; }
+
     }
 }
