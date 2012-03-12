@@ -108,6 +108,7 @@
     <Compile Include="ViewModels\AccountInput.cs" />
     <Compile Include="ViewModels\CurrentUserViewModel.cs" />
     <Compile Include="ViewModels\LogOnInput.cs" />
+    <Compile Include="ViewModels\PostDetailViewModel.cs" />
     <Compile Include="ViewModels\PostInput.cs" />
     <Compile Include="ViewModels\PostListViewModel.cs" />
   </ItemGroup>
@@ -273,13 +274,13 @@
     <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Home\__Index.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Views\Post\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Account\CurrentUser.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Post\Detail.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

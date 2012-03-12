@@ -1,0 +1,20 @@
+﻿@model MyStory.ViewModels.PostDetailViewModel
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="@Url.Content("~/Content/Prettify/Themes/sons-of-obsidian.css")" rel="stylesheet" type="text/css" />
+<script type="text/javascript">
+    $(function () {
+        $('pre').addClass('prettyprint linenums');
+        prettyPrint();
+    });
+</script>
+<h2>@Html.DisplayFor(model => model.Title)</h2>
+<p>
+    @Html.Raw(Model.Content)
+</p>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index", "Home")
+</p>

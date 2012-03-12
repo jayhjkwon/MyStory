@@ -94,5 +94,22 @@ namespace MyStory.Controllers
             }
         }
 
+        public ActionResult Detail(int id)
+        {
+            var post = dbContext.Posts.SingleOrDefault(p => p.Id == id);
+
+            if (post == null)
+                return HttpNotFound();
+
+            var md = new Markdown();
+            md.SafeMode = true;
+            md.ExtraMode = true;
+            post.Content = md.Transform(post.Content);
+
+            var postDetailViewModel = Mapper.Map<Post, PostDetailViewModel>(post);
+
+            return View("Detail", postDetailViewModel);
+        }
+
     }
 }

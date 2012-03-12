@@ -12,6 +12,8 @@ namespace MyStory.Infrastructure.AutoMapper
     {
         public void Execute()
         {
+            Mapper.CreateMap<Post, PostDetailViewModel>();
+
             Mapper.CreateMap<Post, PostListViewModel>()
                     .ForMember(vm => vm.Content, opt => opt.MapFrom(p => p.Content));
 
