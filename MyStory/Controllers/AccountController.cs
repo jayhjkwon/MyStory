@@ -13,6 +13,12 @@ namespace MyStory.Controllers
     {
         public ActionResult Register()
         {
+            // because mystory is self-hosted blog engine
+            // only one account-blog is allowed
+            // so prevent creating account !!
+            var numberOfAccounts = dbContext.Accounts.Count();
+            ViewBag.NumberOfAccounts = numberOfAccounts;
+
             return View();
         }
 
