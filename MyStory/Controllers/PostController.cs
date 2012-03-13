@@ -71,7 +71,7 @@ namespace MyStory.Controllers
             post.DateModified = DateTime.Now;
             dbContext.SaveChanges();
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Detail", "Post", new { id = input.Id });
         }
 
         [Authorize]
