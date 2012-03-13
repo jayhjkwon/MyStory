@@ -10,11 +10,16 @@
         prettyPrint();
     });
 </script>
-<h2 class="article-title">@Html.DisplayFor(model => model.Title)</h2>
+<p>
+    <h2 class="article-title">@Html.DisplayFor(model => model.Title)</h2>
+</p>
 <div>
     @Html.Raw(Model.Content)
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index", "Home")
+<p style="margin-top:25px">
+    <p>Posted at @Html.DisplayFor(model => model.DateCreated)</p>
 </p>
+<div class="btn-group">
+  <button class="btn">@Html.ActionLink("Edit", "Edit", new { id = Model.Id })</button>
+  <button class="btn">@Html.ActionLink("Back to List", "Index", "Home")</button>
+</div>

@@ -57,3 +57,8 @@ ol.linenums
     font-family: "Bitstream Vera Sans Mono";
     font-size ; xx-large;
 }
+
+a:hover
+{
+    text-decoration : none;
+}
