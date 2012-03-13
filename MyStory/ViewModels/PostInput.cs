@@ -28,5 +28,8 @@ namespace MyStory.ViewModels
 
         [HiddenInput]
         public double? Latitude { get; set; }
+
+        //public List<TagViewModel> Tags { get; set; }
+        public string Tags { get; set; }
     }
 }
