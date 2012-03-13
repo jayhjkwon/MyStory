@@ -45,3 +45,15 @@ ol.linenums
 {
     padding-left: 12px;
 }
+
+@font-face {
+   src:url(VeraMono.ttf);
+   font-family: "Bitstream Vera Sans Mono";      
+}
+
+
+.article-title
+{
+    font-family: "Bitstream Vera Sans Mono";
+    font-size ; xx-large;
+}

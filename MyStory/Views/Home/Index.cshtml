@@ -75,7 +75,7 @@
         {
         <div class="masonrybox shadow" id="@item.Id">
             <h3>
-                @Html.ActionLink(item.Title, "Detail", "Post", new { Id = item.Id }, null)</h3>
+                @Html.ActionLink(item.Title, "Detail", "Post", new { Id = item.Id }, new { @class = "article-title" })</h3>
             <p>
                 @Html.Raw(item.Content)</p>
             @if (Request.IsAuthenticated)

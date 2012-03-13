@@ -10,10 +10,10 @@
         prettyPrint();
     });
 </script>
-<h2>@Html.DisplayFor(model => model.Title)</h2>
-<p>
+<h2 class="article-title">@Html.DisplayFor(model => model.Title)</h2>
+<div>
     @Html.Raw(Model.Content)
-</p>
+</div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Back to List", "Index", "Home")
