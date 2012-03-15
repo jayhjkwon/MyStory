@@ -2,21 +2,16 @@
 @{
     Layout = null;
 }
-<script type="text/javascript">
-    $(function () {
-        $('#username').tooltip(
-        {
-            placement: 'bottom',
-            delay: { show: 200, hide: 100 },
-        });
-    }); 
-</script>
+
+
 @if (Request.IsAuthenticated)
 {
-    <a href="@Url.Action("LogOff", "Account")" id="username" title="Welcome, @Model.Name"><i
-        class="icon-user icon-white"></i> <b>Log Off</b></a>
+    <a href="@Url.Action("LogOff", "Account")" id="username" title="Welcome, @Model.Name">
+        <i class="icon-user icon-white"></i><b>Log Off</b></a>
 }
 else
 {
-<a href="@Url.Action("LogOn", "Account")" ><i class="icon-user icon-white"></i> <b>Log On</b></a>
+    <a href="@Url.Action("LogOn", "Account")" ><i class="icon-user icon-white"></i><b>Log
+        On</b></a>
 }
+

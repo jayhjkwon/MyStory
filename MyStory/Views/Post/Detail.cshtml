@@ -4,12 +4,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <link href="@Url.Content("~/Content/Prettify/Themes/sons-of-obsidian.css")" rel="stylesheet" type="text/css" />
-<script type="text/javascript">
-    $(function () {
-        $('pre').addClass('prettyprint linenums');
-        prettyPrint();
-    });
-</script>
+
 <p>
     <h2 class="article-title">@Html.DisplayFor(model => model.Title)</h2>
 </p>
@@ -23,3 +18,13 @@
   <button class="btn">@Html.ActionLink("Edit", "Edit", new { id = Model.Id })</button>
   <button class="btn">@Html.ActionLink("Back to List", "Index", "Home")</button>
 </div>
+
+@section Script
+{
+<script type="text/javascript">
+    $(function () {
+        $('pre').addClass('prettyprint linenums');
+        prettyPrint();
+    });
+</script>
+}

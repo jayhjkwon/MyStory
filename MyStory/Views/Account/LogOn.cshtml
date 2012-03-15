@@ -3,14 +3,6 @@
     ViewBag.Title = "LogOn";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
-<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
-<script type="text/javascript">
-    $(function () {
-        $('form').addClass('form-horizontal');
-        $('#logon-nav').addClass('active');
-    });
-</script>
 <h2 class="page-header">
     LogOn</h2>
 @using (Html.BeginForm())
@@ -39,4 +31,15 @@
     <div class="form-actions">
         <input type="submit" value="Log On" class="btn btn-primary" />
     </div>
+}
+@section Script
+{
+    <script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('form').addClass('form-horizontal');
+            $('#logon-nav').addClass('active');
+        });
+    </script>
 }

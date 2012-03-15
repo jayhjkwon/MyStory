@@ -19,6 +19,9 @@ namespace MyStory.Services
         {
             List<Tag> tagList = new List<Tag>();
 
+            if (string.IsNullOrWhiteSpace(tags))
+                return null;
+
             var tagsArray = tags.Split(new string[]{","}, StringSplitOptions.RemoveEmptyEntries);
 
             foreach (var item in tagsArray)
