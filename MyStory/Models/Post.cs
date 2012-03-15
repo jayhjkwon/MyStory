@@ -13,17 +13,13 @@ namespace MyStory.Models
     {
         public int Id { get; set; }
         public string Title { get; set; }
-        [ScaffoldColumn(false)]
         public string Content { get; set; }
-        [ScaffoldColumn(false)]
         public DateTime DateCreated { get; set; }
-        [ScaffoldColumn(false)]
         public DateTime DateModified { get; set; }
 
         public virtual ICollection<Tag> Tags { get; set; }
         public Location LocationOfWriting { get; set; }
 
-        [ScaffoldColumn(false)]
         public int BlogId { get; set; }
         public virtual Blog Blog { get; set; }
 

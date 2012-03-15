@@ -16,6 +16,8 @@ namespace MyStory.Models.Infrastructure
                 ("ALTER TABLE Accounts ADD CONSTRAINT uc_Account_Email UNIQUE NONCLUSTERED(Email)");
             context.Database.ExecuteSqlCommand
                 ("ALTER TABLE Accounts ADD CONSTRAINT uc_Account_Name UNIQUE NONCLUSTERED(Name)");
+            context.Database.ExecuteSqlCommand
+                ("ALTER TABLE Tags ADD CONSTRAINT uc_Tag_TagText UNIQUE NONCLUSTERED(TagText)");
         }
     }
 }

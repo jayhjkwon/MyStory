@@ -11,7 +11,7 @@ namespace MyStory.Models
     public class Tag
     {
         public int Id { get; set; }
-        public string TagText { get; set; }
+        public string TagText { get; set; } // unique key
         public virtual ICollection<Post> Posts { get; set; }
     }
 
@@ -23,7 +23,7 @@ namespace MyStory.Models
             this.ToTable("Tags");
 
             // Relationships
-            // Relationships with Post entity is done in PostMap class
+            // Relationships with Post entity is defined in PostMap class
         }
     }
 

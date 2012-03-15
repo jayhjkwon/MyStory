@@ -89,11 +89,13 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MyStoryController.cs" />
     <Compile Include="Controllers\PostController.cs" />
+    <Compile Include="Controllers\TagController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\HtmlHelperExtensions.cs" />
     <Compile Include="Helpers\MyStoryContextExtension.cs" />
+    <Compile Include="Helpers\StringExtensions.cs" />
     <Compile Include="Infrastructure\AutoMapper\IMapper.cs" />
     <Compile Include="Infrastructure\AutoMapper\PostMapper.cs" />
     <Compile Include="Models\MyStoryContext.cs" />
@@ -121,6 +123,7 @@
     <Content Include="Content\common.css" />
     <Content Include="Content\images\glyphicons-halflings-white.png" />
     <Content Include="Content\images\glyphicons-halflings.png" />
+    <Content Include="Content\images\ui-anim_basic_16x16.gif" />
     <Content Include="Content\Prettify\prettify.css" />
     <Content Include="Content\Prettify\Themes\desert.css" />
     <Content Include="Content\Prettify\Themes\sons-of-obsidian.css" />
