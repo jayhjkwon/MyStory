@@ -13,16 +13,27 @@ namespace MyStory.Controllers
         {
             var term = Request.Params["term"].ToString();
 
+            // TODO 
+            // This is dilema, that is, L2E does not translate custom expression, we cannot use Contains() extension method
+            // That means we need to convert TagText to upper case or lower cas to compare case insensitive in query level,
+            // we know, this will cause performance problem
+            // So, instead I just select everything then filtered in Linq To Object level
+            // But, This altanative also causes performance problem
+            // I need to find more elegance way to solve this issue.
+
+            // #1
+            var tags = dbContext.Tags.Where(t => t.TagText.ToUpper().Contains(term.ToUpper())).Select(t => t.TagText).ToList();
+            
+            // #2
+            //var allTags = dbContext.Tags.ToList();
+            //var tags = allTags.Where(t => t.TagText.Contains(term, StringComparison.OrdinalIgnoreCase)).Select(t=>t.TagText).ToList();
+
             if (Request.IsAjaxRequest())
             {
-                var tags = new string[]{"ActionScript", "AppleScript", "Asp", "BASIC", "C", "C++", "Clojure", "COBOL", "ColdFusion", "Erlang",
-        	"Fortran", "Groovy", "Haskell", "Java", "JavaScript", "Lisp", "Perl", "PHP", "Python", "Ruby", "Scala", "Scheme"};
-                tags = tags.Where(t=>t.Contains(term, StringComparison.OrdinalIgnoreCase)).ToArray();
-
                 return Json(tags, JsonRequestBehavior.AllowGet);
             }
 
-            return View("Search", dbContext.Tags.ToList());
+            return View("Search", tags);
         }
 
     }
