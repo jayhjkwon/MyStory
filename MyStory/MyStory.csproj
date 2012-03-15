@@ -98,7 +98,6 @@
     <Compile Include="Helpers\StringExtensions.cs" />
     <Compile Include="Infrastructure\AutoMapper\IMapper.cs" />
     <Compile Include="Infrastructure\AutoMapper\PostMapper.cs" />
-    <Compile Include="Infrastructure\Common\SlugConverter.cs" />
     <Compile Include="Models\MyStoryContext.cs" />
     <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\MyStoryDbInitializationStrategy.cs" />
@@ -226,6 +225,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Infrastructure\Common\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config">
