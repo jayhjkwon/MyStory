@@ -8,6 +8,7 @@ using MyStory.Helpers;
 using MyStory.ViewModels;
 using AutoMapper;
 using MarkdownDeep;
+using MyStory.Services;
 
 namespace MyStory.Controllers
 {
@@ -42,6 +43,8 @@ namespace MyStory.Controllers
             var post = Mapper.Map<PostInput, Post>(input);
             post.BlogId = blogId;
             post.DateCreated = post.DateModified = DateTime.Now;
+            TagConverter tagConverter = new TagConverter(dbContext);
+            post.Tags = tagConverter.ConvertToTagList(input.Tags);
             
             dbContext.Posts.Add(post);
             dbContext.SaveChanges();

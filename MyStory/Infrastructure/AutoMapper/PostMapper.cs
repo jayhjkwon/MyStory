@@ -18,6 +18,7 @@ namespace MyStory.Infrastructure.AutoMapper
                     .ForMember(vm => vm.Content, opt => opt.MapFrom(p => p.Content));
 
             Mapper.CreateMap<PostInput, Post>()
+                    .ForMember(p=>p.Tags, i=>i.Ignore())
                     .ForMember(p => p.LocationOfWriting, opt => opt.MapFrom(i => new Location { Latitude = i.Latitude, Longitude = i.Longitude }));
 
             Mapper.CreateMap<Post, PostInput>()
