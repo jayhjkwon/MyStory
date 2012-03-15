@@ -36,13 +36,12 @@ namespace MyStory.Controllers
             if (!ModelState.IsValid)
                 return View("Write", input);
 
-            var test = Request.Params["q"];
-
             var blogId = GetCurrentBlog().Id;
 
             var post = Mapper.Map<PostInput, Post>(input);
             post.BlogId = blogId;
             post.DateCreated = post.DateModified = DateTime.Now;
+
             TagConverter tagConverter = new TagConverter(dbContext);
             post.Tags = tagConverter.ConvertToTagList(input.Tags);
             
