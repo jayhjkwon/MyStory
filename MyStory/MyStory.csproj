@@ -98,6 +98,7 @@
     <Compile Include="Helpers\StringExtensions.cs" />
     <Compile Include="Infrastructure\AutoMapper\IMapper.cs" />
     <Compile Include="Infrastructure\AutoMapper\PostMapper.cs" />
+    <Compile Include="Infrastructure\Common\SlugConverter.cs" />
     <Compile Include="Models\MyStoryContext.cs" />
     <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\MyStoryDbInitializationStrategy.cs" />
