@@ -31,7 +31,11 @@ namespace MyStory.Controllers
             md.ExtraMode = true;
 
             var posts = dbContext.Posts.OrderByDescending(p => p.DateCreated).ToList();
-            posts.ForEach(p => p.Content = md.Transform(p.Content.Length>500 ? p.Content.Substring(0, 500) : p.Content));
+            foreach (var item in posts)
+            {
+                item.Content = md.Transform(item.Content.Length > 500 ? item.Content.Substring(0, 500) : item.Content);
+                item.Title = item.Title.Length > 20 ? item.Title.Substring(0, 20) : item.Title;
+            }
 
             return View("Index", posts);
         }
