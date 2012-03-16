@@ -44,8 +44,8 @@ namespace MyStory.Controllers
             post.BlogId = blogId;
             post.DateCreated = post.DateModified = DateTime.Now;
 
-            TagConverter tagConverter = new TagConverter(dbContext);
-            post.Tags = tagConverter.ConvertToTagList(input.Tags);
+            TagService svc = new TagService();
+            svc.UpdateTag(dbContext, input, post);
             
             dbContext.Posts.Add(post);
             dbContext.SaveChanges();
@@ -75,9 +75,6 @@ namespace MyStory.Controllers
             if (TryUpdateModel(post, "", null, new string[]{"Tags"}))
             {
                 post.DateModified = DateTime.Now;
-
-                //TagConverter tagConverter = new TagConverter(dbContext);
-                //post.Tags = tagConverter.ConvertToTagList(input.Tags);
 
                 TagService svc = new TagService();
                 svc.UpdateTag(dbContext, input, post);

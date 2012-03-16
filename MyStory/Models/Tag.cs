@@ -10,6 +10,10 @@ namespace MyStory.Models
     [MetadataType(typeof(TagMetadata))]
     public class Tag
     {
+        public Tag()
+        {
+            this.Posts = new List<Post>();
+        }
         public int Id { get; set; }
         public string TagText { get; set; } // unique key
         public virtual ICollection<Post> Posts { get; set; }

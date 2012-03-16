@@ -11,6 +11,11 @@ namespace MyStory.Models
     [MetadataType(typeof(PostMetadata))]
     public class Post
     {
+        public Post()
+        {
+            this.Tags = new List<Tag>();
+            this.Comments = new List<Comment>();
+        }
         public int Id { get; set; }
         public string Title { get; set; }
         public string Content { get; set; }

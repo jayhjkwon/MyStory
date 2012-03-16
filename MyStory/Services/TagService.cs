@@ -11,7 +11,8 @@ namespace MyStory.Services
     {
         public void UpdateTag(MyStoryContext dbContext, PostInput input, Post post)
         {
-            post.Tags.Clear();
+            if (post.Tags != null) post.Tags.Clear();
+
             if (input.Tags != null)
             {
                 foreach (var item in input.Tags.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries))
@@ -21,7 +22,8 @@ namespace MyStory.Services
                         var cnt = dbContext.Tags.Count(t => t.TagText == item);
                         if (cnt > 0)
                         {
-                            post.Tags.Add(dbContext.Tags.First(t => t.TagText == item));
+                            var tag = dbContext.Tags.First(t => t.TagText == item);
+                            post.Tags.Add(tag);
                         }
                         else
                         {

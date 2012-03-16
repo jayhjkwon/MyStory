@@ -10,6 +10,10 @@ namespace MyStory.Models
     [MetadataType(typeof(BlogMetadata))]
     public class Blog
     {
+        public Blog()
+        {
+            this.Posts = new List<Post>();
+        }
         public int Id { get; set; }
         public string Title { get; set; }
 
