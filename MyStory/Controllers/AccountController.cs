@@ -89,13 +89,19 @@ namespace MyStory.Controllers
             if (!HttpContext.Request.IsAuthenticated)
                 return View("CurrentUser");
 
-            var currentUser = new CurrentUserViewModel
+            var user = GetCurrentUser();
+            if (user != null)
             {
-                Email = HttpContext.User.Identity.Name,
-                Name = GetCurrentUser().Name
-            };
+                var currentUser = new CurrentUserViewModel
+                {
+                    Email = HttpContext.User.Identity.Name,
+                    Name = user.Name
+                };
 
-            return View("CurrentUser", currentUser);
+                return View("CurrentUser", currentUser);
+            }
+
+            return View();
         }
     }
 }

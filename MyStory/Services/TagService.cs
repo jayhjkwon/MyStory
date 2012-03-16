@@ -17,17 +17,19 @@ namespace MyStory.Services
             {
                 foreach (var item in input.Tags.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries))
                 {
-                    if (!string.IsNullOrWhiteSpace(item))
+                    var tagText = item.Trim();
+
+                    if (!string.IsNullOrWhiteSpace(tagText))
                     {
-                        var cnt = dbContext.Tags.Count(t => t.TagText == item);
+                        var cnt = dbContext.Tags.Count(t => t.TagText == tagText);
                         if (cnt > 0)
                         {
-                            var tag = dbContext.Tags.First(t => t.TagText == item);
+                            var tag = dbContext.Tags.First(t => t.TagText == tagText);
                             post.Tags.Add(tag);
                         }
                         else
                         {
-                            post.Tags.Add(new Tag { TagText = item });
+                            post.Tags.Add(new Tag { TagText = tagText });
                         }
                     }
                 }
