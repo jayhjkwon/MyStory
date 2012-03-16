@@ -20,7 +20,7 @@ namespace MyStory.Services
             List<Tag> tagList = new List<Tag>();
 
             if (string.IsNullOrWhiteSpace(tags))
-                return null;
+                return tagList;
 
             var tagsArray = tags.Split(new string[]{","}, StringSplitOptions.RemoveEmptyEntries);
 

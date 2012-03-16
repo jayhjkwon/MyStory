@@ -19,10 +19,8 @@ namespace MyStory.Models
 
         public virtual ICollection<Tag> Tags { get; set; }
         public Location LocationOfWriting { get; set; }
-
         public int BlogId { get; set; }
         public virtual Blog Blog { get; set; }
-
         public virtual ICollection<Comment> Comments { get; set; }
     }
 

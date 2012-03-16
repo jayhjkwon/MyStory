@@ -9,6 +9,7 @@ using MyStory.ViewModels;
 using AutoMapper;
 using MarkdownDeep;
 using MyStory.Services;
+using System.Data.EntityClient;
 
 
 namespace MyStory.Controllers
@@ -58,6 +59,7 @@ namespace MyStory.Controllers
         {
             var post = dbContext.Posts.SingleOrDefault(p => p.Id == id);
             var postInput = Mapper.Map<Post, PostInput>(post);
+            postInput.Tags = post.Tags.ConverTagToString();
             return View("Edit", postInput);
         }
 
@@ -69,15 +71,27 @@ namespace MyStory.Controllers
                 return View("Edit", input);
 
             var post = dbContext.Posts.Single(p => p.Id == input.Id);
-            if (!TryUpdateModel(post))
-            {
-                return View();
-            }
-            post.DateModified = DateTime.Now;
-            dbContext.SaveChanges();
 
-            return RedirectToAction("Detail", "Post", new { id = input.Id });
+            if (TryUpdateModel(post, "", null, new string[]{"Tags"}))
+            {
+                post.DateModified = DateTime.Now;
+
+                //TagConverter tagConverter = new TagConverter(dbContext);
+                //post.Tags = tagConverter.ConvertToTagList(input.Tags);
+
+                TagService svc = new TagService();
+                svc.UpdateTag(dbContext, input, post);
+
+                dbContext.Entry(post).State = System.Data.EntityState.Modified;
+                dbContext.SaveChanges();
+
+                return RedirectToAction("Detail", "Post", new { id = input.Id });
+            }
+
+            return View("Edit", input);
         }
+
+        
 
         [Authorize]
         [HttpPost]

@@ -13,11 +13,11 @@ namespace MyStory.Helpers
         {
             StringBuilder val = new StringBuilder();
 
-            tags.Select(t => t.TagText).ToList().ForEach(t => val.Append(t + ","));
+            tags.Select(t => t.TagText).ToList().ForEach(t => val.Append(t + ", "));
 
-            string result = val.ToString().Length>0 ? val.ToString().Substring(0,val.ToString().Length-1) : null;
+            //string result = val.ToString().Length>0 ? val.ToString().Substring(0,val.ToString().Length-2) : null;
 
-            return result;
+            return val.ToString();
         }
 
         public static string[] ConverTagToStringArray(this IEnumerable<Tag> tags)

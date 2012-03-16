@@ -19,7 +19,7 @@
     Posted at @Html.DisplayFor(model => model.DateCreated)
 </p>
 <div class="btn-group">
-  <button class="btn">@Html.ActionLink("Edit", "Edit", new { id = Model.Id })</button>
+  <button class="btn">@Html.ActionLink("Edit", "Edit", "Post", new { id = Model.Id }, null)</button>
   <button class="btn">@Html.ActionLink("Back to List", "Index", "Home")</button>
 </div>
 
