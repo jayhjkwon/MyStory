@@ -7,7 +7,7 @@
 @if (Request.IsAuthenticated && Model != null)
 {
     <a href="@Url.Action("LogOff", "Account")" id="username" title="Welcome, @Model.Name">
-        <i class="icon-user icon-white"></i><b>Log Off</b></a>
+        <i class="icon-user icon-white"></i><b> Log Off</b></a>
 }
 else
 {
