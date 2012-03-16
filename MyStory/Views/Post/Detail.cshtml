@@ -11,8 +11,12 @@
 <div>
     @Html.Raw(Model.Content)
 </div>
-<p style="margin-top:25px">
-    <p>Posted at @Html.DisplayFor(model => model.DateCreated)</p>
+@foreach (var item in Model.Tags)
+{
+    <a href="@Url.Action("Index", "Tag", new { TagText = @item })" class="btn btn-info btn-small">@item</a>
+}
+<p style="margin-top:10px">
+    Posted at @Html.DisplayFor(model => model.DateCreated)
 </p>
 <div class="btn-group">
   <button class="btn">@Html.ActionLink("Edit", "Edit", new { id = Model.Id })</button>

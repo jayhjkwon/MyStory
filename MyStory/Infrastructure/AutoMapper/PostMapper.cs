@@ -12,10 +12,10 @@ namespace MyStory.Infrastructure.AutoMapper
     {
         public void Execute()
         {
-            Mapper.CreateMap<Post, PostDetailViewModel>();
+            Mapper.CreateMap<Post, PostDetailViewModel>()
+                    .ForMember(vm=>vm.Tags, p=>p.Ignore());
 
-            Mapper.CreateMap<Post, PostListViewModel>()
-                    .ForMember(vm => vm.Content, opt => opt.MapFrom(p => p.Content));
+            Mapper.CreateMap<Post, PostListViewModel>();
 
             Mapper.CreateMap<PostInput, Post>()
                     .ForMember(p=>p.Tags, i=>i.Ignore())

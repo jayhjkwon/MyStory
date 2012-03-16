@@ -94,6 +94,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\HtmlHelperExtensions.cs" />
+    <Compile Include="Helpers\IEnumerableExtensions.cs" />
     <Compile Include="Helpers\MyStoryContextExtension.cs" />
     <Compile Include="Helpers\StringExtensions.cs" />
     <Compile Include="Infrastructure\AutoMapper\IMapper.cs" />

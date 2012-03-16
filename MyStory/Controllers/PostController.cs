@@ -10,6 +10,7 @@ using AutoMapper;
 using MarkdownDeep;
 using MyStory.Services;
 
+
 namespace MyStory.Controllers
 {
     public class PostController : MyStoryController
@@ -111,6 +112,7 @@ namespace MyStory.Controllers
             post.Content = md.Transform(post.Content);
 
             var postDetailViewModel = Mapper.Map<Post, PostDetailViewModel>(post);
+            postDetailViewModel.Tags = post.Tags.ConverTagToStringArray();
 
             return View("Detail", postDetailViewModel);
         }
