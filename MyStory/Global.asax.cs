@@ -7,6 +7,7 @@ using System.Web.Routing;
 using MyStory.Models;
 using System.Data.Entity;
 using MyStory.Infrastructure.AutoMapper;
+using MyStory.Infrastructure;
 
 namespace MyStory
 {
@@ -37,10 +38,25 @@ namespace MyStory
             RegisterGlobalFilters(GlobalFilters.Filters);
             RegisterRoutes(RouteTable.Routes);
 
-            // create mapping rule
-            IMapper mapper = new PostMapper();
-            mapper.Execute();
+            DependencyResolver.SetResolver(new NinjectDependencyResolver());
 
+            // create mapping rule
+            //IMapper mapper = new PostMapper();
+            //mapper.Execute();
+            CreateAutoMapping();
+
+        }
+
+        private void CreateAutoMapping()
+        {
+            NinjectDependencyResolver resolver = new NinjectDependencyResolver();
+
+            var mappers = resolver.GetServices<IMapper>();
+
+            foreach (var mapper in mappers)
+            {
+                mapper.Execute();
+            }
         }
     }
 }

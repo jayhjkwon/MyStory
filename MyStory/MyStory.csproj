@@ -57,6 +57,9 @@
     <Reference Include="MarkdownDeep">
       <HintPath>..\packages\MarkdownDeep.Full.1.4\lib\.NetFramework 3.5\MarkdownDeep.dll</HintPath>
     </Reference>
+    <Reference Include="Ninject">
+      <HintPath>..\packages\Ninject.2.2.1.4\lib\net40-Full\Ninject.dll</HintPath>
+    </Reference>
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
@@ -99,6 +102,7 @@
     <Compile Include="Helpers\StringExtensions.cs" />
     <Compile Include="Infrastructure\AutoMapper\IMapper.cs" />
     <Compile Include="Infrastructure\AutoMapper\PostMapper.cs" />
+    <Compile Include="Infrastructure\NinjectDependencyResolver.cs" />
     <Compile Include="Models\MyStoryContext.cs" />
     <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\MyStoryDbInitializationStrategy.cs" />
