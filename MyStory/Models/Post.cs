@@ -8,7 +8,6 @@ using System.Web.Mvc;
 
 namespace MyStory.Models
 {
-    [MetadataType(typeof(PostMetadata))]
     public class Post
     {
         public Post()
@@ -36,6 +35,17 @@ namespace MyStory.Models
             // Table
             this.ToTable("Posts");
 
+            // Properties
+            this.Property(p => p.Title)
+                .IsRequired()
+                .HasMaxLength(125);
+
+            this.Property(p => p.Content)
+                .IsRequired();
+
+            this.Property(p => p.DateCreated)
+                .IsRequired();
+
             // Relationships
             this.HasMany(p => p.Tags)
                 .WithMany(t => t.Posts)
@@ -52,23 +62,4 @@ namespace MyStory.Models
         }
     }
 
-    public class PostMetadata
-    {
-        [Required]
-        [MinLength(1)]
-        [MaxLength(125)]
-        public string Title { get; set; }
-
-        [Required]
-        [AllowHtml]
-        [Display(Name="Content")]
-        public string Content { get; set; }
-
-        [Required]
-        [DataType(DataType.DateTime)]
-        public DateTime DateCreated { get; set; }
-
-        [DataType(DataType.DateTime)]
-        public DateTime DateModified { get; set; }
-    }
 }

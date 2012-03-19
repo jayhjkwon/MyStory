@@ -7,7 +7,6 @@ using System.Data.Entity.ModelConfiguration;
 
 namespace MyStory.Models
 {
-    [MetadataType(typeof(BlogMetadata))]
     public class Blog
     {
         public Blog()
@@ -28,18 +27,14 @@ namespace MyStory.Models
             // Table
             this.ToTable("Blogs");
 
+            this.Property(b => b.Title)
+                .IsRequired()
+                .HasMaxLength(125);
+
             // Relationships
             this.HasRequired(t => t.BlogOwner)
                 .WithOptional()
                 ;
         }
-    }
-
-    public class BlogMetadata
-    {
-        [Required]
-        [MinLength(1)]
-        [MaxLength(125)]
-        public string Title { get; set; }
     }
 }

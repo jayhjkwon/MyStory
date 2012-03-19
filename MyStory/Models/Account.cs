@@ -7,7 +7,6 @@ using System.Data.Entity.ModelConfiguration;
 
 namespace MyStory.Models
 {
-    [MetadataType(typeof(AccountMetadata))]
     public class Account
     {
         public int Id { get; set; } // key
@@ -26,6 +25,20 @@ namespace MyStory.Models
         {
             // Table
             this.ToTable("Accounts");
+
+            // Properties
+            this.Property(a => a.Email)
+                .IsRequired()
+                .HasMaxLength(125);
+
+            this.Property(a => a.Password)
+                .IsRequired()
+                .HasMaxLength(12)
+                .IsUnicode(false);  // password shouldn't be unicode(nvarchar), but varchar
+
+            this.Property(a => a.Name)
+                .IsRequired()
+                .HasMaxLength(125);
             
             // Relationships
             this.HasOptional(t => t.Blog)
@@ -33,24 +46,5 @@ namespace MyStory.Models
                 .WillCascadeOnDelete(true)
                 ;
         }
-    }
-
-    public class AccountMetadata
-    {
-        [Required]
-        [StringLength(125)]
-        [DataType(DataType.EmailAddress)]
-        public string Email { get; set; }
-
-        [Required]
-        [MinLength(6)]
-        [MaxLength(12)]
-        [DataType(DataType.Password)]
-        public string Password { get; set; }
-
-        [Required]
-        [MinLength(1)]
-        [MaxLength(125)]
-        public string Name { get; set; }
     }
 }

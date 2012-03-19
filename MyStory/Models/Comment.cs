@@ -7,7 +7,6 @@ using System.Data.Entity.ModelConfiguration;
 
 namespace MyStory.Models
 {
-    [MetadataType(typeof(CommentMetadata))]
     public class Comment
     {
         public int Id { get; set; }
@@ -15,7 +14,7 @@ namespace MyStory.Models
         public string AuthorEmail { get; set; }
         public string AuthorWebSiteUrl { get; set; }
         public DateTime DateCreated { get; set; }
-        public string ContentWithoutHtml { get; set; }
+        public string Content { get; set; }
         public bool IsOpenId { get; set; }
 
         public int PostId { get; set; }
@@ -28,32 +27,23 @@ namespace MyStory.Models
         {
             // Table
             this.ToTable("Comments");
+
+            // Properties
+            this.Property(c => c.AuthorName)
+                .IsRequired()
+                .HasMaxLength(125);
+
+            this.Property(c => c.AuthorEmail)
+                .IsRequired()
+                .HasMaxLength(125);
+
+            this.Property(c => c.DateCreated)
+                .IsRequired();
+
+            this.Property(c => c.Content)
+                .IsRequired()
+                .HasMaxLength(500);
         }
     }
 
-    public class CommentMetadata
-    {
-        [Required]
-        [MinLength(1)]
-        [MaxLength(125)]
-        public string AuthorName { get; set; }
-
-        [Required]
-        [MinLength(1)]
-        [MaxLength(125)]
-        [DataType(DataType.EmailAddress)]
-        public string AuthorEmail { get; set; }
-
-        [MaxLength(250)]
-        public string AuthorWebSiteUrl { get; set; }
-
-        [Required]
-        [DataType(DataType.DateTime)]
-        public DateTime DateCreated { get; set; }
-
-        [Required]
-        [MinLength(1)]
-        [MaxLength(500)]
-        public string ContentWithoutHtml { get; set; }
-    }
 }
