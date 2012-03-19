@@ -128,5 +128,7 @@ namespace MyStory.Controllers
             return View("Detail", postDetailViewModel);
         }
 
+        
+
     }
 }

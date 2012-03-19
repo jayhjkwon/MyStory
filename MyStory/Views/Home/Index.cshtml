@@ -51,21 +51,9 @@
     }
 </div>
 @*Modal popup for delete post*@
-<div class="modal hide fade" id="modal-delete-post">
-    <div class="modal-header">
-        <a class="close" data-dismiss="modal">×</a>
-        <h3>
-            MyStory</h3>
-    </div>
-    <div class="modal-body">
-        <p>
-            Delete Post?</p>
-    </div>
-    <div class="modal-footer">
-        <a id="delete-confirm" href="#" class="btn btn-primary">Delete</a> <a href="#" class="btn"
-            data-dismiss="modal">Close</a>
-    </div>
-</div>
+
+@Html.Partial("DeletePostPopup")
+
 @* view with Bootstrap Thumbnail *@ 
 @*<ul class="thumbnails">
     @if (Model != null)
@@ -103,28 +91,24 @@
                 isAnimated: true
             });
 
-            $('pre').addClass('prettyprint');
-            prettyPrint();
-
             $('#delete-confirm').click(function () {
                 $.ajax({
                     cache: false,
                     type: "POST",
                     async: false,
-                    url: "Post/Delete/" + selectedPostIdToDelete,
+                    url: "/Post/Delete/" + selectedPostIdToDelete,
                     contentType: "application/json",
                     dataType: "json",
                     success: function (result) {
                         $('#modal-delete-post').modal('hide');  // hide modal
                         $('div#' + selectedPostIdToDelete).remove();            // remove the deleted article
-                        $('#masonry-container').masonry().reload(); // reload masonry layout
+                        $('#masonry-container').masonry(); //.reload(); // reload masonry layout
                     },
                     error: function (request, status, error) {
                         alert(error);
                     }
                 });
             });
-
         });
 
         var selectedPostIdToDelete;
@@ -132,6 +116,5 @@
         function openModal(postId) {
             this.selectedPostIdToDelete = postId;
         }
-    
     </script>
 }

@@ -4,7 +4,6 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <link href="@Url.Content("~/Content/Prettify/Themes/sons-of-obsidian.css")" rel="stylesheet" type="text/css" />
-
 <p>
     <h2 class="article-title">@Html.DisplayFor(model => model.Title)</h2>
 </p>
@@ -15,20 +14,44 @@
 {
     <a href="@Url.Action("Index", "Tag", new { TagText = @item })" class="btn btn-info btn-small">@item</a>
 }
-<p style="margin-top:10px">
+<p style="margin-top: 10px">
     Posted at @Html.DisplayFor(model => model.DateCreated)
 </p>
 <div class="btn-group">
-  <button class="btn">@Html.ActionLink("Edit", "Edit", "Post", new { id = Model.Id }, null)</button>
-  <button class="btn">@Html.ActionLink("Back to List", "Index", "Home")</button>
+    @Html.ActionLink("Edit", "Edit", "Post", new { id = Model.Id }, new { @class="btn" })
+    <a  class="btn" data-toggle="modal" href="#modal-delete-post" onclick="openModal('@Model.Id');" >Delete</a>
+    @Html.ActionLink("Back to List", "Index", "Home", null, new { @class = "btn" })
 </div>
-
+@Html.Partial("DeletePostPopup")
 @section Script
 {
-<script type="text/javascript">
-    $(function () {
-        $('pre').addClass('prettyprint linenums');
-        prettyPrint();
-    });
-</script>
+    <script type="text/javascript">
+        $(function () {
+            $('pre').addClass('prettyprint linenums');
+            prettyPrint();
+
+            $('#delete-confirm').click(function () {
+                $.ajax({
+                    cache: false,
+                    type: "POST",
+                    async: false,
+                    url: "/Post/Delete/" + selectedPostIdToDelete,
+                    contentType: "application/json",
+                    dataType: "json",
+                    success: function (result) {
+                        location.href = "/Home/Index";
+                    },
+                    error: function (request, status, error) {
+                        alert(error);
+                    }
+                });
+            });
+        });
+
+        var selectedPostIdToDelete;
+
+        function openModal(postId) {
+            this.selectedPostIdToDelete = postId;
+        }
+    </script>
 }
