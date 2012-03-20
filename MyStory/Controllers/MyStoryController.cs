@@ -17,7 +17,12 @@ namespace MyStory.Controllers
         public MyStoryController()
         {
             dbContext = new MyStoryContext();
-        }        
+            var blog = dbContext.Blogs.FirstOrDefault();
+            if (blog != null)
+            {
+                ViewBag.BlogName = blog.Title;
+            }
+        }
 
         protected override void Dispose(bool disposing)
         {

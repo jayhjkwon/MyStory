@@ -36,5 +36,11 @@ namespace MyStory.Controllers
             return View("Search", tags);
         }
 
+        [ChildActionOnly]
+        public ActionResult Sidebar()
+        {
+            return View();
+        }
+
     }
 }
