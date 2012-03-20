@@ -33,6 +33,7 @@ namespace MyStory.Controllers
 
         [Authorize]
         [HttpPost]
+        [ValidateInput(false)]
         public ActionResult Write(PostInput input)
         {
             if (!ModelState.IsValid)
@@ -65,6 +66,7 @@ namespace MyStory.Controllers
 
         [Authorize]
         [HttpPost]
+        [ValidateInput(false)]
         public ActionResult Edit(PostInput input)
         {
             if (!ModelState.IsValid)

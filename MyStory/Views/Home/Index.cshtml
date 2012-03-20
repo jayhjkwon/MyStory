@@ -85,6 +85,9 @@
         $(function () {
             $('#home-nav').addClass('active');
 
+            $('pre').addClass('prettyprint linenums');
+            prettyPrint();
+
             $('#masonry-container').masonry({
                 itemSelector: '.masonrybox',
                 //            columnWidth: 240,
