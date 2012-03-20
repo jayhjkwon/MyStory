@@ -27,6 +27,10 @@ namespace MyStory.ViewModels
         [Display(Name="User Name", Description="This name will be used in blog")]
         public string AccountName { get; set; }
 
+        [MaxLength(125)]
+        [Display(Name = "Describe about you")]
+        public string AccountDescription { get; set; }
+
         [Required]
         [MinLength(1)]
         [MaxLength(125)]

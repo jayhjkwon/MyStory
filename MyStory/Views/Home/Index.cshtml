@@ -18,16 +18,18 @@
                 class="icon-ok icon-white"></i>Click Here</a></p>
     </div>
 }
-@if (Model.Count() == 0)
-{
-    <div class="alert alert-info">
-        <p>
-            There is no post yet.</p>
-        <p>
-            <a href="@Url.Action("Write", "Post")" class="btn btn-primary btn-small">Create Post</a></p>
-    </div>
+else
+{ 
+    if (Model.Count() == 0)
+    {
+        <div class="alert alert-info">
+            <p>
+                There is no post yet.</p>
+            <p>
+                <a href="@Url.Action("Write", "Post")" class="btn btn-primary btn-small">Create Post</a></p>
+        </div>
+    }
 }
-
 @* view with Masonry *@
 <div id="masonry-container">
     @if (Model != null)
@@ -51,11 +53,8 @@
     }
 </div>
 @*Modal popup for delete post*@
-
 @Html.Partial("DeletePostPopup")
-
-@* view with Bootstrap Thumbnail *@ 
-@*<ul class="thumbnails">
+@* view with Bootstrap Thumbnail *@ @*<ul class="thumbnails">
     @if (Model != null)
     {
         foreach (var item in Model)

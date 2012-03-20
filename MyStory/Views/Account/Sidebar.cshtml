@@ -1,0 +1,13 @@
+﻿@model MyStory.ViewModels.CurrentUserViewModel
+@{
+    Layout = null;
+}
+<div class="well sidebar-nav shadow" style="padding: 7px">
+    <ul class="nav nav-list">
+        @if (Model != null)
+        { 
+        <li><i class="icon-user"></i> @Model.Name </li>
+        <li>@Model.Description</li>
+        }
+    </ul>
+</div>

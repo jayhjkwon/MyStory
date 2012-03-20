@@ -13,6 +13,7 @@ namespace MyStory.Models
         public string Email { get; set; }   // unique key, used when siging in
         public string Name { get; set; }    // unique key
         public string Password { get; set; }
+        public string Description { get; set; }
         public bool IsOpenId { get; set; }
         public string GravatarUrl { get; set; }
     
@@ -38,6 +39,9 @@ namespace MyStory.Models
 
             this.Property(a => a.Name)
                 .IsRequired()
+                .HasMaxLength(125);
+
+            this.Property(a => a.Description)
                 .HasMaxLength(125);
             
             // Relationships

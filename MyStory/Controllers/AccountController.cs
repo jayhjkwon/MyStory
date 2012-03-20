@@ -36,6 +36,7 @@ namespace MyStory.Controllers
                     Email = accountInput.AccountEmail,
                     Name = accountInput.AccountName,
                     Password = accountInput.AccountPassword,
+                    Description = accountInput.AccountDescription
                 }
             };
 
@@ -89,19 +90,44 @@ namespace MyStory.Controllers
             if (!HttpContext.Request.IsAuthenticated)
                 return View("CurrentUser");
 
-            var user = GetCurrentUser();
+            var currentUserViewModel = GetCurrentUserViewModel();
+
+            return View("CurrentUser", currentUserViewModel);
+        }
+
+        [ChildActionOnly]
+        public ActionResult Sidebar()
+        {
+            var user = dbContext.Accounts.FirstOrDefault(a=> !a.Name.ToUpper().Contains("test"));
             if (user != null)
             {
-                var currentUser = new CurrentUserViewModel
+                var blogOwner = new CurrentUserViewModel
                 {
-                    Email = HttpContext.User.Identity.Name,
-                    Name = user.Name
+                    Email = user.Email,
+                    Name = user.Name,
+                    Description = user.Description
                 };
 
-                return View("CurrentUser", currentUser);
+                return View("Sidebar", blogOwner);
             }
 
-            return View();
+            return View("Sidebar");
+            
+        }
+
+        private CurrentUserViewModel GetCurrentUserViewModel()
+        {
+            var user = GetCurrentUser();
+            if (user == null) return null;
+
+            var currentUser = new CurrentUserViewModel
+            {
+                Email = HttpContext.User.Identity.Name,
+                Name = user.Name,
+                Description = user.Description
+            };
+
+            return currentUser;
         }
     }
 }

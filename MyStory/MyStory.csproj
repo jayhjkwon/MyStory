@@ -269,6 +269,7 @@
     <Content Include="Views\Shared\DeletePostPopup.cshtml" />
     <Content Include="Views\Tag\Sidebar.cshtml" />
     <Content Include="Views\Comment\Sidebar.cshtml" />
+    <Content Include="Views\Account\Sidebar.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
