@@ -40,5 +40,8 @@ namespace MyStory.ViewModels
         [Display(Name="Remember Me?")]
         public bool RememberMe { get; set; }
 
+        [Display(Name = "Are you going to use Gravatar?")]
+        public bool IsGravatarUse { get; set; }
+
     }
 }

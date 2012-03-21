@@ -36,7 +36,8 @@ namespace MyStory.Controllers
                     Email = accountInput.AccountEmail,
                     Name = accountInput.AccountName,
                     Password = accountInput.AccountPassword,
-                    Description = accountInput.AccountDescription
+                    Description = accountInput.AccountDescription,
+                    IsGravatarUse = accountInput.IsGravatarUse
                 }
             };
 
@@ -105,7 +106,8 @@ namespace MyStory.Controllers
                 {
                     Email = user.Email,
                     Name = user.Name,
-                    Description = user.Description
+                    Description = user.Description,
+                    IsGravatarUse = user.IsGravatarUse
                 };
 
                 return View("Sidebar", blogOwner);

@@ -14,8 +14,7 @@ namespace MyStory.Models
         public string Name { get; set; }    // unique key
         public string Password { get; set; }
         public string Description { get; set; }
-        public bool IsOpenId { get; set; }
-        public string GravatarUrl { get; set; }
+        public bool IsGravatarUse { get; set; }
     
         public virtual Blog Blog { get; set; }
     }

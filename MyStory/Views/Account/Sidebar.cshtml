@@ -2,12 +2,21 @@
 @{
     Layout = null;
 }
-<div class="well sidebar-nav shadow" style="padding: 7px">
-    <ul class="nav nav-list">
-        @if (Model != null)
-        { 
-        <li><i class="icon-user"></i> @Model.Name </li>
-        <li>@Model.Description</li>
+<div class="well sidebar-nav shadow" style="padding-top: 0px; padding-bottom: 2px">
+    @if (Model != null)
+    {
+        if (Model.IsGravatarUse)
+        {
+        <p>
+            <h3>@Model.Name</h3>
+        </p>
+        @Microsoft.Web.Helpers.Gravatar.GetHtml(@Model.Email)
         }
-    </ul>
+        else
+        {
+        <p>
+            <i class="icon-user"></i>@Model.Name</p>
+        }            
+        <p style="margin-top: 10px">@Model.Description</p>
+    }
 </div>
