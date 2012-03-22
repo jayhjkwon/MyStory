@@ -34,7 +34,7 @@
     @Html.ValidationMessageFor(model => model.Content)
 
     <div style="margin-top: 10px">
-        @Html.TextBoxFor(model => model.Tags, new { style = "width:100%", @class = "input-xlarge", placeholder = "Tag" })
+        @Html.TextBoxFor(model => model.Tags, new { style = "width:100%", @class = "input-xlarge", placeholder = "Tag, Use comma delimiter for multiple tags" })
     </div>
     
     <div class="form-actions" align="center">

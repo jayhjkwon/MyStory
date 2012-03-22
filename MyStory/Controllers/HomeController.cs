@@ -33,11 +33,13 @@ namespace MyStory.Controllers
             var posts = dbContext.Posts.OrderByDescending(p => p.DateCreated).ToList();
             foreach (var item in posts)
             {
+                // TODO move transform logic into PostMapper
                 item.Content = md.Transform(item.Content.Length > 500 ? item.Content.Substring(0, 500) : item.Content);
-                item.Title = item.Title.Length > 20 ? item.Title.Substring(0, 20) : item.Title;
             }
 
-            return View("Index", posts);
+            var postListViewModel = Mapper.Map<List<Post>, List<PostListViewModel>>(posts);
+
+            return View("Index", postListViewModel);
         }
 
     }

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<MyStory.Models.Post>
+﻿@model IEnumerable<MyStory.ViewModels.PostListViewModel>
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -38,7 +38,7 @@ else
         {
         <div class="masonrybox shadow" style="padding:5px" id="@item.Id">
             <h3>
-                @Html.ActionLink(item.Title, "Detail", "Post", new { Id = item.Id }, new { @class = "article-title" })</h3>
+                @Html.ActionLink(item.TitleShort, "Detail", "Post", new { Id = item.Id }, new { @class = "article-title", title = item.Title })</h3>
             <p>
                 @Html.Raw(item.Content)</p>
             @if (Request.IsAuthenticated)
@@ -86,6 +86,10 @@ else
 
             $('pre').addClass('prettyprint linenums');
             prettyPrint();
+
+            $('.article-title').tooltip({
+                delay: { show: 200, hide: 100 },
+            });
 
             $('#masonry-container').masonry({
                 itemSelector: '.masonrybox',
