@@ -47,5 +47,10 @@ namespace MyStory.Controllers
             return View();
         }
 
+        public ActionResult Next()
+        {
+            return View();
+        }
+
     }
 }
