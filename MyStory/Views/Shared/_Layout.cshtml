@@ -53,8 +53,7 @@
     <div class="container-fluid">
         <div class="row-fluid">
             <div class="span10">
-                <div class="well shadow">
-                    @RenderBody()</div>
+                <div id="main-body" class="well shadow">@RenderBody()</div>
             </div>
             <div class="span2">
                 @Html.Action("Sidebar", "Account")

@@ -42,5 +42,10 @@ namespace MyStory.Controllers
             return View("Index", postListViewModel);
         }
 
+        public ActionResult Test()
+        {
+            return View();
+        }
+
     }
 }
