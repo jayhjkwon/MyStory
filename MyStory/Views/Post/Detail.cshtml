@@ -10,23 +10,47 @@
 <div>
     @Html.Raw(Model.Content)
 </div>
-@foreach (var item in Model.Tags)
-{
-    <a href="@Url.Action("Index", "Tag", new { TagText = @item })" class="btn btn-info btn-small">@item</a>
-}
-<p style="margin-top: 10px">
-    Posted at @Html.DisplayFor(model => model.DateCreated)
-</p>
-<div class="btn-group">
-    @Html.ActionLink("Edit", "Edit", "Post", new { id = Model.Id }, new { @class="btn" })
-    <a  class="btn" data-toggle="modal" href="#modal-delete-post" onclick="openModal('@Model.Id');" >Delete</a>
-    @Html.ActionLink("Back to List", "Index", "Home", null, new { @class = "btn" })
+<div style="margin-top: 30px">
+    <p>
+        <i class="icon-share"></i> <b>Share with</b> @LinkShare.GetHtml(Model.Title, linkSites: new LinkShareSite[] { LinkShareSite.Twitter, LinkShareSite.Facebook, LinkShareSite.Digg, LinkShareSite.GoogleBuzz, LinkShareSite.Reddit, LinkShareSite.StumbleUpon })
+    </p>
+    <p>
+        <i class="icon-time"></i> <b>Posted at @Html.DisplayFor(model => model.DateCreated)</b>
+    </p>
+    <div>
+        @if (Model.Tags != null && Model.Tags.Count() > 0)
+        {
+            <i class="icon-tags"></i>
+        }
+        @foreach (var item in Model.Tags)
+        {
+            <a href="@Url.Action("Index", "Tag", new { TagText = @item })" class="btn btn-info btn-mini">@item</a>
+        }
+    </div>
+    <div class="btn-group" style="margin-top: 10px; margin-bottom: 10px">
+        @if (Request.IsAuthenticated)
+        {
+            @Html.ActionLink("Edit", "Edit", "Post", new { id = Model.Id }, new { @class = "btn" })
+            <a  class="btn" data-toggle="modal" href="#modal-delete-post" onclick="openModal('@Model.Id');" >
+                Delete</a>
+            @Html.ActionLink("Back to List", "Index", "Home", null, new { @class = "btn" })
+        }
+    </div>
+    @{
+        Facebook.Initialize(ViewBag.FaceBookAppId, ViewBag.FaceBookAppSecret);
+    }
+    @Facebook.GetInitializationScripts()
+    @Facebook.Comments()
 </div>
 @Html.Partial("DeletePostPopup")
 @section Script
 {
     <script type="text/javascript">
         $(function () {
+            // remove container box 
+            $('#main-body').removeClass('well');
+            $('#main-body').removeClass('shadow');
+
             $('pre').addClass('prettyprint linenums');
             prettyPrint();
 

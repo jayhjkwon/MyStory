@@ -10,6 +10,7 @@ using AutoMapper;
 using MarkdownDeep;
 using MyStory.Services;
 using System.Data.EntityClient;
+using System.Configuration;
 
 
 namespace MyStory.Controllers
@@ -126,6 +127,9 @@ namespace MyStory.Controllers
 
             var postDetailViewModel = Mapper.Map<Post, PostDetailViewModel>(post);
             postDetailViewModel.Tags = post.Tags.ConverTagToStringArray();
+
+            ViewBag.FaceBookAppId = ConfigurationManager.AppSettings["facebook.appid"];
+            ViewBag.FaceBookAppSecret = ConfigurationManager.AppSettings["facebook.appsecret"];
 
             return View("Detail", postDetailViewModel);
         }
