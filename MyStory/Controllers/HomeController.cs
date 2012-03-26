@@ -30,9 +30,9 @@ namespace MyStory.Controllers
             md.SafeMode = true;
             md.ExtraMode = true;
 
-            int perPage = 5;
+            int perPage = page == 1 ? 20 : 10;
             var query = dbContext.Posts.OrderByDescending(p => p.DateCreated);
-            var posts = query.Skip((page - 1) * perPage).Take(5).ToList();
+            var posts = query.Skip((page - 1) * perPage).Take(perPage).ToList();
             foreach (var item in posts)
             {
                 // TODO move transform logic into PostMapper
@@ -44,15 +44,7 @@ namespace MyStory.Controllers
             return View("Index", postListViewModel);
         }
 
-        public ActionResult Test()
-        {
-            return View();
-        }
-
-        public ActionResult Next()
-        {
-            return View();
-        }
+       
 
     }
 }

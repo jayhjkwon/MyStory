@@ -80,7 +80,7 @@ else
 </ul>*@
 
 <nav id="page-nav">
-  <a href="../pages/2.html"></a>
+  <a href="/home/index?page=2"></a>
 </nav>
 @section Script{
     <script src="@Url.Content("~/Scripts/jquery.masonry.min.js")" type="text/javascript"></script>
@@ -92,7 +92,7 @@ else
             $('pre').addClass('prettyprint linenums');
             prettyPrint();
 
-            // remove box 
+            // remove container box 
             $('#main-body').removeClass('well');
             $('#main-body').removeClass('shadow');
 
@@ -112,10 +112,7 @@ else
               navSelector  : '#page-nav',    // selector for the paged navigation 
               nextSelector : '#page-nav a',  // selector for the NEXT link (to page 2)
               itemSelector : '.masonrybox',     // selector for all items you'll retrieve
-              loading: {
-                  finishedMsg: 'No more pages to load.',
-                  img: 'http://i.imgur.com/6RMhx.gif'
-                }
+              loadingText : 'Loading new posts...',
               },
               // trigger Masonry as a callback
               function( newElements ) {
