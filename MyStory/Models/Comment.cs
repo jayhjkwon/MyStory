@@ -10,9 +10,9 @@ namespace MyStory.Models
     public class Comment
     {
         public int Id { get; set; }
-        public string AuthorName {  get; set; }
-        public string AuthorEmail { get; set; }
-        public string AuthorWebSiteUrl { get; set; }
+        public string Name {  get; set; }
+        public string Email { get; set; }
+        public string WebSiteUrl { get; set; }
         public DateTime DateCreated { get; set; }
         public string Content { get; set; }
         public bool IsOpenId { get; set; }
@@ -29,11 +29,11 @@ namespace MyStory.Models
             this.ToTable("Comments");
 
             // Properties
-            this.Property(c => c.AuthorName)
+            this.Property(c => c.Name)
                 .IsRequired()
                 .HasMaxLength(125);
 
-            this.Property(c => c.AuthorEmail)
+            this.Property(c => c.Email)
                 .IsRequired()
                 .HasMaxLength(125);
 
