@@ -22,7 +22,7 @@ namespace MyStory.Controllers
             base.dbContext = context;
         }
 
-        public ActionResult Index()
+        public ActionResult Index(int page=1)
         {
             ViewBag.NumberOfAccounts = dbContext.Accounts.Count();
 
@@ -30,7 +30,9 @@ namespace MyStory.Controllers
             md.SafeMode = true;
             md.ExtraMode = true;
 
-            var posts = dbContext.Posts.OrderByDescending(p => p.DateCreated).ToList();
+            int perPage = 5;
+            var query = dbContext.Posts.OrderByDescending(p => p.DateCreated);
+            var posts = query.Skip((page - 1) * perPage).Take(5).ToList();
             foreach (var item in posts)
             {
                 // TODO move transform logic into PostMapper
