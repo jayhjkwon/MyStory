@@ -8,8 +8,6 @@ namespace MyStory.ViewModels
 {
     public class CommentInput
     {
-        public int Id { get; set; }
-
         [Required]
         [StringLength(125)]
         public string Name { get; set; }
@@ -18,17 +16,13 @@ namespace MyStory.ViewModels
         [StringLength(125)]
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
-        public string WebSiteUrl { get; set; }
+        
+        [DataType(DataType.Url)]
+        public string Url { get; set; }
 
         [Required]
-        public DateTime DateCreated { get; set; }
-
-        [Required]
-        [StringLength(125)]
         public string Content { get; set; }
 
-        public bool IsOpenId { get; set; }
-
-        public int PostId { get; set; }
+        public string OpenId { get; set; }
     }
 }

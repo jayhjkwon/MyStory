@@ -10,15 +10,14 @@ namespace MyStory.Models
     public class Comment
     {
         public int Id { get; set; }
-        public string Name {  get; set; }
-        public string Email { get; set; }
-        public string WebSiteUrl { get; set; }
-        public DateTime DateCreated { get; set; }
         public string Content { get; set; }
-        public bool IsOpenId { get; set; }
+        public DateTime DateCreated { get; set; }
 
         public int PostId { get; set; }
         public virtual Post Post { get; set; }
+
+        public int CommenterId { get; set; }
+        public virtual Commenter Commenter { get; set; }
     }
 
     public class CommentMap : EntityTypeConfiguration<Comment>
@@ -29,20 +28,13 @@ namespace MyStory.Models
             this.ToTable("Comments");
 
             // Properties
-            this.Property(c => c.Name)
-                .IsRequired()
-                .HasMaxLength(125);
-
-            this.Property(c => c.Email)
-                .IsRequired()
-                .HasMaxLength(125);
-
+            this.Property(c => c.Content)
+                .IsRequired();
+            
             this.Property(c => c.DateCreated)
                 .IsRequired();
 
-            this.Property(c => c.Content)
-                .IsRequired()
-                .HasMaxLength(500);
+            
         }
     }
 

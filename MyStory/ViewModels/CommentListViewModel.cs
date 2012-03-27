@@ -8,18 +8,12 @@ namespace MyStory.ViewModels
 {
     public class CommentListViewModel
     {
-        public IList<CommentViewModel> Comments { get; set; }
-
-        public class CommentViewModel
-        {
-            public int Id { get; set; }
-            public string Name { get; set; }
-            public string Email { get; set; }
-            public string WebSiteUrl { get; set; }
-            public DateTime DateCreated { get; set; }
-            public string Content { get; set; }
-            public bool IsOpenId { get; set; }
-            public int PostId { get; set; }
-        }
+        public int Id { get; set; }
+        public string Content { get; set; }
+        public DateTime DateCreated { get; set; }
+        public int PostId { get; set; }
+        public string CommenterEmail { get; set; }
+        public string CommenterName { get; set; }
+        public string CommenterUrl { get; set; }
     }
 }
