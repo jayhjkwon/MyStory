@@ -1,4 +1,6 @@
 1. sqlexpress database in the local machine
-2. web site registration for facebook comments
-   : create your own app, refer https://developers.facebook.com/apps
-   : then, replace appid and appsecret in web.config with yours
+
+#no need
+#2. web site registration for facebook comments
+#   : create your own app, refer https://developers.facebook.com/apps
+#   : then, replace appid and appsecret in web.config with yours

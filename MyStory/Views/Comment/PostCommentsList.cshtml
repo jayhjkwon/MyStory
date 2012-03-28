@@ -11,25 +11,24 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var comment in Model.Comments)
-        {
-            <tr>
-                
-                <td>@Html.GetGravatarHtml(comment.CommenterEmail)</td>
-                @*<td><img src="http://www.gravatar.com/avatar.php?gravatar_id=@comment.CommenterEmail&size=50&default=identicon" alt="Gravatar"></td>*@
-                <td>
-                    <p>
-                        @if(!string.IsNullOrWhiteSpace(comment.CommenterUrl)){
-                        <a href="@Url.ConvertToAbsoluteUrl(comment.CommenterUrl)">@comment.CommenterName</a>
-                        }else{
-                            @comment.CommenterName
-                        }
-                        at <em>@comment.DateCreated</em>
-                    </p>
-                    @comment.Content
-                </td>
-            </tr>
-        
-        }
+    @foreach (var comment in Model.Comments)
+    {
+        <tr>
+            <td>@Html.GetGravatarHtml(comment.CommenterEmail)</td>
+            <td>
+                <p>
+                    @if(!string.IsNullOrWhiteSpace(comment.CommenterUrl)){
+                    <a href="@Url.ConvertToAbsoluteUrl(comment.CommenterUrl)">@comment.CommenterName</a>
+                    }else{
+                        @comment.CommenterName
+                    }
+                    at <em>@comment.DateCreated</em>
+                </p>
+                @comment.Content
+            </td>
+        </tr>
+    }
     </tbody>
 </table>
+
+

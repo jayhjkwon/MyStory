@@ -12,5 +12,7 @@ namespace MyStory.ViewModels
         public string Content { get; set; }
         public DateTime DateCreated { get; set; }
         public string[] Tags { get; set; }
+
+        public CommentInput CommentInput { get; set; }
     }
 }
