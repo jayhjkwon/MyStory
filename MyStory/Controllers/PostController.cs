@@ -115,6 +115,9 @@ namespace MyStory.Controllers
 
         public ActionResult Detail(int id)
         {
+            //ViewBag.FaceBookAppId = ConfigurationManager.AppSettings["facebook.appid"];
+            //ViewBag.FaceBookAppSecret = ConfigurationManager.AppSettings["facebook.appsecret"];
+
             var post = dbContext.Posts.SingleOrDefault(p => p.Id == id);
 
             if (post == null)
@@ -127,9 +130,6 @@ namespace MyStory.Controllers
 
             var postDetailViewModel = Mapper.Map<Post, PostDetailViewModel>(post);
             postDetailViewModel.Tags = post.Tags.ConverTagToStringArray();
-
-            ViewBag.FaceBookAppId = ConfigurationManager.AppSettings["facebook.appid"];
-            ViewBag.FaceBookAppSecret = ConfigurationManager.AppSettings["facebook.appsecret"];
 
             return View("Detail", postDetailViewModel);
         }

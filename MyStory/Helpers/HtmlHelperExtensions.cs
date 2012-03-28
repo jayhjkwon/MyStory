@@ -37,5 +37,10 @@ namespace MyStory.Helpers
 
             return MvcHtmlString.Create(tag.ToString(TagRenderMode.Normal));
         }
+
+        public static HtmlString GetGravatarHtml(this HtmlHelper html, string email)
+        {
+            return Microsoft.Web.Helpers.Gravatar.GetHtml(email);
+        }
     }
 }

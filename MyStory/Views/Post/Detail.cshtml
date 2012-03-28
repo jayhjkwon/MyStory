@@ -48,7 +48,7 @@
     @Facebook.Comments(xid:@Html.Encode(@Request.Url.AbsoluteUri))*@
 
     <div>
-        @Html.Action("List", "Comment", new {PostId = Model.Id})
+        @Html.Action("PostCommentsList", "Comment", new { PostId = Model.Id })
     </div>
 
 </div>

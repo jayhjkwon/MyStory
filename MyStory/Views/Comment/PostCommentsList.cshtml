@@ -1,0 +1,32 @@
+﻿@model MyStory.ViewModels.PostCommentsViewModel
+@{
+    Layout = null;
+}
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Comments
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var comment in Model.Comments)
+        {
+            <tr>
+                <td>
+                    <p>
+                        @if(!string.IsNullOrWhiteSpace(comment.CommenterUrl)){
+                        <a href="@Url.ConvertToAbsoluteUrl(comment.CommenterUrl)">@comment.CommenterName</a>
+                        }else{
+                            @comment.CommenterName
+                        }
+                        at <em>@comment.DateCreated</em>
+                    </p>
+                    @comment.Content
+                </td>
+            </tr>
+        
+        }
+    </tbody>
+</table>
