@@ -22,6 +22,7 @@ namespace MyStory.Infrastructure
         private void AddBindings()
         {
             Bind<IMapper>().To<PostMapper>();
+            Bind<IMapper>().To<CommentMapper>();
         }
 
         public IBindingToSyntax<T> Bind<T>()
