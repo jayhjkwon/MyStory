@@ -46,7 +46,7 @@
     
     @Html.Action("PostCommentsList", "Comment", new { PostId = Model.Id })
 
-    
+    <div class="well">
     <div>
         <form action="@Url.Action("Authenticate", "OpenId")" method="post" id="openid_form">
         <label for="openid_identifier"><strong><i class="icon-user"></i> You can use your OpenID provider. <a href="http://openid.net/" target="_blank"">OpenID?</a></strong></label>
@@ -87,7 +87,7 @@
             </div>
         }
     </div>
-
+    </div>
     
 
     @* Comments using facebook account
