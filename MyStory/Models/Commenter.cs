@@ -14,7 +14,7 @@ namespace MyStory.Models
         public string Name { get; set; }
         public string Url { get; set; }
 
-        public string OpenId { get; set; }  // ClaimedIdentifier if openId used
+        //public string OpenId { get; set; }  // ClaimedIdentifier if openId used
     }
 
     public class CommenterMap : EntityTypeConfiguration<Commenter>
