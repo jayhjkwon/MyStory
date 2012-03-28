@@ -40,6 +40,9 @@ namespace MyStory.Helpers
 
         public static HtmlString GetGravatarHtml(this HtmlHelper html, string email)
         {
+            if (string.IsNullOrWhiteSpace(email))
+                return Microsoft.Web.Helpers.Gravatar.GetHtml(email, defaultImage:"monsterid");
+
             return Microsoft.Web.Helpers.Gravatar.GetHtml(email);
         }
     }

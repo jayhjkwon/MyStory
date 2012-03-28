@@ -5,7 +5,7 @@
 <table class="table">
     <thead>
         <tr>
-            <th>
+            <th colspan="2">
                 Comments
             </th>
         </tr>
@@ -14,6 +14,9 @@
         @foreach (var comment in Model.Comments)
         {
             <tr>
+                
+                <td>@Html.GetGravatarHtml(comment.CommenterEmail)</td>
+                @*<td><img src="http://www.gravatar.com/avatar.php?gravatar_id=@comment.CommenterEmail&size=50&default=identicon" alt="Gravatar"></td>*@
                 <td>
                     <p>
                         @if(!string.IsNullOrWhiteSpace(comment.CommenterUrl)){
