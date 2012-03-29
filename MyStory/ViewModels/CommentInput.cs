@@ -24,5 +24,7 @@ namespace MyStory.ViewModels
         public string Content { get; set; }
 
         public string OpenId { get; set; }
+
+        public bool IsBlogOwner { get; set; }
     }
 }

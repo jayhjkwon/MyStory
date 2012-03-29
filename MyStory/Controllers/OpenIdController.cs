@@ -8,18 +8,20 @@ using DotNetOpenAuth.OpenId;
 using DotNetOpenAuth.OpenId.Extensions.AttributeExchange;
 using DotNetOpenAuth.Messaging;
 using DotNetOpenAuth.OpenId.Extensions.SimpleRegistration;
+using MyStory.Infrastructure.Common;
+using MyStory.Models;
 
 namespace MyStory.Controllers
 {
-    public class OpenIdController : Controller
+    public class OpenIdController : MyStoryController
     {
         private static OpenIdRelyingParty openid = new OpenIdRelyingParty();
 
         [ValidateInput(false)]
         public ActionResult Authenticate(string returnUrl)
         {
-            if (string.IsNullOrWhiteSpace(returnUrl))
-                returnUrl = Request.UrlReferrer != null ? Request.UrlReferrer.ToString() : Url.RouteUrl("default");
+            //if (string.IsNullOrWhiteSpace(returnUrl))
+            //    returnUrl = Request.UrlReferrer != null ? Request.UrlReferrer.ToString() : Url.RouteUrl("default", null, "http");
 
             var response = openid.GetResponse();
             if (response == null)
@@ -30,7 +32,11 @@ namespace MyStory.Controllers
                 {
                     try
                     {
-                        IAuthenticationRequest request = openid.CreateRequest(Request.Form["openid_identifier"], Realm.AutoDetect, new Uri(returnUrl));
+                        var uri = new UriBuilder(Url.RouteUrl("default", null, "http"))
+                        {
+                            Query = string.Format("returnUrl={0}", Uri.EscapeUriString(returnUrl))
+                        };
+                        IAuthenticationRequest request = openid.CreateRequest(Request.Form["openid_identifier"], Realm.AutoDetect, uri.Uri);
 
                         // google openid
                         var fetch = new FetchRequest();
@@ -73,7 +79,15 @@ namespace MyStory.Controllers
                     //success status
                     case AuthenticationStatus.Authenticated:
 
-                        string name, email, url = null;
+                        string name=null, email=null, url=null;
+                        
+                        var claims = response.GetExtension<ClaimsResponse>();
+                        if (claims != null)
+                        {
+                            name = claims.FullName;
+                            email = claims.Email;
+                        }
+                        
                         var fetch = response.GetExtension<FetchResponse>();
                         if (fetch != null)
                         {
@@ -82,16 +96,24 @@ namespace MyStory.Controllers
                             email = fetch.GetAttributeValue(WellKnownAttributes.Contact.Email);
                             url = fetch.GetAttributeValue(WellKnownAttributes.Contact.Web.Homepage) ?? fetch.GetAttributeValue(WellKnownAttributes.Contact.Web.Blog);
                         }
-
-                        var claims = response.GetExtension<ClaimsResponse>();
-                        if (claims != null)
-                        {
-                            name = claims.FullName;
-                            email = claims.Email;
-                        }
                         
-                        //FormsAuthentication.SetAuthCookie(response.ClaimedIdentifier.ToString(), false);
-                        Response.Cookies.Add(new HttpCookie("commenter", response.ClaimedIdentifier.ToString()));
+                        CommenterCookieManager.SetCommenterCookieValue(Response, email);
+                        var commenter = dbContext.Commenters.SingleOrDefault(c => c.Email == email);
+                        if (commenter == null)
+                        {
+                            dbContext.Commenters.Add(new Commenter
+                            {
+                                OpenId = response.ClaimedIdentifier.ToString(),
+                                Email = email,
+                                Name = name,
+                                Url = url
+                            });
+                            dbContext.SaveChanges();
+                        }
+                        else
+                        {
+                            commenter.OpenId = commenter.OpenId ?? response.ClaimedIdentifier.ToString();
+                        }
 
                         //TODO: response.ClaimedIdentifier, to login or create new account 
 

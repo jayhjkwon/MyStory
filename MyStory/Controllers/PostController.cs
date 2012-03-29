@@ -11,6 +11,7 @@ using MarkdownDeep;
 using MyStory.Services;
 using System.Data.EntityClient;
 using System.Configuration;
+using MyStory.Infrastructure.Common;
 
 
 namespace MyStory.Controllers
@@ -131,7 +132,42 @@ namespace MyStory.Controllers
             var postDetailViewModel = Mapper.Map<Post, PostDetailViewModel>(post);
             postDetailViewModel.Tags = post.Tags.ConverTagToStringArray();
 
+            // set Commenter to post comment
+            SetCommenter(postDetailViewModel);
+
             return View("Detail", postDetailViewModel);
+        }
+
+        private void SetCommenter(PostDetailViewModel vm)
+        {
+            // admin
+            if (Request.IsAuthenticated)
+            {
+                var admin = base.GetCurrentUser();
+
+                vm.CommentInput = new CommentInput
+                {
+                    Email = admin.Email,
+                    Name = admin.Name,
+                    IsBlogOwner = true
+                };
+                return;
+            }
+
+            // visitor
+            var email = CommenterCookieManager.GetCommenterCookieValue(Request);
+            var commenter = dbContext.Commenters.SingleOrDefault(c => c.Email == email);
+            if (commenter != null)
+            {
+                vm.CommentInput = new CommentInput
+                {
+                    Email = commenter.Email,
+                    Name = commenter.Name,
+                    OpenId = commenter.OpenId,
+                    Url = commenter.Url
+                };
+            }
+
         }
 
         
