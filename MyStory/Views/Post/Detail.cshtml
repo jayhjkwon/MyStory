@@ -2,7 +2,7 @@
 @{
     ViewBag.Title = "Detail";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    ViewBag.CurrentUrl = Url.Action("Detail", "Post", new { Id = Model.Id });
+    ViewBag.CurrentUrl = Url.Action("Detail", "Post", new { Id = Model.Id }, "http");   // by specifying protocol in the last parameter, you will get absolute url instead of relative url
 }
 @section Style{
     <link href="@Url.Content("~/Content/Prettify/Themes/sons-of-obsidian.css")" rel="stylesheet" type="text/css" />
@@ -55,6 +55,7 @@
             <input id="openid_identifier" name="openid_identifier" type="text" value="http://" />
             <input type="submit" value="Login" />
         </div>
+        <input type="hidden" name="returnUrl" value="@ViewBag.CurrentUrl" />
         </form>    
     </div>
     <div>
