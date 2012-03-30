@@ -64,7 +64,7 @@ namespace MyStory.Controllers
             var postInput = Mapper.Map<Post, PostInput>(post);
             postInput.Tags = post.Tags.ConverTagToString();
             return View("Edit", postInput);
-        }
+        }   
 
         [Authorize]
         [HttpPost]
