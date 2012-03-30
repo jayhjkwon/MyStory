@@ -114,6 +114,12 @@ namespace MyStory.Controllers
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="errorFromCommentInput">true, if errors occurred while saving comment</param>
+        /// <returns></returns>
         public ActionResult Detail(int id, bool errorFromCommentInput=false)
         {
             //ViewBag.FaceBookAppId = ConfigurationManager.AppSettings["facebook.appid"];
@@ -133,7 +139,7 @@ namespace MyStory.Controllers
             postDetailViewModel.Tags = post.Tags.ConverTagToStringArray();
 
             // set Commenter to post comment
-            var commentInputData = TempData["commentInputData"] as CommentInput;
+            var commentInputData = TempData["commentInputData"] as CommentInput;    // tempdata when modelstateerror occurred in /Comment/Write
             if (errorFromCommentInput && commentInputData != null)
             {
                 var modelStateErrors = TempData["commentInputDataErrors"] as Dictionary<string, string>;

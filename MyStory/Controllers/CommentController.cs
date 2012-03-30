@@ -42,7 +42,7 @@ namespace MyStory.Controllers
         }
 
         [HttpPost]
-        public ActionResult Write([Bind(Prefix="CommentInput")] CommentInput input, int id, string returnUrl)
+        public ActionResult Write([Bind(Prefix="CommentInput")] CommentInput input, int id)
         {
             if (!ModelState.IsValid)
             {

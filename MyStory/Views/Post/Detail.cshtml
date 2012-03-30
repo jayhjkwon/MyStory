@@ -85,7 +85,6 @@
             
             @Html.HiddenFor(model=>model.Id)
             @Html.HiddenFor(model=> model.CommentInput.OpenId)
-            @Html.Hidden("returnUrl", (string)ViewBag.CurrentUrl)
             <div class="form-actions">
                 <input type="submit" value="Post Comment" class="btn btn-primary" />
             </div>
