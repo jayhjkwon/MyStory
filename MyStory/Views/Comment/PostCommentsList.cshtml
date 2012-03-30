@@ -15,14 +15,13 @@
     {
         <tr>
             <td>@Html.GetGravatarHtml(comment.CommenterEmail)</td>
-            <td>
+            <td style="width:100%">
                 <p>
                     @if(!string.IsNullOrWhiteSpace(comment.CommenterUrl)){
                     <a href="@Url.ConvertToAbsoluteUrl(comment.CommenterUrl)">@comment.CommenterName</a>
                     }else{
                         @comment.CommenterName
-                    }
-                    at <em>@comment.DateCreated</em>
+                    } at <em>@comment.DateCreated</em>
                 </p>
                 @comment.Content
             </td>
