@@ -14,7 +14,7 @@ namespace MyStory.Infrastructure.Common
             if (string.IsNullOrWhiteSpace(cookieValue))
                 return;
 
-            response.Cookies.Add(new HttpCookie(COMMENTER_COOKIE_NAME, cookieValue));
+            response.Cookies.Add(new HttpCookie(COMMENTER_COOKIE_NAME, cookieValue) { });
         }
 
         public static string GetCommenterCookieValue(HttpRequestBase request)

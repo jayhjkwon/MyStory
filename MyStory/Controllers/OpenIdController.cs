@@ -108,14 +108,12 @@ namespace MyStory.Controllers
                                 Name = name,
                                 Url = url
                             });
-                            dbContext.SaveChanges();
                         }
                         else
                         {
                             commenter.OpenId = commenter.OpenId ?? response.ClaimedIdentifier.ToString();
                         }
-
-                        //TODO: response.ClaimedIdentifier, to login or create new account 
+                        dbContext.SaveChanges();
 
                         return Redirect(returnUrl);
 

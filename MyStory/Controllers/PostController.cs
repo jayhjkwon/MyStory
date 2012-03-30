@@ -114,7 +114,7 @@ namespace MyStory.Controllers
             }
         }
 
-        public ActionResult Detail(int id)
+        public ActionResult Detail(int id, bool errorFromCommentInput=false)
         {
             //ViewBag.FaceBookAppId = ConfigurationManager.AppSettings["facebook.appid"];
             //ViewBag.FaceBookAppSecret = ConfigurationManager.AppSettings["facebook.appsecret"];
@@ -133,7 +133,21 @@ namespace MyStory.Controllers
             postDetailViewModel.Tags = post.Tags.ConverTagToStringArray();
 
             // set Commenter to post comment
-            SetCommenter(postDetailViewModel);
+            var t = TempData["commentInputData"] as CommentInput;
+            if (errorFromCommentInput && t != null)
+            {
+                var modelStateErrors = TempData["commentInputDataErrors"] as Dictionary<string, string>;
+                foreach (var item in modelStateErrors)
+                {
+                    ModelState.AddModelError(item.Key, item.Value);
+                }
+                
+                postDetailViewModel.CommentInput = t as CommentInput;
+            }
+            else
+            {
+                SetCommenter(postDetailViewModel);
+            }
 
             return View("Detail", postDetailViewModel);
         }

@@ -24,6 +24,7 @@ namespace MyStory.Controllers
 
             var postCommentsViewModel = new PostCommentsViewModel();
             postCommentsViewModel.PostId = postId.Value;
+            //TODO use automapper instead of manual mapping
             foreach (var comment in comments)
             {
                 var commentSummary = new MyStory.ViewModels.PostCommentsViewModel.CommentSummary();
@@ -38,6 +39,22 @@ namespace MyStory.Controllers
             }
 
             return View("PostCommentsList", postCommentsViewModel);
+        }
+
+        [HttpPost]
+        public ActionResult Write([Bind(Prefix="CommentInput")] CommentInput input, int id, string returnUrl)
+        {
+            if (!ModelState.IsValid)
+            {
+                var errors = (from item in ModelState
+                              where item.Value.Errors.Any()
+                              select new { ErrorKey = item.Key, ErrorMessage = item.Value.Errors.FirstOrDefault().ErrorMessage }).ToDictionary(a => a.ErrorKey, a=>a.ErrorMessage);
+                TempData["commentInputData"] = input;
+                TempData["commentInputDataErrors"] = errors;
+                return RedirectToAction("Detail", "Post", new { id = id, errorFromCommentInput = true });
+            }
+         
+            return RedirectToAction("Detail", "Post", new { id = id });
         }
 
         
