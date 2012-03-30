@@ -133,16 +133,16 @@ namespace MyStory.Controllers
             postDetailViewModel.Tags = post.Tags.ConverTagToStringArray();
 
             // set Commenter to post comment
-            var t = TempData["commentInputData"] as CommentInput;
-            if (errorFromCommentInput && t != null)
+            var commentInputData = TempData["commentInputData"] as CommentInput;
+            if (errorFromCommentInput && commentInputData != null)
             {
                 var modelStateErrors = TempData["commentInputDataErrors"] as Dictionary<string, string>;
                 foreach (var item in modelStateErrors)
                 {
                     ModelState.AddModelError(item.Key, item.Value);
                 }
-                
-                postDetailViewModel.CommentInput = t as CommentInput;
+
+                postDetailViewModel.CommentInput = commentInputData as CommentInput;
             }
             else
             {
