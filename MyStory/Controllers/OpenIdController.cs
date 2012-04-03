@@ -20,14 +20,11 @@ namespace MyStory.Controllers
         [ValidateInput(false)]
         public ActionResult Authenticate(string returnUrl)
         {
-            //if (string.IsNullOrWhiteSpace(returnUrl))
-            //    returnUrl = Request.UrlReferrer != null ? Request.UrlReferrer.ToString() : Url.RouteUrl("default", null, "http");
-
             var response = openid.GetResponse();
             if (response == null)
             {
                 Identifier id;
-                //make sure your users openid_identifier is valid.
+                //make sure users openid_identifier is valid.
                 if (Identifier.TryParse(Request.Form["openid_identifier"], out id))
                 {
                     try

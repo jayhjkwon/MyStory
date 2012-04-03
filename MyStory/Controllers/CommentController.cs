@@ -28,14 +28,17 @@ namespace MyStory.Controllers
             //TODO use automapper instead of manual mapping
             foreach (var comment in comments)
             {
-                var commentSummary = new MyStory.ViewModels.PostCommentsViewModel.CommentSummary();
-                commentSummary.CommenterEmail = comment.Commenter.Email;
-                commentSummary.CommenterName = comment.Commenter.Name;
-                commentSummary.CommenterOpenId = comment.Commenter.OpenId;
-                commentSummary.CommenterUrl = comment.Commenter.Url;
-                commentSummary.Content = comment.Content;
-                commentSummary.DateCreated = comment.DateCreated;
-                commentSummary.Id = comment.Id;
+                var commentSummary = new MyStory.ViewModels.PostCommentsViewModel.CommentSummary 
+                { 
+                    CommenterEmail = comment.Commenter.Email,
+                    CommenterName = comment.Commenter.Name,
+                    CommenterOpenId = comment.Commenter.OpenId,
+                    CommenterUrl = comment.Commenter.Url,
+                    Content = comment.Content,
+                    DateCreated = comment.DateCreated,
+                    Id = comment.Id
+                };
+                
                 postCommentsViewModel.Comments.Add(commentSummary);
             }
 
