@@ -1,4 +1,5 @@
-﻿@{
+﻿@model IEnumerable<MyStory.ViewModels.TagSidebarViewModel>
+@{    
     Layout = null;
 }
 <div class="well sidebar-nav shadow" style="padding: 7px">
@@ -7,11 +8,18 @@
             
                 <i class="icon-tags"></i> Tag
         </li>
-        <li><a href="#"><span class="badge">1</span> asp.net-mvc</a></li>
-        <li><a href="#"><span class="badge badge-success">2</span> C#</a></li>
-        <li><a href="#"><span class="badge badge-warning">3</span> spring.net</a></li>
-        <li><a href="#"><span class="badge badge-error">4</span> NHibernate</a></li>
-        <li><a href="#"><span class="badge badge-info">5</span> WCF</a></li>
-        <li><a href="#"><span class="badge badge-inverse">6</span> iBatis</a></li>
+        
+        @{ int rank = 0; int prevCount = 0; }
+        @foreach (var tag in Model)
+        {
+            if (prevCount != tag.Count)
+            {
+                rank++;
+            }
+                
+            @Html.TagBadge(rank, tag.Count, tag.TagText);
+            prevCount = tag.Count;           
+        }
+        
     </ul>
 </div>

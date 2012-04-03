@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using MyStory.Helpers;
+using MyStory.ViewModels;
 
 namespace MyStory.Controllers
 {
@@ -39,7 +40,16 @@ namespace MyStory.Controllers
         [ChildActionOnly]
         public ActionResult Sidebar()
         {
-            return View();
+            var tags = from t in dbContext.Tags
+                       orderby t.Posts.Count descending
+                       select new TagSidebarViewModel
+                       {
+                           Id = t.Id,
+                           TagText = t.TagText,
+                           Count = t.Posts.Count
+                       };
+
+            return View("Sidebar", tags.ToList());
         }
 
     }

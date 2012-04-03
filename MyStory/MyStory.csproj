@@ -175,7 +175,7 @@
     <Compile Include="ViewModels\PostDetailViewModel.cs" />
     <Compile Include="ViewModels\PostInput.cs" />
     <Compile Include="ViewModels\PostListViewModel.cs" />
-    <Compile Include="ViewModels\TagViewModel.cs" />
+    <Compile Include="ViewModels\TagSidebarViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-responsive.css" />

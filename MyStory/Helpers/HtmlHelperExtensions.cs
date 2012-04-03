@@ -45,5 +45,39 @@ namespace MyStory.Helpers
 
             return Microsoft.Web.Helpers.Gravatar.GetHtml(email);
         }
+
+        public static MvcHtmlString TagBadge(this HtmlHelper html, int rank, int tagCount, string tagText)
+        {
+            TagBuilder tagSpan = new TagBuilder("span");
+            
+            switch (rank)
+            {
+                case 1:
+                    tagSpan.AddCssClass("badge-warning");
+                    break;
+                case 2:
+                    tagSpan.AddCssClass("badge-success");
+                    break;
+                case 3 :
+                    tagSpan.AddCssClass("badge-info");
+                    break;
+                default :
+                    break;
+            } 
+            tagSpan.AddCssClass("badge");
+            
+            tagSpan.SetInnerText(tagCount.ToString());
+            
+            TagBuilder tagA = new TagBuilder("a");
+            tagA.Attributes.Add("href", "#");
+            tagA.InnerHtml = string.Format("{0} {1}", tagSpan.ToString(), html.Encode(tagText));
+
+            TagBuilder tagLi = new TagBuilder("li");
+            tagLi.InnerHtml = tagA.ToString();
+
+            string a = tagLi.ToString(TagRenderMode.Normal);
+            //return a;
+            return MvcHtmlString.Create(tagLi.ToString(TagRenderMode.Normal));
+        }
     }
 }

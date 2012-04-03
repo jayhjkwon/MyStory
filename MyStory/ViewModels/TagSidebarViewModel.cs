@@ -6,13 +6,10 @@ using System.ComponentModel.DataAnnotations;
 
 namespace MyStory.ViewModels
 {
-    public class TagViewModel
+    public class TagSidebarViewModel
     {
         public int Id { get; set; }
-
-        [Required]
-        [MinLength(1)]
-        [MaxLength(125)]
         public string TagText { get; set; }
+        public int Count { get; set; }
     }
 }
