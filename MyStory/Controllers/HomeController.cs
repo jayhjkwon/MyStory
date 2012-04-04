@@ -9,6 +9,7 @@ using MyStory.Models.Infrastructure;
 using MarkdownDeep;
 using AutoMapper;
 using MyStory.ViewModels;
+using MyStory.QueryObjects;
 
 namespace MyStory.Controllers
 {
@@ -27,8 +28,9 @@ namespace MyStory.Controllers
             ViewBag.NumberOfAccounts = dbContext.Accounts.Count();
 
             int perPage = page == 1 ? 20 : 10;
-            var query = dbContext.Posts.OrderByDescending(p => p.DateCreated);
-            var posts = query.Skip((page - 1) * perPage).Take(perPage).ToList();
+
+            var posts = new PostQuery() { CurrentPageNumber=page, PostsPerPage=perPage}.GetQuery(dbContext).ToList();
+
             var postListViewModel = Mapper.Map<List<Post>, List<PostListViewModel>>(posts);
 
             return View("Index", postListViewModel);

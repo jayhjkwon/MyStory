@@ -5,6 +5,9 @@ using System.Web;
 using System.Web.Mvc;
 using MyStory.Helpers;
 using MyStory.ViewModels;
+using MyStory.QueryObjects;
+using AutoMapper;
+using MyStory.Models;
 
 namespace MyStory.Controllers
 {
@@ -52,15 +55,22 @@ namespace MyStory.Controllers
             return View("Sidebar", tags.ToList());
         }
 
-        public ActionResult Index(string tag=null)
+        public ActionResult Index(string tag=null, int page=1)
         {
-            if (string.IsNullOrWhiteSpace(tag))
-            {
-                return new HttpNotFoundResult("There is no tag information");
-            }
+            int perPage = page == 1 ? 20 : 10;
 
+            var posts = new PostQuery() 
+                        {
+                            CurrentPageNumber = page, 
+                            PostsPerPage = perPage, 
+                            Tag=tag 
+                        }
+                        .GetQuery(dbContext)
+                        .ToList();
 
-            return View();
+            var postListViewModel = Mapper.Map<List<Post>, List<PostListViewModel>>(posts);
+
+            return View("Index", postListViewModel);
         }
 
     }
