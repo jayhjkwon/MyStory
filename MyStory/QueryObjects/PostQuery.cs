@@ -12,7 +12,6 @@ namespace MyStory.QueryObjects
         public int? PostsPerPage { get; set; }
         public string Tag { get; set; }
 
-
         public IQueryable<Post> GetQuery(MyStoryContext dbContext)
         { 
             var query = dbContext.Posts.OrderByDescending(p => p.DateCreated).AsQueryable();
