@@ -26,10 +26,18 @@ namespace MyStory
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+                "Tag",
+                "tags/{tag}",
+                new { controller = "Tag", action = "Index" }
+            );
+
+            routes.MapRoute(
                 "Default", // Route name
                 "{controller}/{action}/{id}", // URL with parameters
                 new { controller = "Home", action = "Index", id=UrlParameter.Optional} // Parameter defaults
             );
+
+            
         }
 
         protected void Application_Start()

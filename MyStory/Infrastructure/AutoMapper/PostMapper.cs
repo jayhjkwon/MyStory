@@ -5,6 +5,7 @@ using System.Web;
 using AutoMapper;
 using MyStory.Models;
 using MyStory.ViewModels;
+using MarkdownDeep;
 
 namespace MyStory.Infrastructure.AutoMapper
 {
@@ -15,7 +16,12 @@ namespace MyStory.Infrastructure.AutoMapper
             Mapper.CreateMap<Post, PostDetailViewModel>()
                     .ForMember(vm=>vm.Tags, p=>p.Ignore());
 
-            Mapper.CreateMap<Post, PostListViewModel>();
+            var md = new Markdown();
+            md.SafeMode = true;
+            md.ExtraMode = true;
+
+            Mapper.CreateMap<Post, PostListViewModel>()
+                .ForMember(vm=>vm.Content, opt=>opt.MapFrom(p=> md.Transform( p.Content.Length>500 ? p.Content.Substring(0,500) : p.Content)));
 
             Mapper.CreateMap<PostInput, Post>()
                     .ForMember(p=>p.Tags, i=>i.Ignore())

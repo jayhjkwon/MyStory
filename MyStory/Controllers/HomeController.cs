@@ -26,19 +26,9 @@ namespace MyStory.Controllers
         {
             ViewBag.NumberOfAccounts = dbContext.Accounts.Count();
 
-            var md = new Markdown();
-            md.SafeMode = true;
-            md.ExtraMode = true;
-
             int perPage = page == 1 ? 20 : 10;
             var query = dbContext.Posts.OrderByDescending(p => p.DateCreated);
             var posts = query.Skip((page - 1) * perPage).Take(perPage).ToList();
-            foreach (var item in posts)
-            {
-                // TODO move transform logic into PostMapper
-                item.Content = md.Transform(item.Content.Length > 500 ? item.Content.Substring(0, 500) : item.Content);
-            }
-
             var postListViewModel = Mapper.Map<List<Post>, List<PostListViewModel>>(posts);
 
             return View("Index", postListViewModel);

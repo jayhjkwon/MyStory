@@ -52,5 +52,16 @@ namespace MyStory.Controllers
             return View("Sidebar", tags.ToList());
         }
 
+        public ActionResult Index(string tag=null)
+        {
+            if (string.IsNullOrWhiteSpace(tag))
+            {
+                return new HttpNotFoundResult("There is no tag information");
+            }
+
+
+            return View();
+        }
+
     }
 }

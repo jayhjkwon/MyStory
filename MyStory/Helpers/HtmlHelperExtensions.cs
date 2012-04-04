@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Linq.Expressions;
 using System.Web.Routing;
+using System.Security.Policy;
 
 namespace MyStory.Helpers
 {
@@ -69,7 +70,18 @@ namespace MyStory.Helpers
             tagSpan.SetInnerText(tagCount.ToString());
             
             TagBuilder tagA = new TagBuilder("a");
-            tagA.Attributes.Add("href", "#");
+            var rvd = new RouteValueDictionary();
+            rvd.Add("tag", tagText);
+            tagA.Attributes.Add("href", UrlHelper.GenerateUrl("Tag",
+                                                                "Index",
+                                                                "Tag",
+                                                                html.ViewContext.HttpContext.Request.Url.Scheme,
+                                                                null,
+                                                                null,
+                                                                rvd,
+                                                                html.RouteCollection,
+                                                                html.ViewContext.RequestContext,
+                                                                true));
             tagA.InnerHtml = string.Format("{0} {1}", tagSpan.ToString(), html.Encode(tagText));
 
             TagBuilder tagLi = new TagBuilder("li");
