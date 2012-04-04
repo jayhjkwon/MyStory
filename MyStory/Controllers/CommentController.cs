@@ -59,13 +59,7 @@ namespace MyStory.Controllers
             }
 
             // TODO handle commenter info when info in db is different from info from ui
-            var commenter = dbContext.Commenters.SingleOrDefault(c => c.Email == input.Email) ?? new Commenter 
-                {
-                    Email = input.Email,
-                    Name = input.Name,
-                    OpenId = input.OpenId,
-                    Url = input.Url
-                };
+            var commenter = dbContext.Commenters.SingleOrDefault(c => c.Email == input.Email) ?? GetCommenter(input);
 
             dbContext.Comments.Add(new Comment
             {
@@ -78,6 +72,31 @@ namespace MyStory.Controllers
             dbContext.SaveChanges();
 
             return RedirectToAction("Detail", "Post", new { id = id });
+        }
+
+        private Commenter GetCommenter(CommentInput input)
+        {
+            if (!string.IsNullOrWhiteSpace(input.OpenId) && dbContext.Commenters.Count(c => c.OpenId == input.OpenId) > 0)
+            {
+                // this means that user changed email and user name in comment input form that has a openid value as hidden field
+                // that is, user does not want use openid, so that openid will not be saved
+                return new Commenter
+                {
+                    Email = input.Email,
+                    Name = input.Name,
+                    Url = input.Url
+                };
+            }
+            else
+            {
+                return new Commenter
+                {
+                    Email = input.Email,
+                    Name = input.Name,
+                    OpenId = input.OpenId,
+                    Url = input.Url
+                };
+            }
         }
 
         
