@@ -1,4 +1,5 @@
-﻿@{
+﻿@model IEnumerable<MyStory.ViewModels.CommentSidebarViewModel>
+@{
     Layout = null;
 }
 <div class="well sidebar-nav shadow" style="padding: 7px">
@@ -6,7 +7,13 @@
         <li class="nav-header">
                 <i class="icon-comment"></i> Comments
         </li>
-        <li><a href="#">Hello my name is Ray Kwon...by Kwon</a></li>
+
+        @foreach (var item in Model)
+        {
+            <li><a href="@Url.Action("Detail", "Post", new { Id = @item.PostId })#@item.CommentId">@item.Content by @item.CommenterName</a></li>
+        }
+
+        @*<li><a href="#">Hello my name is Ray Kwon...by Kwon</a></li>
         <li><a href="#">Cross docs transactions till work, yes. As you'll see today in the nex
             by Ray</a></li>
         <li><a href="#">One of RavenDb's selling points is cross-document transactions. Would
@@ -14,6 +21,6 @@
         <li><a href="#">How easy is it to go from blind sharding to a specialized sharding strategy
             later? Seems like it would be by Phill</a></li>
         <li><a href="#">OK by Obama</a></li>
-        <li><a href="#">Nice article by Kim</a></li>
+        <li><a href="#">Nice article by Kim</a></li>*@
     </ul>
 </div>

@@ -169,6 +169,7 @@
     <Compile Include="Services\TagService.cs" />
     <Compile Include="ViewModels\AccountInput.cs" />
     <Compile Include="ViewModels\CommentInput.cs" />
+    <Compile Include="ViewModels\CommentSidebarViewModel.cs" />
     <Compile Include="ViewModels\PostCommentsViewModel.cs" />
     <Compile Include="ViewModels\CurrentUserViewModel.cs" />
     <Compile Include="ViewModels\LogOnInput.cs" />

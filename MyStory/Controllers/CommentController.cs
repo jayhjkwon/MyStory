@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using MyStory.ViewModels;
 using MyStory.Models;
+using AutoMapper;
 
 namespace MyStory.Controllers
 {
@@ -13,7 +14,15 @@ namespace MyStory.Controllers
         [ChildActionOnly]
         public ActionResult Sidebar()
         {
-            return View();
+            var recentComments = dbContext.Comments.OrderByDescending(c => c.DateCreated).Take(10).ToList();
+            var recentCommentsViewModel = Mapper.Map<List<Comment>, List<CommentSidebarViewModel>>(recentComments);
+            recentCommentsViewModel.ForEach(c =>
+            {
+                if (c.Content.Length > 50)
+                    c.Content = c.Content.Substring(0, 50);
+            });
+
+            return View("Sidebar", recentCommentsViewModel);
         }
 
         public ActionResult PostCommentsList(int? postId)
