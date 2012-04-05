@@ -38,7 +38,7 @@ else
         {
         <div class="masonrybox shadow" style="padding:5px" id="@item.Id">
             <h3>
-                @Html.ActionLink(item.TitleShort, "Detail", "Post", new { Id = item.Id }, new { @class = "article-title", title = item.Title })</h3>
+                @Html.ActionLink(item.TitleShort, "Detail", "Post", new { Id = item.Id }, new { @class = "article-title", title = item.Title, name=item.Id })</h3>
             <p>
                 @Html.Raw(item.Content)</p>
             @if (Request.IsAuthenticated)

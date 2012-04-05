@@ -19,7 +19,7 @@
 {
     @Html.ValidationSummary(true)
     <div>
-        @Html.TextBoxFor(model => model.Title, new { @class = "input-xlarge", style = "width:100%", placeholder = "Title" })
+        @Html.TextBoxFor(model => model.Title, new { @class = "input-xlarge", style = "width:100%", placeholder = "Title", autofocus="autofocus" })
         @Html.ValidationMessageFor(model => model.Title)
     </div>
     
