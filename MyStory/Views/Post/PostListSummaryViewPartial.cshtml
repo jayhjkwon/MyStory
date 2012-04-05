@@ -50,6 +50,13 @@
 
 
 <nav id="page-nav">
-  <a href="/home/index?page=2"></a>
+@if (ViewData["url"] != null)
+{
+    <a href="@ViewData["url"]?page=2"></a>  
+}
+else
+{
+    <a href="/home/index?page=2"></a>
+}
 </nav>
 

@@ -14,7 +14,7 @@
 </div>
 
 
-@Html.Partial("~/Views/Post/PostListSummaryViewPartial.cshtml", Model)
+@Html.Partial("~/Views/Post/PostListSummaryViewPartial.cshtml", Model, new ViewDataDictionary{{"url", "/tag/index"}} )
 @Html.Partial("~/Views/Post/DeletePostPopupPartial.cshtml")
 
 @section Script{

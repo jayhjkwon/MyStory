@@ -33,7 +33,7 @@ else
     }
 }
 
-@Html.Partial("~/Views/Post/PostListSummaryViewPartial.cshtml", Model)
+@Html.Partial("~/Views/Post/PostListSummaryViewPartial.cshtml", Model, new ViewDataDictionary { { "url", "/home/index" }})
 @Html.Partial("~/Views/Post/DeletePostPopupPartial.cshtml")
 
 @section Script{
