@@ -45,9 +45,10 @@
                     contentType: "application/json",
                     dataType: "json",
                     success: function (result) {
+                        alert('success');
                         $('#modal-delete-post').modal('hide');  // hide modal
                         $('div#' + selectedPostIdToDelete).remove();            // remove the deleted article
-                        $('#masonry-container').masonry(); //.reload(); // reload masonry layout
+                        $container.masonry(); //.reload(); // reload masonry layout
                     },
                     error: function (request, status, error) {
                         alert(error);
