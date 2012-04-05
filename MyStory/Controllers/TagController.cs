@@ -44,6 +44,7 @@ namespace MyStory.Controllers
         public ActionResult Sidebar()
         {
             var tags = from t in dbContext.Tags
+                       where t.Posts.Count > 0
                        orderby t.Posts.Count descending
                        select new TagSidebarViewModel
                        {
@@ -57,6 +58,8 @@ namespace MyStory.Controllers
 
         public ActionResult Index(string tag=null, int page=1)
         {
+            ViewBag.TagText = tag;
+
             int perPage = page == 1 ? 20 : 10;
 
             var posts = new PostQuery() 
