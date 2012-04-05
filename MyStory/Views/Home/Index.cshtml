@@ -3,9 +3,11 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
 @section Style{
     <link href="@Url.Content("~/Content/Prettify/Themes/sons-of-obsidian.css")" rel="stylesheet" type="text/css" />
 }
+
 @if (ViewBag.NumberOfAccounts == 0)
 {
     <div class="hero-unit">
@@ -30,58 +32,10 @@ else
     </div>
     }
 }
-@* view using Masonry *@
-<div id="masonry-container">
-    @if (Model != null)
-    {
-        foreach (var item in Model)
-        {
-        <div class="masonrybox shadow" style="padding:5px" id="@item.Id">
-            <h3>
-                @Html.ActionLink(item.TitleShort, "Detail", "Post", new { Id = item.Id }, new { @class = "article-title", title = item.Title, name=item.Id })</h3>
-            <p>
-                @Html.Raw(item.Content)</p>
-            @if (Request.IsAuthenticated)
-            {
-                <p>
-                    @Html.ActionLink("edit", "Edit", "Post", new { id = item.Id }, null) | <a  class="delete-post-link" data-toggle="modal" href="#modal-delete-post" onclick="openModal('@item.Id');" >
-                        delete</a>
-                </p>
-            }
-        </div>
-        }
-    }
-</div>
-@*Modal popup for delete post*@
-@Html.Partial("DeletePostPopup")
-@* view using Bootstrap Thumbnail *@ @*<ul class="thumbnails">
-    @if (Model != null)
-    {
-        foreach (var item in Model)
-        {
-        <li class="span3">            
-            <div class="thumbnail shadow">
-            <h3>
-                @Html.ActionLink(item.Title, "Detail", "Post", new { Id = item.Id }, new { @class = "article-title" })</h3>
-            <p>
-                @Html.Raw(item.Content)
-            </p>
-            @if (Request.IsAuthenticated)
-            {
-                <p>
-                    @Html.ActionLink("edit", "Edit", "Post", new { id = item.Id }, null) | <a  class="delete-post-link" data-toggle="modal" href="#modal-delete-post" onclick="openModal('@item.Id');" >
-                        delete</a>
-                </p>
-            }
-            </div>
-        </li>
-        }
-    }
-</ul>*@
 
-<nav id="page-nav">
-  <a href="/home/index?page=2"></a>
-</nav>
+@Html.Partial("~/Views/Post/PostListSummaryViewPartial.cshtml", Model)
+@Html.Partial("DeletePostPopup")
+
 @section Script{
     <script src="@Url.Content("~/Scripts/jquery.masonry.min.js")" type="text/javascript"></script>
     <script src="@Url.Content("~/Scripts/jquery.infinitescroll.min.js")" type="text/javascript"></script>
@@ -89,12 +43,12 @@ else
         $(function () {
             $('#home-nav').addClass('active');
 
-            $('pre').addClass('prettyprint linenums');
-            prettyPrint();
-
             // remove container box 
             $('#main-body').removeClass('well');
             $('#main-body').removeClass('shadow');
+
+             $('pre').addClass('prettyprint linenums');
+            prettyPrint();
 
             $('.article-title').tooltip({
                 placement: 'top',

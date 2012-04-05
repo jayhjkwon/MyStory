@@ -1,0 +1,55 @@
+﻿@model IEnumerable<MyStory.ViewModels.PostListViewModel>
+
+<div id="masonry-container">
+    @if (Model != null)
+    {
+        foreach (var item in Model)
+        {
+        <div class="masonrybox shadow" style="padding:5px" id="@item.Id">
+            <h3>
+                @Html.ActionLink(item.TitleShort, "Detail", "Post", new { Id = item.Id }, new { @class = "article-title", title = item.Title, name = item.Id })</h3>
+            <p>
+                @Html.Raw(item.Content)</p>
+            @if (Request.IsAuthenticated)
+            {
+                <p>
+                    @Html.ActionLink("edit", "Edit", "Post", new { id = item.Id }, null) | <a  class="delete-post-link" data-toggle="modal" href="#modal-delete-post" onclick="openModal('@item.Id');" >
+                        delete</a>
+                </p>
+            }
+        </div>
+        }
+    }
+</div>
+
+@* view using Bootstrap Thumbnail *@ @*<ul class="thumbnails">
+    @if (Model != null)
+    {
+        foreach (var item in Model)
+        {
+        <li class="span3">            
+            <div class="thumbnail shadow">
+            <h3>
+                @Html.ActionLink(item.Title, "Detail", "Post", new { Id = item.Id }, new { @class = "article-title" })</h3>
+            <p>
+                @Html.Raw(item.Content)
+            </p>
+            @if (Request.IsAuthenticated)
+            {
+                <p>
+                    @Html.ActionLink("edit", "Edit", "Post", new { id = item.Id }, null) | <a  class="delete-post-link" data-toggle="modal" href="#modal-delete-post" onclick="openModal('@item.Id');" >
+                        delete</a>
+                </p>
+            }
+            </div>
+        </li>
+        }
+    }
+</ul>*@
+
+
+
+<nav id="page-nav">
+  <a href="/home/index?page=2"></a>
+</nav>
+
