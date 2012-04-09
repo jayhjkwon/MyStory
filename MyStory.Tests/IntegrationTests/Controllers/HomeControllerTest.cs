@@ -26,7 +26,8 @@ namespace MyStory.Tests.IntegrationTests.Controllers
         public void TestInitialize() 
         {
             // Arrange
-            context = new MyStoryContext("MyStorySQLCEDB");
+            context = new MyStoryContext("name=MyStorySQLCEDB");
+            //context = new MyStoryContext();
             context.Database.Delete(); 
             context.Database.Create();
             controller = new HomeController(context);
