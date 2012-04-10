@@ -101,7 +101,6 @@
     <Compile Include="UnitTests\Models\ValidationTest.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="EndToEndTests\Selenium\" />
     <Folder Include="UnitTests\Controllers\" />
     <Folder Include="UnitTests\UrlRouting\" />
   </ItemGroup>
