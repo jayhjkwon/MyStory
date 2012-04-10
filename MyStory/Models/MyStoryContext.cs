@@ -14,13 +14,12 @@ namespace MyStory.Models
     {
         public MyStoryContext()
         {
-            Database.SetInitializer<MyStoryContext>
-                (new MyStoryDbInitializationStrategy());
+            InitDB();
         }
 
-        // for integration test purpose
-        public MyStoryContext(string connectionStringName) : base(connectionStringName)
+        private void InitDB()
         {
+            Database.SetInitializer<MyStoryContext>(new MyStoryDbInitializationStrategy());
         }
 
         public DbSet<Account> Accounts { get; set; }

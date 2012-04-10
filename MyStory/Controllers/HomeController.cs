@@ -15,14 +15,6 @@ namespace MyStory.Controllers
 {
     public class HomeController : MyStoryController
     {
-        public HomeController() { }
-
-        // for test purpose
-        public HomeController(MyStoryContext context)
-        {
-            base.dbContext = context;
-        }
-
         public ActionResult Index(int page=1)
         {
             ViewBag.NumberOfAccounts = dbContext.Accounts.Count();

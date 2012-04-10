@@ -26,11 +26,10 @@ namespace MyStory.Tests.IntegrationTests.Controllers
         public void TestInitialize() 
         {
             // Arrange
-            context = new MyStoryContext("name=MyStorySQLCEDB");
-            //context = new MyStoryContext();
+            context = new MyStoryContext();
             context.Database.Delete(); 
             context.Database.Create();
-            controller = new HomeController(context);
+            controller = new HomeController();
         }
         
         // Use TestCleanup to run code after each test has run

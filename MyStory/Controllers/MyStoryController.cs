@@ -17,6 +17,11 @@ namespace MyStory.Controllers
         public MyStoryController()
         {
             dbContext = new MyStoryContext();
+            Init();
+        }
+
+        private void Init()
+        {
             var blog = dbContext.Blogs.FirstOrDefault();
             if (blog != null)
             {

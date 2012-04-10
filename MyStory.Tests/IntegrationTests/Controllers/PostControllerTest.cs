@@ -27,12 +27,10 @@ namespace MyStory.Tests.IntegrationTests.Controllers
         public void TestInitialize()
         {
             // Arrange
-            context = new MyStoryContext("MyStorySQLCEDB");
-            //context = new MyStoryContext();
-            if (context.Database.Exists())
-                context.Database.Delete(); 
+            context = new MyStoryContext();
+            context.Database.Delete(); 
             context.Database.Create();
-            controller = new PostController(context);
+            controller = new PostController();
         }
 
         [TestCleanup()]

@@ -18,14 +18,6 @@ namespace MyStory.Controllers
 {
     public class PostController : MyStoryController
     {
-        public PostController(){}
-
-        public PostController(MyStoryContext context)
-        {
-            base.dbContext = context;
-        }
-
-        
         [Authorize]
         [HttpGet]
         public ActionResult Write()
