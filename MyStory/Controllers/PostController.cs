@@ -12,17 +12,19 @@ using MyStory.Services;
 using System.Data.EntityClient;
 using System.Configuration;
 using MyStory.Infrastructure.Common;
+using MyStory.Infrastructure;
 
 
 namespace MyStory.Controllers
 {
     public class PostController : MyStoryController
     {
-        [Authorize]
+        //[Authorize]
+        [OnlyBlogOwner]
         [HttpGet]
         public ActionResult Write()
         {
-            return View();
+            return View("Write");
         }
 
         [Authorize]
@@ -34,7 +36,7 @@ namespace MyStory.Controllers
                 return View("Write", input);
 
             var blogId = GetCurrentBlog().Id;
-
+            
             var post = Mapper.Map<PostInput, Post>(input);
             post.BlogId = blogId;
             post.DateCreated = post.DateModified = DateTime.Now;
@@ -47,7 +49,7 @@ namespace MyStory.Controllers
 
             return RedirectToAction("Index", "Home");
         }
-
+          
         [Authorize]
         [HttpGet]
         public ActionResult Edit(int id)

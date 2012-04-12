@@ -10,7 +10,16 @@ namespace MyStory.Tests.FunctionalTests
     {
         public static void CreateAccountAndBlog(MyStoryContext context)
         {
-            context.Blogs.Add(new Blog { Title = "blog", BlogOwner = new Account { Email = "a@a.com", Password = "password", Name = "john" } });
+            context.Blogs.Add(new Blog 
+                            {
+                                Title = "blog", 
+                                BlogOwner = new Account 
+                                            {
+                                                Email = "a@a.com", 
+                                                Password = "password", 
+                                                Name = "john" 
+                                            }
+                            });
             context.SaveChanges();
         }
     }

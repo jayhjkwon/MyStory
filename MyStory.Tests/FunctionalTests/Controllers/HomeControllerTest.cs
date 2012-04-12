@@ -7,6 +7,7 @@ using MyStory.Controllers;
 using MyStory.Models;
 using System.Data.Entity;
 using System.Web.Mvc;
+using MvcContrib.TestHelper;
 
 namespace MyStory.Tests.FunctionalTests.Controllers
 {
@@ -18,8 +19,7 @@ namespace MyStory.Tests.FunctionalTests.Controllers
     {
         private HomeController controller;
         private MyStoryContext context;
-
-        public HomeControllerTest(){}
+        private TestControllerBuilder builder;
 
         // Use TestInitialize to run code before running each test 
         [TestInitialize()]
@@ -29,7 +29,11 @@ namespace MyStory.Tests.FunctionalTests.Controllers
             context = new MyStoryContext();
             context.Database.Delete(); 
             context.Database.Create();
+
+            builder = new TestControllerBuilder();
             controller = new HomeController();
+            builder.InitializeController(controller);
+
         }
         
         // Use TestCleanup to run code after each test has run
@@ -44,6 +48,12 @@ namespace MyStory.Tests.FunctionalTests.Controllers
         }
 
         [TestMethod]
+        public void index_should_return_index_view()
+        {
+            controller.Index().AssertViewRendered().ForView("Index");
+        }
+
+        [TestMethod]
         public void index_shoul_return_zero_account()
         {
             // Act
@@ -54,16 +64,5 @@ namespace MyStory.Tests.FunctionalTests.Controllers
             cnt.ShouldEqual(0);
         }
 
-        [TestMethod]
-        public void test_should_add_blog()
-        {
-            //// Act
-            //var actionResult = controller.Test() as ViewResult;
-            //var blog = (Blog)actionResult.Model;
-         
-            //// Assert
-            //blog.Title.ShouldEqual("t1");
-            //blog.BlogOwner.Email.ShouldEqual("email");
-        }
     }
 }

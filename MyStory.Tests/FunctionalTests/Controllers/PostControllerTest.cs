@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using System.Web;
 using Moq;
 using MyStory.ViewModels;
+using MvcContrib.TestHelper;
 
 namespace MyStory.Tests.FunctionalTests.Controllers
 {
@@ -20,6 +21,7 @@ namespace MyStory.Tests.FunctionalTests.Controllers
     {
         private PostController controller;
         private MyStoryContext context;
+        private TestControllerBuilder builder;
 
         public PostControllerTest(){}
 
@@ -30,7 +32,10 @@ namespace MyStory.Tests.FunctionalTests.Controllers
             context = new MyStoryContext();
             context.Database.Delete(); 
             context.Database.Create();
+
+            builder = new TestControllerBuilder();
             controller = new PostController();
+            builder.InitializeController(controller);
         }
 
         [TestCleanup()]
@@ -42,6 +47,36 @@ namespace MyStory.Tests.FunctionalTests.Controllers
                 controller.Dispose();
             }
         }
+
+        [TestMethod]
+        public void non_auth_user_cannot_access_write_form_method()
+        {
+            var mock = new Mock<ControllerContext>();
+            mock.SetupGet(x => x.HttpContext.Request.IsAuthenticated).Returns(false);
+            controller.ControllerContext = mock.Object;
+
+            controller.Request.IsAuthenticated.ShouldEqual(false);
+
+            var result = controller.Write() as ViewResult;
+            var r = result.ViewData.ModelState.IsValid;
+            var modelstates = result.ViewData.ModelState["auth"];
+            
+        }
+
+        [TestMethod]
+        public void only_admin_can_access_write_form_method()
+        {
+            var mock = new Mock<ControllerContext>();
+            mock.SetupGet(x => x.HttpContext.Request.IsAuthenticated).Returns(true);
+            mock.SetupGet(x => x.HttpContext.User.Identity.Name).Returns("a@a.com");
+            controller.ControllerContext = mock.Object;
+            
+            controller.Request.IsAuthenticated.ShouldEqual(true);
+            controller.Write().AssertViewRendered().ForView("Write");
+        }
+
+
+
 
         [TestMethod]
         public void test()

@@ -156,6 +156,7 @@
     <Compile Include="Infrastructure\AutoMapper\PostMapper.cs" />
     <Compile Include="Infrastructure\Common\CommenterCookieManager.cs" />
     <Compile Include="Infrastructure\NinjectDependencyResolver.cs" />
+    <Compile Include="Infrastructure\OnlyBlogOwner.cs" />
     <Compile Include="Models\Commenter.cs" />
     <Compile Include="Models\MyStoryContext.cs" />
     <Compile Include="Models\Comment.cs" />
