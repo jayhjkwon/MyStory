@@ -98,6 +98,7 @@
     <Compile Include="FunctionalTests\Controllers\PostControllerTest.cs" />
     <Compile Include="FunctionalTests\IntegrationTestHelper.cs" />
     <Compile Include="SpecExtensions\MSTestSpecificationExtensions.cs" />
+    <Compile Include="UnitTests\AuthorizedActionMethodsTest.cs" />
     <Compile Include="UnitTests\Models\DomainMappingTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UnitTests\Models\BaseModelTest.cs" />

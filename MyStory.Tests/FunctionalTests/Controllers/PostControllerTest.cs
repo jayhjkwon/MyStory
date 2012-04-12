@@ -49,41 +49,19 @@ namespace MyStory.Tests.FunctionalTests.Controllers
         }
 
         [TestMethod]
-        public void non_auth_user_cannot_access_write_form_method()
-        {
-            var mock = new Mock<ControllerContext>();
-            mock.SetupGet(x => x.HttpContext.Request.IsAuthenticated).Returns(false);
-            controller.ControllerContext = mock.Object;
-
-            controller.Request.IsAuthenticated.ShouldEqual(false);
-
-            var result = controller.Write() as ViewResult;
-            var r = result.ViewData.ModelState.IsValid;
-            var modelstates = result.ViewData.ModelState["auth"];
-            
-        }
-
-        [TestMethod]
-        public void only_admin_can_access_write_form_method()
-        {
-            var mock = new Mock<ControllerContext>();
-            mock.SetupGet(x => x.HttpContext.Request.IsAuthenticated).Returns(true);
-            mock.SetupGet(x => x.HttpContext.User.Identity.Name).Returns("a@a.com");
-            controller.ControllerContext = mock.Object;
-            
-            controller.Request.IsAuthenticated.ShouldEqual(true);
-            controller.Write().AssertViewRendered().ForView("Write");
-        }
-
-
-
-
-        [TestMethod]
         public void test()
         {
             var blog = context.Posts.Include("Tags").Include("Comments");
             var blogList = blog.ToList();
             Assert.IsNull(null);
+        }
+
+        [TestMethod]
+        public void invalid_model_should_not_save()
+        {
+            var postInput = new PostInput();
+            var result = controller.Write(postInput).AssertViewRendered().ForView("Write");
+            result.ViewData.ModelState.IsValid.ShouldBeFalse();
         }
 
         [TestMethod]

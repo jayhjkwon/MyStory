@@ -12,13 +12,16 @@ namespace MyStory.Infrastructure
         {
             base.OnAuthorization(filterContext);
 
-            //if (!filterContext.HttpContext.User.Identity.IsAuthenticated)
-            //    filterContext.Result = new HttpUnauthorizedResult();
-
-            if (filterContext.Result is HttpUnauthorizedResult)
+            if (!filterContext.HttpContext.User.Identity.IsAuthenticated)
             {
                 filterContext.Controller.ViewData.ModelState.AddModelError("auth", "user is not authorized");
+                filterContext.Result = new HttpUnauthorizedResult();
             }
+
+            //if (filterContext.Result is HttpUnauthorizedResult)
+            //{
+            //    filterContext.Controller.ViewData.ModelState.AddModelError("auth", "user is not authorized");
+            //}
         }
     }
 }

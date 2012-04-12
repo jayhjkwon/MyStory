@@ -19,8 +19,7 @@ namespace MyStory.Controllers
 {
     public class PostController : MyStoryController
     {
-        //[Authorize]
-        [OnlyBlogOwner]
+        [Authorize]
         [HttpGet]
         public ActionResult Write()
         {
