@@ -10,7 +10,7 @@ using System.Web;
 using Moq;
 using MyStory.ViewModels;
 
-namespace MyStory.Tests.IntegrationTests.Controllers
+namespace MyStory.Tests.FunctionalTests.Controllers
 {
     /// <summary>
     /// Summary description for PostControllerTest
@@ -54,7 +54,7 @@ namespace MyStory.Tests.IntegrationTests.Controllers
         [TestMethod]
         public void write_should_validate_model()
         {
-            IntegrationTestHelper.CreateAccountAndBlog(context);
+            FunctionalTestHelper.CreateAccountAndBlog(context);
 
             var mock = new Mock<ControllerContext>();
             mock.SetupGet(x => x.HttpContext.Request.IsAuthenticated).Returns(true);
@@ -83,7 +83,7 @@ namespace MyStory.Tests.IntegrationTests.Controllers
         public void edit_getmethod_should_return_postmodel()
         {
             // Arrange
-            IntegrationTestHelper.CreateAccountAndBlog(context);
+            FunctionalTestHelper.CreateAccountAndBlog(context);
             context.Posts.Add(new Post 
             { 
                 Title = "title", 

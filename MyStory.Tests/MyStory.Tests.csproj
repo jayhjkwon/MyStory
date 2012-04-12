@@ -91,9 +91,9 @@
     </CodeAnalysisDependentAssemblyPaths>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IntegrationTests\Controllers\HomeControllerTest.cs" />
-    <Compile Include="IntegrationTests\Controllers\PostControllerTest.cs" />
-    <Compile Include="IntegrationTests\IntegrationTestHelper.cs" />
+    <Compile Include="FunctionalTests\Controllers\HomeControllerTest.cs" />
+    <Compile Include="FunctionalTests\Controllers\PostControllerTest.cs" />
+    <Compile Include="FunctionalTests\IntegrationTestHelper.cs" />
     <Compile Include="SpecExtensions\MSTestSpecificationExtensions.cs" />
     <Compile Include="UnitTests\Models\DomainMappingTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -101,7 +101,6 @@
     <Compile Include="UnitTests\Models\ValidationTest.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="UnitTests\Controllers\" />
     <Folder Include="UnitTests\UrlRouting\" />
   </ItemGroup>
   <ItemGroup>
@@ -112,7 +111,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="_App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

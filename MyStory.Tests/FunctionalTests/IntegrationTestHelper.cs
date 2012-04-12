@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using MyStory.Models;
 
-namespace MyStory.Tests.IntegrationTests
+namespace MyStory.Tests.FunctionalTests
 {
-    public class IntegrationTestHelper
+    public class FunctionalTestHelper
     {
         public static void CreateAccountAndBlog(MyStoryContext context)
         {

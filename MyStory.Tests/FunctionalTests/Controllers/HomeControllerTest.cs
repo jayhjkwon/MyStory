@@ -8,7 +8,7 @@ using MyStory.Models;
 using System.Data.Entity;
 using System.Web.Mvc;
 
-namespace MyStory.Tests.IntegrationTests.Controllers
+namespace MyStory.Tests.FunctionalTests.Controllers
 {
     /// <summary>
     /// Integration test case for HomeController
