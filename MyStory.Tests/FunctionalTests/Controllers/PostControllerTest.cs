@@ -76,7 +76,7 @@ namespace MyStory.Tests.FunctionalTests.Controllers
             controllerContext.SetupGet(x => x.HttpContext.Request.IsAuthenticated).Returns(true);
             controllerContext.SetupGet(x => x.HttpContext.User.Identity.Name).Returns("a@a.com");
             
-            controller = new PostController();
+            controller = new PostController(new TagService());
             controller.ControllerContext = controllerContext.Object;
 
             var postInput = new PostInput

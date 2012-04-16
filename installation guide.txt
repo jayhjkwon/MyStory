@@ -4,3 +4,7 @@
 #2. web site registration for facebook comments
 #   : create your own app, refer https://developers.facebook.com/apps
 #   : then, replace appid and appsecret in web.config with yours
+
+2. Prerequistes for the test project (MyStory.Tests)
+	2.1 SQLCE4 
+		: http://www.microsoft.com/download/en/details.aspx?id=17876
