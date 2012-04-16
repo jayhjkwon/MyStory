@@ -28,8 +28,6 @@ namespace MyStory.Tests.FunctionalTests.Controllers
             context = new MyStoryContext();
             context.Database.Delete(); 
             context.Database.Create();
-
-            controller = new HomeController();
         }
         
         // Use TestCleanup to run code after each test has run
@@ -46,6 +44,9 @@ namespace MyStory.Tests.FunctionalTests.Controllers
         [TestMethod]
         public void index_shoul_return_zero_account()
         {
+            // Arrange
+            controller = new HomeController();
+
             // Act
             var actionResult = controller.Index() as ViewResult;
 
@@ -58,7 +59,8 @@ namespace MyStory.Tests.FunctionalTests.Controllers
         public void index_shoul_return_one_account()
         {
             // Arrange
-            FunctionalTestHelper.CreateOnePost(context);
+            FunctionalTestHelper.CreateAccountAndBlog(context);
+            controller = new HomeController();
 
             // Act
             var actionResult = controller.Index() as ViewResult;
@@ -75,6 +77,8 @@ namespace MyStory.Tests.FunctionalTests.Controllers
             FunctionalTestHelper.CreateAutomapperMap();
             FunctionalTestHelper.CreateAccountAndBlog(context);
             FunctionalTestHelper.CreateOnePost(context);
+
+            controller = new HomeController();
 
             // Act
             var actionResult = controller.Index() as ViewResult;

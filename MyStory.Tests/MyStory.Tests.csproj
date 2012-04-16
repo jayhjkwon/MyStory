@@ -97,6 +97,7 @@
     <Compile Include="FunctionalTests\Controllers\HomeControllerTest.cs" />
     <Compile Include="FunctionalTests\Controllers\PostControllerTest.cs" />
     <Compile Include="FunctionalTests\FunctionalTestHelper.cs" />
+    <Compile Include="FunctionalTests\MvcMockHelpers.cs" />
     <Compile Include="SpecExtensions\MSTestSpecificationExtensions.cs" />
     <Compile Include="UnitTests\AuthorizedActionMethodsTest.cs" />
     <Compile Include="UnitTests\Models\DomainMappingTest.cs" />

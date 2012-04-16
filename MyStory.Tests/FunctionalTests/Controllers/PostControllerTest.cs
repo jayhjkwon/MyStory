@@ -10,6 +10,7 @@ using System.Web;
 using Moq;
 using MyStory.ViewModels;
 using MyStory.Services;
+using System.Collections.Specialized;
 
 namespace MyStory.Tests.FunctionalTests.Controllers
 {
@@ -118,6 +119,53 @@ namespace MyStory.Tests.FunctionalTests.Controllers
             "title".ShouldEqual(post.Title);
             "content".ShouldEqual(post.Content);
             "Edit".ShouldEqual(result.ViewName);
+        }
+
+        [TestMethod]
+        public void edit_method_should_validate_model()
+        {
+            // Arrange
+            controller = new PostController();
+            controller.ModelState.AddModelError("modelerror", "modelerror");
+
+            var result = controller.Edit(new PostInput()) as ViewResult;
+            result.ViewName.SequenceEqual("Edit");
+            result.ViewData.ModelState.IsValid.ShouldBeFalse();
+        }
+
+        [TestMethod]
+        public void edit_method_should_save_post()
+        {
+            // Arrange
+            FunctionalTestHelper.CreateAutomapperMap();
+            FunctionalTestHelper.CreateAccountAndBlog(dbContext);
+            FunctionalTestHelper.CreateOnePost(dbContext);
+            
+            controller = new PostController(new TagService());
+            controller.SetFakeControllerContext();
+
+            // valueprovider is needed for TryUpdateModel() method
+            FormCollection form = new FormCollection();
+            controller.ValueProvider = form.ToValueProvider();
+
+            var input = new PostInput
+            {
+                Content = "edited content",
+                Id = 1,
+                Title = "edited title",
+            };
+
+            // Act
+            var result = controller.Edit(input) as RedirectToRouteResult;
+
+            // Assert
+            result.RouteValues["controller"].ShouldEqual("Post");
+            result.RouteValues["action"].ShouldEqual("Detail");
+            var post = dbContext.Posts.SingleOrDefault(p => p.Id == 1);
+            post.ShouldNotBeNull();
+            post.Title.Contains("edited");
+            post.Content.Contains("edited");
+            
         }
 
         //[TestMethod]
