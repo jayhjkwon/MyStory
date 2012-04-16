@@ -6,12 +6,12 @@ using System.Web.Mvc;
 using MyStory.Models;
 using MyStory.Helpers;
 using MyStory.ViewModels;
+using MyStory.Services;
 
 namespace MyStory.Controllers
 {
-    public abstract class MyStoryController : Controller
+    public class MyStoryController : Controller
     {
-        // if lazy exception occurs in view, use OSIV pattern (e.g. HttpContext.Items)
         protected MyStoryContext dbContext;
 
         public MyStoryController()
@@ -49,6 +49,7 @@ namespace MyStory.Controllers
                 return null;
 
             var email = HttpContext.User.Identity.Name;
+            //return userService.GetBlogByEmail(email);
             return dbContext.Blogs.SingleOrDefault(b => b.BlogOwner.Email == email);
         }
     }

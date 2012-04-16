@@ -7,7 +7,12 @@ using MyStory.Models;
 
 namespace MyStory.Services
 {
-    public class TagService
+    public interface ITagService
+    {
+        void UpdateTag(MyStoryContext dbContext, PostInput input, Post post);
+    }
+
+    public class TagService : ITagService
     {
         public void UpdateTag(MyStoryContext dbContext, PostInput input, Post post)
         {

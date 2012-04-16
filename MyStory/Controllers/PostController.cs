@@ -19,6 +19,17 @@ namespace MyStory.Controllers
 {
     public class PostController : MyStoryController
     {
+        private ITagService _tagService;
+
+        public PostController()
+        {
+        }
+
+        public PostController(ITagService tagService)
+        {
+            _tagService = tagService;
+        }
+
         [Authorize]
         [HttpGet]
         public ActionResult Write()
@@ -40,8 +51,7 @@ namespace MyStory.Controllers
             post.BlogId = blogId;
             post.DateCreated = post.DateModified = DateTime.Now;
 
-            TagService svc = new TagService();
-            svc.UpdateTag(dbContext, input, post);
+            _tagService.UpdateTag(dbContext, input, post);
             
             dbContext.Posts.Add(post);
             dbContext.SaveChanges();
@@ -73,8 +83,7 @@ namespace MyStory.Controllers
             {
                 post.DateModified = DateTime.Now;
 
-                TagService svc = new TagService();
-                svc.UpdateTag(dbContext, input, post);
+                _tagService.UpdateTag(dbContext, input, post);
 
                 dbContext.Entry(post).State = System.Data.EntityState.Modified;
                 dbContext.SaveChanges();

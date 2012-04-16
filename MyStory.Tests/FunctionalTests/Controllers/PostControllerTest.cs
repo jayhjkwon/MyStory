@@ -9,7 +9,7 @@ using System.Web.Mvc;
 using System.Web;
 using Moq;
 using MyStory.ViewModels;
-using MvcContrib.TestHelper;
+using MyStory.Services;
 
 namespace MyStory.Tests.FunctionalTests.Controllers
 {
@@ -20,22 +20,15 @@ namespace MyStory.Tests.FunctionalTests.Controllers
     public class PostControllerTest
     {
         private PostController controller;
-        private MyStoryContext context;
-        private TestControllerBuilder builder;
-
-        public PostControllerTest(){}
+        private MyStoryContext dbContext;
 
         [TestInitialize()]
         public void TestInitialize()
         {
             // Arrange
-            context = new MyStoryContext();
-            context.Database.Delete(); 
-            context.Database.Create();
-
-            builder = new TestControllerBuilder();
-            controller = new PostController();
-            builder.InitializeController(controller);
+            dbContext = new MyStoryContext();
+            dbContext.Database.Delete(); 
+            dbContext.Database.Create();
         }
 
         [TestCleanup()]
@@ -43,7 +36,7 @@ namespace MyStory.Tests.FunctionalTests.Controllers
         {
             if (controller != null)
             {
-                context.Database.Delete();
+                dbContext.Database.Delete();
                 controller.Dispose();
             }
         }
@@ -51,7 +44,7 @@ namespace MyStory.Tests.FunctionalTests.Controllers
         [TestMethod]
         public void test()
         {
-            var blog = context.Posts.Include("Tags").Include("Comments");
+            var blog = dbContext.Posts.Include("Tags").Include("Comments");
             var blogList = blog.ToList();
             Assert.IsNull(null);
         }
@@ -59,64 +52,67 @@ namespace MyStory.Tests.FunctionalTests.Controllers
         [TestMethod]
         public void invalid_model_should_not_save()
         {
+            // Arrange
+            controller = new PostController();
+            controller.ModelState.AddModelError("modelerror", "modelerror");
             var postInput = new PostInput();
-            var result = controller.Write(postInput).AssertViewRendered().ForView("Write");
-            result.ViewData.ModelState.IsValid.ShouldBeFalse();
-        }
-
-        [TestMethod]
-        public void write_should_validate_model()
-        {
-            FunctionalTestHelper.CreateAccountAndBlog(context);
-
-            var mock = new Mock<ControllerContext>();
-            mock.SetupGet(x => x.HttpContext.Request.IsAuthenticated).Returns(true);
-            mock.SetupGet(x => x.HttpContext.User.Identity.Name).Returns("a@a.com");
-
-            controller.ControllerContext = mock.Object;
-
-            var input = new PostInput();
-            input.Title = null;
-            input.Content = null;
-
-            // #1 test validation
-            //var actionResult = controller.Write(input) as ViewResult;
-            //Assert.IsFalse(actionResult.ViewData.ModelState.IsValid);
-
-            // #2 test data inpu failure and view result
-            controller.ModelState.AddModelError("InvalidModel", "Title and Content are empty");
-            var actionResult = controller.Write(input) as ViewResult;
             
-            actionResult.ViewName.ShouldEqual("Write");
-            actionResult.Model.ShouldEqual(input);
-            context.Posts.Count().ShouldEqual(0);
+            // Act
+            var result = controller.Write(postInput) as ViewResult;
+
+            // Assert
+            result.ViewData.ModelState.IsValid.ShouldBeFalse();
+            result.ViewName.ShouldEqual("Write");
         }
 
         [TestMethod]
-        public void edit_getmethod_should_return_postmodel()
+        public void valid_model_should_be_saved()
         {
             // Arrange
-            FunctionalTestHelper.CreateAccountAndBlog(context);
-            context.Posts.Add(new Post 
-            { 
-                Title = "title", 
-                Content = "content", 
-                BlogId = 1, 
-                LocationOfWriting = new Location(), 
-                DateCreated=DateTime.Now, 
-                DateModified=DateTime.Now
-            });
-            context.SaveChanges();
+            FunctionalTestHelper.CreateAutomapperMap();
+            FunctionalTestHelper.CreateAccountAndBlog(dbContext);
+
+            var controllerContext = new Mock<ControllerContext>();
+            controllerContext.SetupGet(x => x.HttpContext.Request.IsAuthenticated).Returns(true);
+            controllerContext.SetupGet(x => x.HttpContext.User.Identity.Name).Returns("a@a.com");
+            
+            controller = new PostController();
+            controller.ControllerContext = controllerContext.Object;
+
+            var postInput = new PostInput
+            {
+                Title = "title",
+                Content = "content",                
+            };       
+
+            // Act
+            var result = controller.Write(postInput) as RedirectToRouteResult;
+
+            // Assert
+            dbContext.Posts.Count().ShouldEqual(1);
+            result.RouteValues["controller"].ShouldEqual("Home");
+            result.RouteValues["action"].ShouldEqual("Index");
+        }
+
+        [TestMethod]
+        public void edit_methood_should_return_postmodel()
+        {
+            // Arrange
+            FunctionalTestHelper.CreateAutomapperMap();
+            FunctionalTestHelper.CreateAccountAndBlog(dbContext);
+            FunctionalTestHelper.CreateOnePost(dbContext);
 
             var mock = new Mock<ControllerContext>();
             mock.SetupGet(x => x.HttpContext.Request.IsAuthenticated).Returns(true);
             mock.SetupGet(x => x.HttpContext.User.Identity.Name).Returns("a@a.com");
 
+
+            controller = new PostController();
             controller.ControllerContext = mock.Object;
 
             // Act
             var result = controller.Edit(1) as ViewResult;
-            var post = result.Model as Post;
+            var post = result.Model as PostInput;
 
             // Assert
             "title".ShouldEqual(post.Title);

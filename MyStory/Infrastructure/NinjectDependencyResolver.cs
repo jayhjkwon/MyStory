@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using Ninject;
 using Ninject.Syntax;
 using MyStory.Infrastructure.AutoMapper;
+using MyStory.Services;
 
 namespace MyStory.Infrastructure
 {
@@ -23,6 +24,7 @@ namespace MyStory.Infrastructure
         {
             Bind<IMapper>().To<PostMapper>();
             Bind<IMapper>().To<CommentMapper>();
+            Bind<ITagService>().To<TagService>();
         }
 
         public IBindingToSyntax<T> Bind<T>()
