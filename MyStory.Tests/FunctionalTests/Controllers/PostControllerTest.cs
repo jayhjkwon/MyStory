@@ -222,8 +222,9 @@ namespace MyStory.Tests.FunctionalTests.Controllers
             FunctionalTestHelper.CreateOnePost(dbContext);
 
             controller = new PostController();
-            controller.SetFakeControllerContext();
+            controller.SetFakeControllerContext(false);
 
+            
             // Act
             var result = controller.Detail(1) as ViewResult;
 

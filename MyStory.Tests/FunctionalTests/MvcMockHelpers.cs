@@ -13,6 +13,8 @@ namespace MyStory.Tests.FunctionalTests
 {
     public static class MvcMockHelpers
     {
+        public static bool _IsAuthenticated { get; set; }
+
         public static HttpContextBase FakeHttpContext()
 		{
             var context = new Mock<HttpContextBase>();
@@ -30,7 +32,7 @@ namespace MyStory.Tests.FunctionalTests
             request.Setup(req => req.Form).Returns(new NameValueCollection());
             request.Setup(req => req.QueryString).Returns(new NameValueCollection());
             request.Setup(req => req.Files).Returns(files.Object);
-            request.Setup(req => req.IsAuthenticated).Returns(true);
+            request.Setup(req => req.IsAuthenticated).Returns(_IsAuthenticated);
 
             response.Setup(res => res.ApplyAppPathModifier(It.IsAny<string>())).
                 Returns((string virtualPath) => virtualPath);
@@ -38,7 +40,7 @@ namespace MyStory.Tests.FunctionalTests
             user.Setup(usr => usr.Identity).Returns(identity.Object);
             user.Setup(usr => usr.Identity.Name).Returns("a@a.com");
             
-            identity.SetupGet(ident => ident.IsAuthenticated).Returns(true);
+            identity.Setup(ident => ident.IsAuthenticated).Returns(true);
 
             context.Setup(ctx => ctx.Request).Returns(request.Object);
             context.Setup(ctx => ctx.Response).Returns(response.Object);
@@ -56,8 +58,11 @@ namespace MyStory.Tests.FunctionalTests
 			return context;
 		} 
 
-		public static void SetFakeControllerContext(this Controller controller)
+		public static void SetFakeControllerContext(this Controller controller,
+                                                    bool isAuthenticated = true)
 		{
+            _IsAuthenticated = isAuthenticated;
+
 			var httpContext = FakeHttpContext();
 			
             ControllerContext context = new ControllerContext(
