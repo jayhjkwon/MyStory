@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using System.Collections.Specialized;
 using Moq;
 using System.Web.Routing;
+using System.Security.Principal;
 
 namespace MyStory.Tests.FunctionalTests
 {
@@ -14,18 +15,38 @@ namespace MyStory.Tests.FunctionalTests
     {
         public static HttpContextBase FakeHttpContext()
 		{
-			var context = new Mock<HttpContextBase>();
-			var request = new Mock<HttpRequestBase>();
-			var response = new Mock<HttpResponseBase>();
-			var session = new Mock<HttpSessionStateBase>();
-			var server = new Mock<HttpServerUtilityBase>();
+            var context = new Mock<HttpContextBase>();
+            var files = new Mock<HttpFileCollectionBase>();
+            var request = new Mock<HttpRequestBase>();
+            var response = new Mock<HttpResponseBase>();
+            var session = new Mock<HttpSessionStateBase>();
+            var server = new Mock<HttpServerUtilityBase>();
+            var user = new Mock<IPrincipal>();
+            var identity = new Mock<IIdentity>();
 
-			context.Expect(ctx => ctx.Request).Returns(request.Object);
-			context.Expect(ctx => ctx.Response).Returns(response.Object);
-			context.Expect(ctx => ctx.Session).Returns(session.Object);
-			context.Expect(ctx => ctx.Server).Returns(server.Object);
+            request.Setup(req => req.ApplicationPath).Returns("~/");
+            request.Setup(req => req.AppRelativeCurrentExecutionFilePath).Returns("~/");
+            request.Setup(req => req.PathInfo).Returns(string.Empty);
+            request.Setup(req => req.Form).Returns(new NameValueCollection());
+            request.Setup(req => req.QueryString).Returns(new NameValueCollection());
+            request.Setup(req => req.Files).Returns(files.Object);
+            request.Setup(req => req.IsAuthenticated).Returns(true);
 
-			return context.Object;
+            response.Setup(res => res.ApplyAppPathModifier(It.IsAny<string>())).
+                Returns((string virtualPath) => virtualPath);
+            
+            user.Setup(usr => usr.Identity).Returns(identity.Object);
+            user.Setup(usr => usr.Identity.Name).Returns("a@a.com");
+            
+            identity.SetupGet(ident => ident.IsAuthenticated).Returns(true);
+
+            context.Setup(ctx => ctx.Request).Returns(request.Object);
+            context.Setup(ctx => ctx.Response).Returns(response.Object);
+            context.Setup(ctx => ctx.Session).Returns(session.Object);
+            context.Setup(ctx => ctx.Server).Returns(server.Object);
+            context.Setup(ctx => ctx.User).Returns(user.Object);
+
+            return context.Object;
 		}
 
 		public static HttpContextBase FakeHttpContext(string url)
@@ -38,7 +59,11 @@ namespace MyStory.Tests.FunctionalTests
 		public static void SetFakeControllerContext(this Controller controller)
 		{
 			var httpContext = FakeHttpContext();
-			ControllerContext context = new ControllerContext(new RequestContext(httpContext, new RouteData()), controller);
+			
+            ControllerContext context = new ControllerContext(
+                new RequestContext(httpContext, new RouteData()),
+                controller);
+
 			controller.ControllerContext = context;
 		}
 
@@ -76,7 +101,7 @@ namespace MyStory.Tests.FunctionalTests
 		public static void SetHttpMethodResult(this HttpRequestBase request, string httpMethod)
 		{
 			Mock.Get(request)
-				.Expect(req => req.HttpMethod)
+				.Setup(req => req.HttpMethod)
 				.Returns(httpMethod);
 		}
 
@@ -90,11 +115,11 @@ namespace MyStory.Tests.FunctionalTests
 
 			var mock = Mock.Get(request);
 
-			mock.Expect(req => req.QueryString)
+            mock.Setup(req => req.QueryString)
 				.Returns(GetQueryStringParameters(url));
-			mock.Expect(req => req.AppRelativeCurrentExecutionFilePath)
+            mock.Setup(req => req.AppRelativeCurrentExecutionFilePath)
 				.Returns(GetUrlFileName(url));
-			mock.Expect(req => req.PathInfo)
+            mock.Setup(req => req.PathInfo)
 				.Returns(string.Empty);
 		}
 	}

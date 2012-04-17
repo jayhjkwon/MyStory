@@ -43,14 +43,6 @@ namespace MyStory.Tests.FunctionalTests.Controllers
         }
 
         [TestMethod]
-        public void test()
-        {
-            var blog = dbContext.Posts.Include("Tags").Include("Comments");
-            var blogList = blog.ToList();
-            Assert.IsNull(null);
-        }
-
-        [TestMethod]
         public void invalid_model_should_not_save()
         {
             // Arrange
@@ -168,51 +160,81 @@ namespace MyStory.Tests.FunctionalTests.Controllers
             
         }
 
-        //[TestMethod]
-        //public void edit_postmethod_should_not_update_invalid_mode()
-        //{
-        //    // Arrange
-        //    IntegrationTestHelper.CreateAccountAndBlog(context);
-        //    context.Posts.Add(new Post
-        //    {
-        //        Title = "title",
-        //        Content = "content",
-        //        BlogId = 1,
-        //        LocationOfWriting = new Location(),
-        //        DateCreated = DateTime.Now,
-        //        DateModified = DateTime.Now
-        //    });
-        //    context.SaveChanges();
+        [TestMethod]
+        public void delete_method_should_return_httpnotfouldresult()
+        {
+            // Arrange
+            FunctionalTestHelper.CreateAccountAndBlog(dbContext);
+            FunctionalTestHelper.CreateOnePost(dbContext);
 
-        //    var mock = new Mock<ControllerContext>();
-        //    mock.SetupGet(x => x.HttpContext.Request.IsAuthenticated).Returns(true);
-        //    mock.SetupGet(x => x.HttpContext.User.Identity.Name).Returns("a@a.com");
+            // Act
+            controller = new PostController();
+            var result = controller.Delete(1000) as HttpNotFoundResult;
 
-        //    controller.ControllerContext = mock.Object;
-
-        //    var post = context.Posts.Find(1);
-        //    post.Title = null;
-        //    post.Content = null;
-
-        //    controller.ModelState.AddModelError("error", "error");
-
-        //    // Act            
-        //    var result = controller.Edit(post) as ViewResult;
-
-        //    // Assert
-        //    Assert.AreEqual("Edit", result.ViewName);
-        //    Assert.AreEqual("title", context.Posts.SingleOrDefault(p => p.Id == 1).Title);
-        //    Assert.AreEqual("content", context.Posts.SingleOrDefault(p => p.Id == 1).Content);
-
-        //    //"Edit".ShouldEqual(result.ViewName);
-        //    //"title".ShouldEqual(context.Posts.SingleOrDefault(p => p.Id == 1).Title);
-        //    //"content".ShouldEqual(context.Posts.SingleOrDefault(p => p.Id == 1).ContentWithHtml);
-        //}
+            // Assert
+            result.ShouldNotBeNull();
+            result.ShouldBeOfType(typeof(HttpNotFoundResult));
+        }
 
         [TestMethod]
-        public void edit_postmethod_should_update_valid_model()
+        public void delete_method_should_delete_post()
         {
+            // Arrange
+            FunctionalTestHelper.CreateAccountAndBlog(dbContext);
+            FunctionalTestHelper.CreateOnePost(dbContext);
+
+            controller = new PostController();
+            controller.SetFakeControllerContext();
+
+            // Act
+            var result = controller.Delete(1) as RedirectToRouteResult;
+
+            // Assert
+            result.RouteValues["controller"].ShouldEqual("Home");
+            result.RouteValues["action"].ShouldEqual("Index");
+
+            dbContext.Posts.Count().ShouldEqual(0);
         }
+
+        [TestMethod]
+        public void detail_method_should_validate_model()
+        {
+            // Arrange 
+            FunctionalTestHelper.CreateAutomapperMap();
+            FunctionalTestHelper.CreateAccountAndBlog(dbContext);
+            FunctionalTestHelper.CreateOnePost(dbContext);
+
+            // Act
+            controller = new PostController();
+            var result = controller.Detail(1000) as HttpNotFoundResult;
+
+            // Assert
+            result.ShouldNotBeNull();
+            result.ShouldBeOfType(typeof(HttpNotFoundResult));
+        }
+
+        [TestMethod]
+        public void detail_method_should_return_post()
+        {
+            // Arrange 
+            FunctionalTestHelper.CreateAutomapperMap();
+            FunctionalTestHelper.CreateAccountAndBlog(dbContext);
+            FunctionalTestHelper.CreateOnePost(dbContext);
+
+            controller = new PostController();
+            controller.SetFakeControllerContext();
+
+            // Act
+            var result = controller.Detail(1) as ViewResult;
+
+            // Assert
+            result.ViewName.ShouldEqual("Detail");
+            var model = result.Model as PostDetailViewModel;
+            model.ShouldNotBeNull();
+            model.Title.Contains("title");
+            model.Content.Contains("content");
+        }
+
         
     }
 }

@@ -13,10 +13,10 @@ namespace MyStory.Tests.UnitTests.Models
     public class DomainMappingTest : BaseModelTest
     {
         
-        [TestMethod]
-        public void TestMethod1()
-        {
+        //[TestMethod]
+        //public void TestMethod1()
+        //{
             
-        }
+        //}
     }
 }

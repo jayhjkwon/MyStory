@@ -100,7 +100,7 @@ namespace MyStory.Controllers
         [HttpPost]
         public ActionResult Delete(int id)
         {
-            var post = dbContext.Posts.Single(p => p.Id == id);
+            var post = dbContext.Posts.SingleOrDefault(p => p.Id == id);
             if (post == null)
                 return HttpNotFound();
 
