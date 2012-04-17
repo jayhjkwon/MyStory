@@ -222,7 +222,7 @@ namespace MyStory.Tests.FunctionalTests.Controllers
             FunctionalTestHelper.CreateOnePost(dbContext);
 
             controller = new PostController();
-            controller.SetFakeControllerContext(false);
+            controller.SetFakeControllerContext(true);
 
             
             // Act
