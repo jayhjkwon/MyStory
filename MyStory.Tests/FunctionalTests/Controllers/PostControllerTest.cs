@@ -98,7 +98,7 @@ namespace MyStory.Tests.FunctionalTests.Controllers
 
             var mock = new Mock<ControllerContext>();
             mock.SetupGet(x => x.HttpContext.Request.IsAuthenticated).Returns(true);
-            mock.SetupGet(x => x.HttpContext.User.Identity.Name).Returns("a@a.com");
+            mock.SetupGet(x => x.HttpContext.User.Identity.Name).Returns(FunctionalTestHelper.AccountEmail);
 
 
             controller = new PostController();
@@ -109,8 +109,8 @@ namespace MyStory.Tests.FunctionalTests.Controllers
             var post = result.Model as PostInput;
 
             // Assert
-            "title".ShouldEqual(post.Title);
-            "content".ShouldEqual(post.Content);
+            post.Title.ShouldEqual(FunctionalTestHelper.PostTitle);
+            post.Content.ShouldEqual(FunctionalTestHelper.PostContent);
             "Edit".ShouldEqual(result.ViewName);
         }
 
@@ -254,8 +254,8 @@ namespace MyStory.Tests.FunctionalTests.Controllers
             result.ViewName.ShouldEqual("Detail");
             var model = result.Model as PostDetailViewModel;
             model.ShouldNotBeNull();
-            model.Title.Contains("title");
-            model.Content.Contains("content");
+            model.Title.Contains(FunctionalTestHelper.PostTitle);
+            model.Content.Contains(FunctionalTestHelper.PostContent);
         }
 
         

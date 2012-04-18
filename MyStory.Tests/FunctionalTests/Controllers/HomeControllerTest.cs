@@ -91,8 +91,8 @@ namespace MyStory.Tests.FunctionalTests.Controllers
             vm.First().Id.ShouldNotBeNull();
             vm.First().Title.ShouldNotBeNull();
             vm.First().Content.ShouldNotBeNull();
-            vm.First().Title.ShouldEqual("title");
-            vm.First().Content.ShouldContain("content");
+            vm.First().Title.ShouldEqual(FunctionalTestHelper.PostTitle);
+            vm.First().Content.ShouldContain(FunctionalTestHelper.PostContent);
         }
 
     }
