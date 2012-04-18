@@ -11,6 +11,7 @@ using Moq;
 using MyStory.ViewModels;
 using MyStory.Services;
 using System.Collections.Specialized;
+using System.Web.Script.Serialization;
 
 namespace MyStory.Tests.FunctionalTests.Controllers
 {
@@ -192,6 +193,27 @@ namespace MyStory.Tests.FunctionalTests.Controllers
             // Assert
             result.RouteValues["controller"].ShouldEqual("Home");
             result.RouteValues["action"].ShouldEqual("Index");
+
+            dbContext.Posts.Count().ShouldEqual(0);
+        }
+
+        [TestMethod]
+        public void delete_method_should_delete_post_via_ajax()
+        {
+            // Arrange
+            FunctionalTestHelper.CreateAccountAndBlog(dbContext);
+            FunctionalTestHelper.CreateOnePost(dbContext);
+
+            controller = new PostController();
+            controller.SetFakeControllerContext(isAjaxRequest:true);
+
+            // Act
+            var result = controller.Delete(1) as JsonResult;
+
+            // Assert
+            var serializer = new JavaScriptSerializer();
+            var output = serializer.Serialize(result.Data);
+            Assert.AreEqual(@"{""success"":true}", output);
 
             dbContext.Posts.Count().ShouldEqual(0);
         }

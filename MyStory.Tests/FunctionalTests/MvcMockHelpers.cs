@@ -14,6 +14,7 @@ namespace MyStory.Tests.FunctionalTests
     public static class MvcMockHelpers
     {
         public static bool _IsAuthenticated { get; set; }
+        public static bool _IsAjaxRequest { get; set; }
 
         public static HttpContextBase FakeHttpContext()
 		{
@@ -33,6 +34,8 @@ namespace MyStory.Tests.FunctionalTests
             request.Setup(req => req.QueryString).Returns(new NameValueCollection());
             request.Setup(req => req.Files).Returns(files.Object);
             request.Setup(req => req.IsAuthenticated).Returns(_IsAuthenticated);
+            if(_IsAjaxRequest)
+                request.Setup(req => req["X-Requested-With"]).Returns("XMLHttpRequest");
 
             response.Setup(res => res.ApplyAppPathModifier(It.IsAny<string>())).
                 Returns((string virtualPath) => virtualPath);
@@ -59,9 +62,11 @@ namespace MyStory.Tests.FunctionalTests
 		} 
 
 		public static void SetFakeControllerContext(this Controller controller,
-                                                    bool isAuthenticated = true)
+                                                    bool isAuthenticated = true,
+                                                    bool isAjaxRequest = false)
 		{
             _IsAuthenticated = isAuthenticated;
+            _IsAjaxRequest = isAjaxRequest;
 
 			var httpContext = FakeHttpContext();
 			
