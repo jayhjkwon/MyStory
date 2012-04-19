@@ -9,6 +9,7 @@ namespace MyStory.Tests.UnitTests
     [TestClass]
     public class AuthorizedActionMethodsTest
     {
+        // TODO test if Authorize attribute is declared
         [TestMethod]
         public void non_auth_user_cannot_access_write_form_method()
         {
