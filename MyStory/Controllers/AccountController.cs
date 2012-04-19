@@ -6,27 +6,37 @@ using System.Web.Mvc;
 using MyStory.Models;
 using MyStory.ViewModels;
 using System.Web.Security;
+using MyStory.Services;
 
 namespace MyStory.Controllers
 {
     public class AccountController : MyStoryController
     {
+        private IAuthenticationService _authenticationService;
+
+        public AccountController(){}
+
+        public AccountController(IAuthenticationService authenticationService)
+        {
+            this._authenticationService = authenticationService;
+        }
+
         public ActionResult Register()
         {
             // because mystory is self-hosted blog engine
             // only one account-blog is allowed
             // so prevent creating account !!
             var numberOfAccounts = DbContext.Accounts.Count();
-            ViewBag.NumberOfAccounts = numberOfAccounts;
+            ViewBag.AlreadyOneAccountExist = numberOfAccounts > 0 ? true : false;
 
-            return View();
+            return View("Register");
         }
 
         [HttpPost]
         public ActionResult Register(AccountInput accountInput)
         {
             if (!ModelState.IsValid)
-                return View(accountInput);
+                return View("Register", accountInput);
 
             var blog = new Blog
             {
@@ -44,14 +54,15 @@ namespace MyStory.Controllers
             DbContext.Blogs.Add(blog);
             DbContext.SaveChanges();
 
-            FormsAuthentication.SetAuthCookie(accountInput.AccountEmail, accountInput.RememberMe);
+            _authenticationService.SetAuthCookie(accountInput.AccountEmail, accountInput.RememberMe);
+
             return RedirectToAction("Index", "Home");
         }
 
         [HttpGet]
         public ActionResult LogOn()
         {
-            return View();
+            return View("LogOn");
         }
 
         [HttpPost]
@@ -69,7 +80,7 @@ namespace MyStory.Controllers
             }
             else
             {
-                FormsAuthentication.SetAuthCookie(input.AccountEmail, input.RememberMe);
+                _authenticationService.SetAuthCookie(input.AccountEmail, input.RememberMe);
 
                 if (string.IsNullOrEmpty(input.ReturnUrl))
                     return RedirectToAction("Index", "Home");
@@ -81,7 +92,7 @@ namespace MyStory.Controllers
 
         public ActionResult LogOff()
         {
-            FormsAuthentication.SignOut();
+            _authenticationService.LogOut();
             return RedirectToAction("Index", "Home");
         }
 

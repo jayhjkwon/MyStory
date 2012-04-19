@@ -40,7 +40,7 @@ namespace MyStory.Tests.FunctionalTests.Controllers
         }
 
         [TestMethod]
-        public void sidebar_method_should_return_comment()
+        public void Sidebar_Method_Should_Return_Comment()
         {
             FunctionalTestHelper.CreateAutomapperMap();
             FunctionalTestHelper.CreateAccountAndBlog(_dbContext);
@@ -60,7 +60,7 @@ namespace MyStory.Tests.FunctionalTests.Controllers
         }
 
         [TestMethod]
-        public void comment_should_less_then_50()
+        public void Comment_Length_Should_Less_Then_50()
         {
             FunctionalTestHelper.CreateAutomapperMap();
             FunctionalTestHelper.CreateAccountAndBlog(_dbContext);
@@ -81,7 +81,7 @@ namespace MyStory.Tests.FunctionalTests.Controllers
         }
 
         [TestMethod]
-        public void postcommentslist_method_should_validate_postid_isnull()
+        public void Postcommentslist_Method_Should_Validate_Postid_Isnull()
         {
             _controller = new CommentController();
             var result = _controller.PostCommentsList(null) as ViewResult;
@@ -90,7 +90,7 @@ namespace MyStory.Tests.FunctionalTests.Controllers
         }
 
         [TestMethod]
-        public void postcommentslist_method_should_return_model()
+        public void Postcommentslist_Method_Should_Return_Model()
         {
             FunctionalTestHelper.CreateAutomapperMap();
             FunctionalTestHelper.CreateAccountAndBlog(_dbContext);
@@ -110,7 +110,7 @@ namespace MyStory.Tests.FunctionalTests.Controllers
         }
 
         [TestMethod]
-        public void write_should_validate_model()
+        public void Write_Should_Validate_Model()
         {
             _controller = new CommentController();
             _controller.ModelState.AddModelError("modelerror","modelerror");
@@ -128,7 +128,7 @@ namespace MyStory.Tests.FunctionalTests.Controllers
         }
 
         [TestMethod]
-        public void write_should_save_comment()
+        public void Write_Should_Save_Comment()
         {
             FunctionalTestHelper.CreateAutomapperMap();
             FunctionalTestHelper.CreateAccountAndBlog(_dbContext);

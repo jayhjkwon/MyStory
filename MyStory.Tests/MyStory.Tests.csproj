@@ -94,6 +94,7 @@
     </CodeAnalysisDependentAssemblyPaths>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FunctionalTests\Controllers\AccountControllerTest.cs" />
     <Compile Include="FunctionalTests\Controllers\CommentControllerTest.cs" />
     <Compile Include="FunctionalTests\Controllers\HomeControllerTest.cs" />
     <Compile Include="FunctionalTests\Controllers\PostControllerTest.cs" />

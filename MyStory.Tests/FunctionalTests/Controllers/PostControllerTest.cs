@@ -44,7 +44,7 @@ namespace MyStory.Tests.FunctionalTests.Controllers
         }
 
         [TestMethod]
-        public void invalid_model_should_not_save()
+        public void Invalid_Model_Should_Not_Save()
         {
             // Arrange
             _controller = new PostController();
@@ -60,7 +60,7 @@ namespace MyStory.Tests.FunctionalTests.Controllers
         }
 
         [TestMethod]
-        public void valid_model_should_be_saved()
+        public void Valid_Model_Should_Be_Saved()
         {
             // Arrange
             FunctionalTestHelper.CreateAutomapperMap();
@@ -89,7 +89,7 @@ namespace MyStory.Tests.FunctionalTests.Controllers
         }
 
         [TestMethod]
-        public void edit_methood_should_return_postmodel()
+        public void Edit_Methood_Should_Return_Postmodel()
         {
             // Arrange
             FunctionalTestHelper.CreateAutomapperMap();
@@ -115,7 +115,7 @@ namespace MyStory.Tests.FunctionalTests.Controllers
         }
 
         [TestMethod]
-        public void edit_method_should_validate_model()
+        public void Edit_Method_Should_Validate_Model()
         {
             // Arrange
             _controller = new PostController();
@@ -127,7 +127,7 @@ namespace MyStory.Tests.FunctionalTests.Controllers
         }
 
         [TestMethod]
-        public void edit_method_should_save_post()
+        public void Edit_Method_Should_Save_Post()
         {
             // Arrange
             FunctionalTestHelper.CreateAutomapperMap();
@@ -162,7 +162,7 @@ namespace MyStory.Tests.FunctionalTests.Controllers
         }
 
         [TestMethod]
-        public void delete_method_should_return_httpnotfouldresult()
+        public void Delete_Method_Should_Return_Httpnotfoubdresult()
         {
             // Arrange
             FunctionalTestHelper.CreateAccountAndBlog(_dbContext);
@@ -178,7 +178,7 @@ namespace MyStory.Tests.FunctionalTests.Controllers
         }
 
         [TestMethod]
-        public void delete_method_should_delete_post()
+        public void Delete_Method_Should_Delete_Post()
         {
             // Arrange
             FunctionalTestHelper.CreateAccountAndBlog(_dbContext);
@@ -198,7 +198,7 @@ namespace MyStory.Tests.FunctionalTests.Controllers
         }
 
         [TestMethod]
-        public void delete_method_should_delete_post_via_ajax()
+        public void Delete_Method_Should_Delete_Post_Via_Ajax()
         {
             // Arrange
             FunctionalTestHelper.CreateAccountAndBlog(_dbContext);
@@ -219,7 +219,7 @@ namespace MyStory.Tests.FunctionalTests.Controllers
         }
 
         [TestMethod]
-        public void detail_method_should_validate_model()
+        public void Detail_Method_Should_Validate_Model()
         {
             // Arrange 
             FunctionalTestHelper.CreateAutomapperMap();
@@ -236,7 +236,7 @@ namespace MyStory.Tests.FunctionalTests.Controllers
         }
 
         [TestMethod]
-        public void detail_method_should_return_post()
+        public void Detail_Method_Should_Return_Post()
         {
             // Arrange 
             FunctionalTestHelper.CreateAutomapperMap();

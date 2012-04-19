@@ -42,7 +42,7 @@ namespace MyStory.Tests.FunctionalTests.Controllers
         }
 
         [TestMethod]
-        public void index_shoul_return_zero_account()
+        public void Index_Should_Return_Zero_Account()
         {
             // Arrange
             _controller = new HomeController();
@@ -56,7 +56,7 @@ namespace MyStory.Tests.FunctionalTests.Controllers
         }
 
         [TestMethod]
-        public void index_shoul_return_one_account()
+        public void Index_Shoul_Return_One_Account()
         {
             // Arrange
             FunctionalTestHelper.CreateAccountAndBlog(_context);
@@ -71,7 +71,7 @@ namespace MyStory.Tests.FunctionalTests.Controllers
         }
 
         [TestMethod]
-        public void index_shoul_return_one_post()
+        public void Index_Should_Return_One_Post()
         {
             // Arrange
             FunctionalTestHelper.CreateAutomapperMap();
