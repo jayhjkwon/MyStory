@@ -21,25 +21,25 @@ namespace MyStory.Tests.FunctionalTests.Controllers
     [TestClass]
     public class PostControllerTest
     {
-        private PostController controller;
-        private MyStoryContext dbContext;
+        private PostController _controller;
+        private MyStoryContext _dbContext;
 
         [TestInitialize()]
         public void TestInitialize()
         {
             // Arrange
-            dbContext = new MyStoryContext();
-            dbContext.Database.Delete(); 
-            dbContext.Database.Create();
+            _dbContext = new MyStoryContext();
+            _dbContext.Database.Delete(); 
+            _dbContext.Database.Create();
         }
 
         [TestCleanup()]
         public void TestCleanup()
         {
-            if (controller != null)
+            if (_controller != null)
             {
-                dbContext.Database.Delete();
-                controller.Dispose();
+                _dbContext.Database.Delete();
+                _controller.Dispose();
             }
         }
 
@@ -47,12 +47,12 @@ namespace MyStory.Tests.FunctionalTests.Controllers
         public void invalid_model_should_not_save()
         {
             // Arrange
-            controller = new PostController();
-            controller.ModelState.AddModelError("modelerror", "modelerror");
+            _controller = new PostController();
+            _controller.ModelState.AddModelError("modelerror", "modelerror");
             var postInput = new PostInput();
             
             // Act
-            var result = controller.Write(postInput) as ViewResult;
+            var result = _controller.Write(postInput) as ViewResult;
 
             // Assert
             result.ViewData.ModelState.IsValid.ShouldBeFalse();
@@ -64,14 +64,14 @@ namespace MyStory.Tests.FunctionalTests.Controllers
         {
             // Arrange
             FunctionalTestHelper.CreateAutomapperMap();
-            FunctionalTestHelper.CreateAccountAndBlog(dbContext);
+            FunctionalTestHelper.CreateAccountAndBlog(_dbContext);
 
             var controllerContext = new Mock<ControllerContext>();
             controllerContext.SetupGet(x => x.HttpContext.Request.IsAuthenticated).Returns(true);
             controllerContext.SetupGet(x => x.HttpContext.User.Identity.Name).Returns("a@a.com");
             
-            controller = new PostController(new TagService());
-            controller.ControllerContext = controllerContext.Object;
+            _controller = new PostController(new TagService());
+            _controller.ControllerContext = controllerContext.Object;
 
             var postInput = new PostInput
             {
@@ -80,10 +80,10 @@ namespace MyStory.Tests.FunctionalTests.Controllers
             };       
 
             // Act
-            var result = controller.Write(postInput) as RedirectToRouteResult;
+            var result = _controller.Write(postInput) as RedirectToRouteResult;
 
             // Assert
-            dbContext.Posts.Count().ShouldEqual(1);
+            _dbContext.Posts.Count().ShouldEqual(1);
             result.RouteValues["controller"].ShouldEqual("Home");
             result.RouteValues["action"].ShouldEqual("Index");
         }
@@ -93,19 +93,19 @@ namespace MyStory.Tests.FunctionalTests.Controllers
         {
             // Arrange
             FunctionalTestHelper.CreateAutomapperMap();
-            FunctionalTestHelper.CreateAccountAndBlog(dbContext);
-            FunctionalTestHelper.CreateOnePost(dbContext);
+            FunctionalTestHelper.CreateAccountAndBlog(_dbContext);
+            FunctionalTestHelper.CreateOnePost(_dbContext);
 
             var mock = new Mock<ControllerContext>();
             mock.SetupGet(x => x.HttpContext.Request.IsAuthenticated).Returns(true);
             mock.SetupGet(x => x.HttpContext.User.Identity.Name).Returns(FunctionalTestHelper.AccountEmail);
 
 
-            controller = new PostController();
-            controller.ControllerContext = mock.Object;
+            _controller = new PostController();
+            _controller.ControllerContext = mock.Object;
 
             // Act
-            var result = controller.Edit(1) as ViewResult;
+            var result = _controller.Edit(1) as ViewResult;
             var post = result.Model as PostInput;
 
             // Assert
@@ -118,10 +118,10 @@ namespace MyStory.Tests.FunctionalTests.Controllers
         public void edit_method_should_validate_model()
         {
             // Arrange
-            controller = new PostController();
-            controller.ModelState.AddModelError("modelerror", "modelerror");
+            _controller = new PostController();
+            _controller.ModelState.AddModelError("modelerror", "modelerror");
 
-            var result = controller.Edit(new PostInput()) as ViewResult;
+            var result = _controller.Edit(new PostInput()) as ViewResult;
             result.ViewName.SequenceEqual("Edit");
             result.ViewData.ModelState.IsValid.ShouldBeFalse();
         }
@@ -131,15 +131,15 @@ namespace MyStory.Tests.FunctionalTests.Controllers
         {
             // Arrange
             FunctionalTestHelper.CreateAutomapperMap();
-            FunctionalTestHelper.CreateAccountAndBlog(dbContext);
-            FunctionalTestHelper.CreateOnePost(dbContext);
+            FunctionalTestHelper.CreateAccountAndBlog(_dbContext);
+            FunctionalTestHelper.CreateOnePost(_dbContext);
             
-            controller = new PostController(new TagService());
-            controller.SetFakeControllerContext();
+            _controller = new PostController(new TagService());
+            _controller.SetFakeControllerContext();
 
             // valueprovider is needed for TryUpdateModel() method
             FormCollection form = new FormCollection();
-            controller.ValueProvider = form.ToValueProvider();
+            _controller.ValueProvider = form.ToValueProvider();
 
             var input = new PostInput
             {
@@ -149,12 +149,12 @@ namespace MyStory.Tests.FunctionalTests.Controllers
             };
 
             // Act
-            var result = controller.Edit(input) as RedirectToRouteResult;
+            var result = _controller.Edit(input) as RedirectToRouteResult;
 
             // Assert
             result.RouteValues["controller"].ShouldEqual("Post");
             result.RouteValues["action"].ShouldEqual("Detail");
-            var post = dbContext.Posts.SingleOrDefault(p => p.Id == 1);
+            var post = _dbContext.Posts.SingleOrDefault(p => p.Id == 1);
             post.ShouldNotBeNull();
             post.Title.Contains("edited");
             post.Content.Contains("edited");
@@ -165,12 +165,12 @@ namespace MyStory.Tests.FunctionalTests.Controllers
         public void delete_method_should_return_httpnotfouldresult()
         {
             // Arrange
-            FunctionalTestHelper.CreateAccountAndBlog(dbContext);
-            FunctionalTestHelper.CreateOnePost(dbContext);
+            FunctionalTestHelper.CreateAccountAndBlog(_dbContext);
+            FunctionalTestHelper.CreateOnePost(_dbContext);
 
             // Act
-            controller = new PostController();
-            var result = controller.Delete(1000) as HttpNotFoundResult;
+            _controller = new PostController();
+            var result = _controller.Delete(1000) as HttpNotFoundResult;
 
             // Assert
             result.ShouldNotBeNull();
@@ -181,41 +181,41 @@ namespace MyStory.Tests.FunctionalTests.Controllers
         public void delete_method_should_delete_post()
         {
             // Arrange
-            FunctionalTestHelper.CreateAccountAndBlog(dbContext);
-            FunctionalTestHelper.CreateOnePost(dbContext);
+            FunctionalTestHelper.CreateAccountAndBlog(_dbContext);
+            FunctionalTestHelper.CreateOnePost(_dbContext);
 
-            controller = new PostController();
-            controller.SetFakeControllerContext();
+            _controller = new PostController();
+            _controller.SetFakeControllerContext();
 
             // Act
-            var result = controller.Delete(1) as RedirectToRouteResult;
+            var result = _controller.Delete(1) as RedirectToRouteResult;
 
             // Assert
             result.RouteValues["controller"].ShouldEqual("Home");
             result.RouteValues["action"].ShouldEqual("Index");
 
-            dbContext.Posts.Count().ShouldEqual(0);
+            _dbContext.Posts.Count().ShouldEqual(0);
         }
 
         [TestMethod]
         public void delete_method_should_delete_post_via_ajax()
         {
             // Arrange
-            FunctionalTestHelper.CreateAccountAndBlog(dbContext);
-            FunctionalTestHelper.CreateOnePost(dbContext);
+            FunctionalTestHelper.CreateAccountAndBlog(_dbContext);
+            FunctionalTestHelper.CreateOnePost(_dbContext);
 
-            controller = new PostController();
-            controller.SetFakeControllerContext(isAjaxRequest:true);
+            _controller = new PostController();
+            _controller.SetFakeControllerContext(isAjaxRequest:true);
 
             // Act
-            var result = controller.Delete(1) as JsonResult;
+            var result = _controller.Delete(1) as JsonResult;
 
             // Assert
             var serializer = new JavaScriptSerializer();
             var output = serializer.Serialize(result.Data);
             Assert.AreEqual(@"{""success"":true}", output);
 
-            dbContext.Posts.Count().ShouldEqual(0);
+            _dbContext.Posts.Count().ShouldEqual(0);
         }
 
         [TestMethod]
@@ -223,12 +223,12 @@ namespace MyStory.Tests.FunctionalTests.Controllers
         {
             // Arrange 
             FunctionalTestHelper.CreateAutomapperMap();
-            FunctionalTestHelper.CreateAccountAndBlog(dbContext);
-            FunctionalTestHelper.CreateOnePost(dbContext);
+            FunctionalTestHelper.CreateAccountAndBlog(_dbContext);
+            FunctionalTestHelper.CreateOnePost(_dbContext);
 
             // Act
-            controller = new PostController();
-            var result = controller.Detail(1000) as HttpNotFoundResult;
+            _controller = new PostController();
+            var result = _controller.Detail(1000) as HttpNotFoundResult;
 
             // Assert
             result.ShouldNotBeNull();
@@ -240,15 +240,15 @@ namespace MyStory.Tests.FunctionalTests.Controllers
         {
             // Arrange 
             FunctionalTestHelper.CreateAutomapperMap();
-            FunctionalTestHelper.CreateAccountAndBlog(dbContext);
-            FunctionalTestHelper.CreateOnePost(dbContext);
+            FunctionalTestHelper.CreateAccountAndBlog(_dbContext);
+            FunctionalTestHelper.CreateOnePost(_dbContext);
 
-            controller = new PostController();
-            controller.SetFakeControllerContext(true);
+            _controller = new PostController();
+            _controller.SetFakeControllerContext(true);
 
             
             // Act
-            var result = controller.Detail(1) as ViewResult;
+            var result = _controller.Detail(1) as ViewResult;
 
             // Assert
             result.ViewName.ShouldEqual("Detail");

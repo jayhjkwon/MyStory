@@ -26,7 +26,7 @@ namespace MyStory.Controllers
             // I need to find more elegance way to solve this issue.
 
             // #1
-            var tags = dbContext.Tags.Where(t => t.TagText.ToUpper().Contains(term.ToUpper())).Select(t => t.TagText).ToList();
+            var tags = DbContext.Tags.Where(t => t.TagText.ToUpper().Contains(term.ToUpper())).Select(t => t.TagText).ToList();
             
             // #2
             //var allTags = dbContext.Tags.ToList();
@@ -43,7 +43,7 @@ namespace MyStory.Controllers
         [ChildActionOnly]
         public ActionResult Sidebar()
         {
-            var tags = from t in dbContext.Tags
+            var tags = from t in DbContext.Tags
                        where t.Posts.Count > 0
                        orderby t.Posts.Count descending
                        select new TagSidebarViewModel
@@ -68,7 +68,7 @@ namespace MyStory.Controllers
                             PostsPerPage = perPage, 
                             Tag=tag 
                         }
-                        .GetQuery(dbContext)
+                        .GetQuery(DbContext)
                         .ToList();
 
             var postListViewModel = Mapper.Map<List<Post>, List<PostListViewModel>>(posts);

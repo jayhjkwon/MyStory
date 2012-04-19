@@ -19,7 +19,7 @@ namespace MyStory.Controllers
 {
     public class PostController : MyStoryController
     {
-        private ITagService _tagService;
+        private readonly ITagService _tagService;
 
         public PostController()
         {
@@ -51,10 +51,10 @@ namespace MyStory.Controllers
             post.BlogId = blogId;
             post.DateCreated = post.DateModified = DateTime.Now;
 
-            _tagService.UpdateTag(dbContext, input, post);
+            _tagService.UpdateTag(DbContext, input, post);
             
-            dbContext.Posts.Add(post);
-            dbContext.SaveChanges();
+            DbContext.Posts.Add(post);
+            DbContext.SaveChanges();
 
             return RedirectToAction("Index", "Home");
         }
@@ -63,7 +63,7 @@ namespace MyStory.Controllers
         [HttpGet]
         public ActionResult Edit(int id)
         {
-            var post = dbContext.Posts.SingleOrDefault(p => p.Id == id);
+            var post = DbContext.Posts.SingleOrDefault(p => p.Id == id);
             var postInput = Mapper.Map<Post, PostInput>(post);
             postInput.Tags = post.Tags.ConverTagToString();
             return View("Edit", postInput);
@@ -77,16 +77,16 @@ namespace MyStory.Controllers
             if (!ModelState.IsValid)
                 return View("Edit", input);
 
-            var post = dbContext.Posts.Single(p => p.Id == input.Id);
+            var post = DbContext.Posts.Single(p => p.Id == input.Id);
 
             if (TryUpdateModel(post, "", null, new string[]{"Tags"}))
             {
                 post.DateModified = DateTime.Now;
 
-                _tagService.UpdateTag(dbContext, input, post);
+                _tagService.UpdateTag(DbContext, input, post);
 
-                dbContext.Entry(post).State = System.Data.EntityState.Modified;
-                dbContext.SaveChanges();
+                DbContext.Entry(post).State = System.Data.EntityState.Modified;
+                DbContext.SaveChanges();
 
                 return RedirectToAction("Detail", "Post", new { id = input.Id });
             }
@@ -100,12 +100,12 @@ namespace MyStory.Controllers
         [HttpPost]
         public ActionResult Delete(int id)
         {
-            var post = dbContext.Posts.SingleOrDefault(p => p.Id == id);
+            var post = DbContext.Posts.SingleOrDefault(p => p.Id == id);
             if (post == null)
                 return HttpNotFound();
 
-            dbContext.Posts.Remove(post);
-            dbContext.SaveChanges();
+            DbContext.Posts.Remove(post);
+            DbContext.SaveChanges();
 
             if (Request.IsAjaxRequest()) 
             {
@@ -127,7 +127,7 @@ namespace MyStory.Controllers
             //ViewBag.FaceBookAppId = ConfigurationManager.AppSettings["facebook.appid"];
             //ViewBag.FaceBookAppSecret = ConfigurationManager.AppSettings["facebook.appsecret"];
 
-            var post = dbContext.Posts.SingleOrDefault(p => p.Id == id);
+            var post = DbContext.Posts.SingleOrDefault(p => p.Id == id);
 
             if (post == null)
                 return HttpNotFound();
@@ -178,7 +178,7 @@ namespace MyStory.Controllers
 
             // visitor
             var email = CommenterCookieManager.GetCommenterCookieValue(Request);
-            var commenter = dbContext.Commenters.SingleOrDefault(c => c.Email == email);
+            var commenter = DbContext.Commenters.SingleOrDefault(c => c.Email == email);
             if (commenter != null)
             {
                 vm.CommentInput = new CommentInput

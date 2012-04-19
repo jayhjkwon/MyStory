@@ -16,7 +16,7 @@ namespace MyStory.Controllers
             // because mystory is self-hosted blog engine
             // only one account-blog is allowed
             // so prevent creating account !!
-            var numberOfAccounts = dbContext.Accounts.Count();
+            var numberOfAccounts = DbContext.Accounts.Count();
             ViewBag.NumberOfAccounts = numberOfAccounts;
 
             return View();
@@ -41,8 +41,8 @@ namespace MyStory.Controllers
                 }
             };
 
-            dbContext.Blogs.Add(blog);
-            dbContext.SaveChanges();
+            DbContext.Blogs.Add(blog);
+            DbContext.SaveChanges();
 
             FormsAuthentication.SetAuthCookie(accountInput.AccountEmail, accountInput.RememberMe);
             return RedirectToAction("Index", "Home");
@@ -60,7 +60,7 @@ namespace MyStory.Controllers
             if (!ModelState.IsValid)
                 return View(input);
 
-            var accountFromDb = dbContext.Accounts.FirstOrDefault(a => a.Email == input.AccountEmail && a.Password == input.AccountPassword);
+            var accountFromDb = DbContext.Accounts.FirstOrDefault(a => a.Email == input.AccountEmail && a.Password == input.AccountPassword);
 
             if (accountFromDb == null)
             {
@@ -99,7 +99,7 @@ namespace MyStory.Controllers
         [ChildActionOnly]
         public ActionResult Sidebar()
         {
-            var user = dbContext.Accounts.FirstOrDefault(a=> !a.Name.ToUpper().Contains("test"));
+            var user = DbContext.Accounts.FirstOrDefault(a=> !a.Name.ToUpper().Contains("test"));
             if (user != null)
             {
                 var blogOwner = new CurrentUserViewModel

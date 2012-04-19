@@ -17,27 +17,27 @@ namespace MyStory.Tests.FunctionalTests.Controllers
     [TestClass]
     public class HomeControllerTest
     {
-        private HomeController controller;
-        private MyStoryContext context;
+        private HomeController _controller;
+        private MyStoryContext _context;
 
         // Use TestInitialize to run code before running each test 
         [TestInitialize()]
         public void TestInitialize() 
         {
             // Arrange
-            context = new MyStoryContext();
-            context.Database.Delete(); 
-            context.Database.Create();
+            _context = new MyStoryContext();
+            _context.Database.Delete(); 
+            _context.Database.Create();
         }
         
         // Use TestCleanup to run code after each test has run
         [TestCleanup()]
         public void TestCleanup() 
         {
-            if (controller != null)
+            if (_controller != null)
             {
-                context.Database.Delete();
-                controller.Dispose();
+                _context.Database.Delete();
+                _controller.Dispose();
             }
         }
 
@@ -45,10 +45,10 @@ namespace MyStory.Tests.FunctionalTests.Controllers
         public void index_shoul_return_zero_account()
         {
             // Arrange
-            controller = new HomeController();
+            _controller = new HomeController();
 
             // Act
-            var actionResult = controller.Index() as ViewResult;
+            var actionResult = _controller.Index() as ViewResult;
 
             // Assert
             int cnt = actionResult.ViewBag.NumberOfAccounts;
@@ -59,11 +59,11 @@ namespace MyStory.Tests.FunctionalTests.Controllers
         public void index_shoul_return_one_account()
         {
             // Arrange
-            FunctionalTestHelper.CreateAccountAndBlog(context);
-            controller = new HomeController();
+            FunctionalTestHelper.CreateAccountAndBlog(_context);
+            _controller = new HomeController();
 
             // Act
-            var actionResult = controller.Index() as ViewResult;
+            var actionResult = _controller.Index() as ViewResult;
 
             // Assert
             int cnt = actionResult.ViewBag.NumberOfAccounts;
@@ -75,13 +75,13 @@ namespace MyStory.Tests.FunctionalTests.Controllers
         {
             // Arrange
             FunctionalTestHelper.CreateAutomapperMap();
-            FunctionalTestHelper.CreateAccountAndBlog(context);
-            FunctionalTestHelper.CreateOnePost(context);
+            FunctionalTestHelper.CreateAccountAndBlog(_context);
+            FunctionalTestHelper.CreateOnePost(_context);
 
-            controller = new HomeController();
+            _controller = new HomeController();
 
             // Act
-            var actionResult = controller.Index() as ViewResult;
+            var actionResult = _controller.Index() as ViewResult;
 
             // Assert
             actionResult.ViewName.ShouldEqual("Index");

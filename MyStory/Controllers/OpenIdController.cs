@@ -15,12 +15,12 @@ namespace MyStory.Controllers
 {
     public class OpenIdController : MyStoryController
     {
-        private static OpenIdRelyingParty openid = new OpenIdRelyingParty();
+        private static readonly OpenIdRelyingParty Openid = new OpenIdRelyingParty();
 
         [ValidateInput(false)]
         public ActionResult Authenticate(string returnUrl)
         {
-            var response = openid.GetResponse();
+            var response = Openid.GetResponse();
             if (response == null)
             {
                 Identifier id;
@@ -33,7 +33,7 @@ namespace MyStory.Controllers
                         {
                             Query = string.Format("returnUrl={0}", Uri.EscapeUriString(returnUrl))
                         };
-                        IAuthenticationRequest request = openid.CreateRequest(Request.Form["openid_identifier"], Realm.AutoDetect, uri.Uri);
+                        IAuthenticationRequest request = Openid.CreateRequest(Request.Form["openid_identifier"], Realm.AutoDetect, uri.Uri);
 
                         // google openid
                         var fetch = new FetchRequest();
@@ -95,10 +95,10 @@ namespace MyStory.Controllers
                         }
                         
                         CommenterCookieManager.SetCommenterCookieValue(Response, email);
-                        var commenter = dbContext.Commenters.SingleOrDefault(c => c.Email == email);
+                        var commenter = DbContext.Commenters.SingleOrDefault(c => c.Email == email);
                         if (commenter == null)
                         {
-                            dbContext.Commenters.Add(new Commenter
+                            DbContext.Commenters.Add(new Commenter
                             {
                                 OpenId = response.ClaimedIdentifier.ToString(),
                                 Email = email,
@@ -110,7 +110,7 @@ namespace MyStory.Controllers
                         {
                             commenter.OpenId = commenter.OpenId ?? response.ClaimedIdentifier.ToString();
                         }
-                        dbContext.SaveChanges();
+                        DbContext.SaveChanges();
 
                         return Redirect(returnUrl);
 

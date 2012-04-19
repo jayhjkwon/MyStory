@@ -17,11 +17,11 @@ namespace MyStory.Controllers
     {
         public ActionResult Index(int page=1)
         {
-            ViewBag.NumberOfAccounts = dbContext.Accounts.Count();
+            ViewBag.NumberOfAccounts = DbContext.Accounts.Count();
 
             int perPage = page == 1 ? 20 : 10;
 
-            var posts = new PostQuery() { CurrentPageNumber=page, PostsPerPage=perPage}.GetQuery(dbContext).ToList();
+            var posts = new PostQuery() { CurrentPageNumber=page, PostsPerPage=perPage}.GetQuery(DbContext).ToList();
 
             var postListViewModel = Mapper.Map<List<Post>, List<PostListViewModel>>(posts);
 

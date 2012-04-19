@@ -14,7 +14,7 @@ namespace MyStory.Controllers
         [ChildActionOnly]
         public ActionResult Sidebar()
         {
-            var recentComments = dbContext.Comments.OrderByDescending(c => c.DateCreated).Take(10).ToList();
+            var recentComments = DbContext.Comments.OrderByDescending(c => c.DateCreated).Take(10).ToList();
             var recentCommentsViewModel = Mapper.Map<List<Comment>, List<CommentSidebarViewModel>>(recentComments);
             recentCommentsViewModel.ForEach(c =>
             {
@@ -30,7 +30,7 @@ namespace MyStory.Controllers
             if (postId == null)
                 return View("PostCommentsList");
 
-            var comments = dbContext.Comments.Where(c => c.PostId == postId).OrderBy(c=>c.DateCreated);
+            var comments = DbContext.Comments.Where(c => c.PostId == postId).OrderBy(c=>c.DateCreated);
 
             var postCommentsViewModel = new PostCommentsViewModel();
             postCommentsViewModel.PostId = postId.Value;
@@ -68,9 +68,9 @@ namespace MyStory.Controllers
             }
 
             // TODO handle commenter info when info in db is different from info from ui
-            var commenter = dbContext.Commenters.SingleOrDefault(c => c.Email == input.Email) ?? GetCommenter(input);
+            var commenter = DbContext.Commenters.SingleOrDefault(c => c.Email == input.Email) ?? GetCommenter(input);
 
-            dbContext.Comments.Add(new Comment
+            DbContext.Comments.Add(new Comment
             {
                 PostId = id,
                 Content = input.Content,
@@ -78,14 +78,14 @@ namespace MyStory.Controllers
                 Commenter = commenter
             });
 
-            dbContext.SaveChanges();
+            DbContext.SaveChanges();
 
             return RedirectToAction("Detail", "Post", new { id = id });
         }
 
         private Commenter GetCommenter(CommentInput input)
         {
-            if (!string.IsNullOrWhiteSpace(input.OpenId) && dbContext.Commenters.Count(c => c.OpenId == input.OpenId) > 0)
+            if (!string.IsNullOrWhiteSpace(input.OpenId) && DbContext.Commenters.Count(c => c.OpenId == input.OpenId) > 0)
             {
                 // this means that user changed email and user name in comment input form that has a openid value as hidden field
                 // that is, user does not want use openid, so that openid will not be saved

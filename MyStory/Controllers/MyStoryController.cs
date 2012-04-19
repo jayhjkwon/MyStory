@@ -12,17 +12,17 @@ namespace MyStory.Controllers
 {
     public class MyStoryController : Controller
     {
-        protected MyStoryContext dbContext;
+        protected MyStoryContext DbContext;
 
         public MyStoryController()
         {
-            dbContext = new MyStoryContext();
+            DbContext = new MyStoryContext();
             Init();
         }
 
         private void Init()
         {
-            var blog = dbContext.Blogs.FirstOrDefault();
+            var blog = DbContext.Blogs.FirstOrDefault();
             if (blog != null)
             {
                 ViewBag.BlogName = blog.Title;
@@ -31,7 +31,7 @@ namespace MyStory.Controllers
 
         protected override void Dispose(bool disposing)
         {
-            dbContext.Dispose();
+            DbContext.Dispose();
             base.Dispose(disposing);
         }
 
@@ -40,7 +40,7 @@ namespace MyStory.Controllers
             if (!HttpContext.Request.IsAuthenticated)
                 return null;
 
-            return dbContext.SelectUserByEmail(HttpContext.User.Identity.Name);
+            return DbContext.SelectUserByEmail(HttpContext.User.Identity.Name);
         }
 
         protected Blog GetCurrentBlog()
@@ -50,7 +50,7 @@ namespace MyStory.Controllers
 
             var email = HttpContext.User.Identity.Name;
             //return userService.GetBlogByEmail(email);
-            return dbContext.Blogs.SingleOrDefault(b => b.BlogOwner.Email == email);
+            return DbContext.Blogs.SingleOrDefault(b => b.BlogOwner.Email == email);
         }
     }
 }

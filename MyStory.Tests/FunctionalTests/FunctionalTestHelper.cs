@@ -17,16 +17,16 @@ namespace MyStory.Tests.FunctionalTests
         public static string PostTitle { get { return "title"; } }
         public static string CommenterEmail { get { return "sujin"; } }
         public static string CommenterName { get { return "c@c.com"; } }
-        private static string _CommentContent;
+        private static string _commentContent;
         public static string CommentContent 
         {
             get
             {
-                return _CommentContent ?? "this is content"; 
+                return _commentContent ?? "this is content"; 
             } 
             set 
             {
-                _CommentContent = value;
+                _commentContent = value;
             }
         }
 
