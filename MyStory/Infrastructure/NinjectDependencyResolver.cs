@@ -25,6 +25,7 @@ namespace MyStory.Infrastructure
             Bind<IMapper>().To<PostMapper>();
             Bind<IMapper>().To<CommentMapper>();
             Bind<ITagService>().To<TagService>();
+            Bind<IAuthenticationService>().To<FormsAuthenticationService>();
         }
 
         public IBindingToSyntax<T> Bind<T>()
