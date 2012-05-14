@@ -188,8 +188,6 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\common.css" />
-    <Content Include="Content\images\glyphicons-halflings-white.png" />
-    <Content Include="Content\images\glyphicons-halflings.png" />
     <Content Include="Content\images.large\aol.gif" />
     <Content Include="Content\images.large\facebook.gif" />
     <Content Include="Content\images.large\google.gif" />
@@ -273,6 +271,8 @@
     <Content Include="Content\images.small\yandex.ico" />
     <Content Include="Content\images.small\yandex.ico.gif" />
     <Content Include="Content\images.small\yandex.ico.png" />
+    <Content Include="Content\images\glyphicons-halflings-white.png" />
+    <Content Include="Content\images\glyphicons-halflings.png" />
     <Content Include="Content\images\openid-inputicon.gif" />
     <Content Include="Content\images\openid-providers-en.png" />
     <Content Include="Content\images\openid-providers-ru.png" />
