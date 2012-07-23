@@ -246,7 +246,6 @@ namespace MyStory.Tests.FunctionalTests.Controllers
             _controller = new PostController();
             _controller.SetFakeControllerContext(true);
 
-            
             // Act
             var result = _controller.Detail(1) as ViewResult;
 

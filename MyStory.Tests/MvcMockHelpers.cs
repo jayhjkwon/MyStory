@@ -36,6 +36,7 @@ namespace MyStory.Tests
             request.Setup(req => req.IsAuthenticated).Returns(IsAuthenticated);
             if(IsAjaxRequest)
                 request.Setup(req => req["X-Requested-With"]).Returns("XMLHttpRequest");
+            request.Setup(req => req.IsAuthenticated).Returns(true);
 
             response.Setup(res => res.ApplyAppPathModifier(It.IsAny<string>())).
                 Returns((string virtualPath) => virtualPath);
@@ -43,7 +44,7 @@ namespace MyStory.Tests
             user.Setup(usr => usr.Identity).Returns(identity.Object);
             user.Setup(usr => usr.Identity.Name).Returns("a@a.com");
             
-            identity.Setup(ident => ident.IsAuthenticated).Returns(true);
+            identity.SetupGet(ident => ident.IsAuthenticated).Returns(true);
 
             context.Setup(ctx => ctx.Request).Returns(request.Object);
             context.Setup(ctx => ctx.Response).Returns(response.Object);
@@ -59,15 +60,18 @@ namespace MyStory.Tests
 			HttpContextBase context = FakeHttpContext();
 			context.Request.SetupRequestUrl(url);
 			return context;
-		} 
+		}
 
-		public static void SetFakeControllerContext(this Controller controller,
+        public static void SetFakeControllerContext(this Controller controller,
                                                     bool isAuthenticated = true,
                                                     bool isAjaxRequest = false)
-		{
+        {
             IsAuthenticated = isAuthenticated;
             IsAjaxRequest = isAjaxRequest;
+        }
 
+		public static void SetFakeControllerContext(this Controller controller)
+		{
 			var httpContext = FakeHttpContext();
 			
             ControllerContext context = new ControllerContext(
