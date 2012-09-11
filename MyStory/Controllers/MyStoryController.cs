@@ -12,12 +12,12 @@ namespace MyStory.Controllers
 {
     public class MyStoryController : Controller
     {
-        protected MyStoryContext DbContext;
+        protected MyStoryContext DbContext { get; set; }
 
         public MyStoryController()
         {
-            DbContext = new MyStoryContext();
-            Init();
+            //DbContext = new MyStoryContext();
+            //Init();
         }
 
         private void Init()
@@ -29,10 +29,36 @@ namespace MyStory.Controllers
             }
         }
 
-        protected override void Dispose(bool disposing)
+        //protected override void Dispose(bool disposing)
+        //{
+        //    DbContext.Dispose();
+        //    base.Dispose(disposing);
+        //}
+
+        protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            DbContext.Dispose();
-            base.Dispose(disposing);
+            base.OnActionExecuting(filterContext);
+            this.DbContext = new MyStoryContext();
+            SetBlogName();
+        }
+
+        private void SetBlogName()
+        {
+            var blog = DbContext.Blogs.FirstOrDefault();
+            if (blog != null)
+            {
+                ViewBag.BlogName = blog.Title;
+            }
+        }
+
+        protected override void OnActionExecuted(ActionExecutedContext filterContext)
+        {
+            //this.DbContext.SaveChanges();
+        }
+
+        protected override void OnResultExecuted(ResultExecutedContext filterContext)
+        {
+            this.DbContext.Dispose();
         }
 
         protected Account GetCurrentUser()
