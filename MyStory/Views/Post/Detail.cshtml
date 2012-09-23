@@ -19,7 +19,7 @@
         @Facebook.LikeButton(href:@Request.Url.AbsoluteUri, buttonLayout:"button_count", showFaces:false, width:650, height:20)
     </p>
     <p>
-        <i class="icon-share"></i> <b>Share with</b> @LinkShare.GetHtml(Model.Title, linkSites: new LinkShareSite[] { LinkShareSite.Twitter, LinkShareSite.Facebook, LinkShareSite.Digg, LinkShareSite.GoogleBuzz, LinkShareSite.Reddit, LinkShareSite.StumbleUpon })
+        <i class="icon-share"></i> <b>Share with</b> @LinkShare.GetHtml(Model.Title, linkSites: new LinkShareSite[] { LinkShareSite.Twitter, LinkShareSite.Facebook, LinkShareSite.Digg,LinkShareSite.Reddit, LinkShareSite.StumbleUpon })
     </p>
     <p>
         <i class="icon-time"></i> <b>Posted at @Html.DisplayFor(model => model.DateCreated)</b>

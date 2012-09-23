@@ -1,0 +1,106 @@
+﻿@model MyStory.ViewModels.AccountInput
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2 class="page-header">
+    Register</h2>
+@if (ViewBag.AlreadyOneAccountExist)
+{
+    <div class="alert alert-error">
+        <p>
+            MyStory supports only one account, there is existing account already.
+        </p>
+        @if (!Request.IsAuthenticated)
+        {
+            <p>
+                Remove the old account first</p> 
+            <a href="@Url.Action("LogOn", "Account")" class="btn btn-primary btn-large"><i class="icon-ok icon-white">
+            </i>Log On</a>
+            
+        }
+        else
+        {
+        }
+    </div>
+}
+else
+{
+    using (Html.BeginForm())
+    {
+    @Html.ValidationSummary(true, "Registration was unsuccessful. Please correct the errors and try again.", new { @class = "alert alert-error" })
+
+    <div class="control-group">
+        @Html.LabelFor(model => model.AccountEmail, new { @class = "control-label" })
+        <div class="controls">
+            @Html.TextBoxFor(model => model.AccountEmail)
+            @Html.ValidationMessageFor(model => model.AccountEmail)
+        </div>
+    </div>
+        
+
+    <div class="control-group">
+        @Html.LabelFor(model => model.AccountPassword, new { @class = "control-label" })
+        <div class="controls">
+            @Html.TextBoxFor(model => model.AccountPassword)
+            @Html.ValidationMessageFor(model => model.AccountPassword)
+        </div>
+    </div>
+    
+
+    <div class="control-group">
+        @Html.LabelFor(model => model.AccountName, new { @class = "control-label" })
+        <div class="controls">
+            @Html.TextBoxFor(model => model.AccountName)
+            @Html.ValidationMessageFor(model => model.AccountName)
+        </div>
+    </div>
+    
+    <div class="control-group">
+        @Html.LabelFor(model => model.AccountDescription, new { @class = "control-label" })
+        <div class="controls">
+            @Html.TextAreaFor(model => model.AccountDescription)
+            @Html.ValidationMessageFor(model => model.AccountDescription)
+        </div>
+    </div>
+    
+
+    <div class="control-group">
+        @Html.LabelFor(model => model.BlogTitle, new { @class = "control-label" })
+        <div class="controls">
+            @Html.TextBoxFor(model => model.BlogTitle)
+            @Html.ValidationMessageFor(model => model.BlogTitle)
+        </div>
+    </div>
+    
+    <div class="control-group">
+        @Html.LabelFor(model => model.IsGravatarUse, new { @class = "control-label" })
+        <div class="controls">
+            @Html.CheckBoxFor(model => model.IsGravatarUse)
+        </div>
+    </div>
+    
+    <div class="control-group">
+        @Html.LabelFor(model => model.RememberMe, new { @class = "control-label" })
+        <div class="controls">
+            @Html.CheckBoxFor(model => model.RememberMe)
+        </div>
+    </div>
+    
+
+    <div class="form-actions">
+        <input type="submit" value="Register" class="btn btn-primary" />
+    </div>
+    }
+}
+@section Script
+{
+    <script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('form').addClass('form-horizontal');
+            $('#logon-nav').addClass('active');
+        });
+    </script>
+}

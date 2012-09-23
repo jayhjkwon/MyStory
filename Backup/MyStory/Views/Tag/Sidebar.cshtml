@@ -1,0 +1,25 @@
+﻿@model IEnumerable<MyStory.ViewModels.TagSidebarViewModel>
+@{    
+    Layout = null;
+}
+<div class="well sidebar-nav shadow" style="padding: 7px">
+    <ul class="nav nav-list">
+        <li class="nav-header">
+            
+                <i class="icon-tags"></i> Tags
+        </li>
+        
+        @{ int rank = 0; int prevCount = 0; }
+        @foreach (var tag in Model)
+        {
+            if (prevCount != tag.Count)
+            {
+                rank++;
+            }
+                
+            @Html.TagBadge(rank, tag.Count, tag.TagText);
+            prevCount = tag.Count;           
+        }
+        
+    </ul>
+</div>
