@@ -22,3 +22,4 @@ _ReSharper.*
 *.resharper
 Ankh.NoLoad
 packages
+Web.Release.config
